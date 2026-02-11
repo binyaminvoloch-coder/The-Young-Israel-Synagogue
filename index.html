@@ -28,33 +28,28 @@
 
         .serif { font-family: 'Rubik', sans-serif; }
         
-        /* --- Hero / Background Styling (תיקון הבהירות) --- */
+        /* --- Hero / Background Styling --- */
         #hero-bg {
-            /* צבע בסיס למקרה שהתמונה לא נטענת */
             background-color: var(--dark);
-            
-            /* הגדרות מיקום - קריטי למובייל */
             background-size: cover;
-            background-position: center center; /* ממקם את התמונה תמיד במרכז */
+            background-position: center center; /* מרכז התמונה תמיד */
             background-repeat: no-repeat;
-            
-            /* מעבר חלק בטעינה */
             transition: background-image 0.5s ease-in-out;
             
-            /* במובייל - גלילה רגילה כדי למנוע קפיצות */
+            /* במובייל - גלילה רגילה למניעת קפיצות */
             background-attachment: scroll; 
         }
 
-        /* במחשב בלבד - אפקט פרלקס (התמונה זזה לאט) */
+        /* במחשב - אפקט פרלקס יוקרתי */
         @media (min-width: 768px) {
             #hero-bg {
                 background-attachment: fixed;
             }
         }
 
-        /* צל לטקסט כדי שיהיה קריא על רקע בהיר */
+        /* צללית לטקסט לקריאות מקסימלית על רקע בהיר */
         .text-shadow-strong {
-            text-shadow: 0 2px 10px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.4);
         }
 
         /* Animations */
@@ -70,10 +65,10 @@
         }
         #whatsapp-float:hover { transform: scale(1.1); }
 
+        /* כרטיסי גלריה */
         .gallery-card {
-            border-radius: 1.5rem;
+            border-radius: 1rem;
             overflow: hidden;
-            aspect-ratio: 4/3;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             background-color: #eee;
             position: relative;
@@ -92,42 +87,42 @@
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            text-shadow: none; /* כפתור לא צריך צל לטקסט */
         }
         .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <!-- WhatsApp -->
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/972507341851" target="_blank" id="whatsapp-float">
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <!-- Header / Hero -->
-    <!-- שיניתי את min-h ל-screen במובייל כדי שיראה מרשים, והוספתי flex ליישור -->
-    <header id="hero-bg" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center text-white px-4">
+    <!-- Header / Hero Section -->
+    <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-white px-4">
         
         <div class="max-w-4xl animate-[fadeIn_1s_ease-out] z-10 p-4">
+            <!-- תגית עליונה -->
             <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-gold mb-6 shadow-lg">
                 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">אולם האירועים של פתח תקווה</span>
             </div>
             
-            <!-- הוספתי מחלקה text-shadow-strong לקריאות מוגברת -->
+            <!-- כותרת ראשית עם צללית -->
             <h1 class="text-5xl md:text-8xl font-extrabold mb-6 serif text-shadow-strong">
                 ישראל הצעיר
             </h1>
             
+            <!-- תת כותרת -->
             <p class="text-xl md:text-3xl font-medium opacity-100 mb-10 max-w-2xl mx-auto leading-relaxed text-shadow-strong">
                 חוגגים בריתות, שבתות חתן ואירועים משפחתיים <br>באווירה יוקרתית, חמה ומכובדת.
             </p>
             
-            <div class="flex flex-col md:flex-row justify-center gap-4 w-full md:w-auto">
+            <!-- כפתורים -->
+            <div class="flex flex-col md:flex-row justify-center gap-4 w-full md:w-auto px-6">
                 <a href="tel:0507341851" class="btn-gold text-lg">
                     לתיאום סיור: 050-7341851
                 </a>
-                <!-- כפתור שקוף עם רקע כהה יותר לקריאות -->
                 <a href="#about" class="bg-black/40 backdrop-blur-md border border-white/30 px-10 py-4 rounded-full font-bold hover:bg-black/60 transition-all text-shadow-strong">
                     גלה עוד
                 </a>
@@ -135,11 +130,13 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-24">
+    <main class="max-w-7xl mx-auto px-6 py-16 md:py-24">
         
-        <!-- About -->
-        <section id="about" class="grid md:grid-cols-2 gap-16 items-center reveal mb-32">
-            <div class="space-y-6">
+        <!-- About Section - תיקון הגודל והחיתוך של התמונה -->
+        <section id="about" class="grid md:grid-cols-2 gap-12 items-center reveal mb-24 md:mb-32">
+            
+            <!-- טקסט -->
+            <div class="space-y-6 order-2 md:order-1">
                 <h2 class="text-gold font-bold tracking-tighter text-lg uppercase italic">קצת עלינו</h2>
                 <h3 class="text-4xl md:text-5xl font-bold serif leading-tight">המקום המושלם לשמחה שלכם</h3>
                 <p class="text-gray-600 text-lg leading-relaxed">
@@ -165,9 +162,18 @@
                     </div>
                 </div>
             </div>
-            <div class="gallery-card h-[450px]">
-                <img id="img-02" src="" alt="אולם אירועים">
+
+            <!-- תמונה - התיקון הגדול כאן -->
+            <div class="order-1 md:order-2 w-full">
+                <!-- 
+                   במובייל: aspect-video (16:9 רחב) -> מראה את כל השולחן לרוחב
+                   במחשב: גובה מוגדר 500px או אוטומטי
+                -->
+                <div class="rounded-[2rem] overflow-hidden shadow-xl aspect-video md:aspect-auto md:h-[500px] w-full relative group">
+                    <img id="img-02" src="" alt="אולם אירועים - בופה" class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700">
+                </div>
             </div>
+
         </section>
 
         <!-- Gallery Grid -->
@@ -176,21 +182,26 @@
                 <h2 class="text-4xl font-bold serif mb-4">גלריית תמונות</h2>
                 <div class="w-20 h-1 bg-gold mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="gallery-card">
-                    <img id="img-02-gallery" src="" alt="תמונה 02">
+            
+            <!-- גריד תמונות מותאם -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- תמונה 1 -->
+                <div class="gallery-card aspect-video md:aspect-[4/3]">
+                    <img id="img-02-gallery" src="" alt="עיצוב שולחן">
                 </div>
-                <div class="gallery-card">
-                    <img id="img-03" src="" alt="תמונה 03">
+                <!-- תמונה 2 -->
+                <div class="gallery-card aspect-video md:aspect-[4/3]">
+                    <img id="img-03" src="" alt="אווירה באולם">
                 </div>
-                <div class="gallery-card">
-                    <img id="img-04" src="" alt="תמונה 04">
+                <!-- תמונה 3 -->
+                <div class="gallery-card aspect-video md:aspect-[4/3]">
+                    <img id="img-04" src="" alt="פרטים קטנים">
                 </div>
             </div>
         </section>
 
         <!-- Map & Contact -->
-        <section class="bg-dark rounded-[3rem] p-8 md:p-16 text-white reveal shadow-2xl">
+        <section class="bg-dark rounded-[2rem] p-8 md:p-16 text-white reveal shadow-2xl">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
                     <div>
@@ -216,7 +227,7 @@
                     </a>
                 </div>
                 
-                <div class="h-80 rounded-[2rem] overflow-hidden border-4 border-white/10">
+                <div class="h-64 md:h-80 rounded-[1.5rem] overflow-hidden border-4 border-white/10">
                     <iframe 
                         width="100%" height="100%" frameborder="0" style="border:0" 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.8872688406796!2d34.87614592425625!3d32.07684061962383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35e3e7fba209%3A0x79b59c1eb6c0f1e4!2z15rep16rXmSDXmdeo15DXnCDXlNem16LXmdeoINek16rXlyDXqten15XXldeU!5e0!3m2!1siw!2sil!4v1700000000000" 
@@ -235,17 +246,17 @@
         // אתחול אייקונים
         lucide.createIcons();
 
-        // פונקציה חכמה לטעינת תמונות
+        // פונקציה לטעינת תמונות עם הגרדיאנט החדש והבהיר
         function autoLoadImages() {
             const formats = ['webp', 'jpg', 'jpeg', 'png'];
             
-            // כאן הגדרנו את הגרדיאנט החדש והבהיר יותר (0.6 בקצוות ו-0.1 במרכז)
-            const lightGradient = "linear-gradient(to bottom, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.6))";
+            // הגרדיאנט החדש: שקוף מאוד באמצע, כהה מעט בקצוות לטובת הטקסט
+            const lightGradient = "linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.7))";
 
             const imageMap = [
                 { id: 'hero-bg', base: '01', isBg: true },
                 { id: 'img-02', base: '02', isBg: false },
-                { id: 'img-02-gallery', base: '02', isBg: false }, // שים לב: אם זו אותה תמונה, וודא שיש לך קובץ בשם 02
+                { id: 'img-02-gallery', base: '02', isBg: false },
                 { id: 'img-03', base: '03', isBg: false },
                 { id: 'img-04', base: '04', isBg: false }
             ];
@@ -253,7 +264,7 @@
             imageMap.forEach(item => {
                 let found = false;
                 formats.forEach(ext => {
-                    if(found) return; // אם נמצאה תמונה, לא להמשיך לחפש
+                    if(found) return;
                     
                     const testUrl = `${item.base}.${ext}`;
                     const img = new Image();
@@ -264,11 +275,13 @@
                         if (!element) return;
 
                         if (item.isBg) {
-                            // שימוש בגרדיאנט הבהיר החדש
                             element.style.backgroundImage = `${lightGradient}, url('${testUrl}')`;
                         } else {
                             element.src = testUrl;
                         }
+                    };
+                    img.onerror = function() {
+                        // אם התמונה לא נמצאה, ממשיכים לפורמט הבא
                     };
                     img.src = testUrl;
                 });
