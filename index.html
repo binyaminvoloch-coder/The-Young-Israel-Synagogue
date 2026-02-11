@@ -16,7 +16,7 @@
             --gold: #D4AF37; 
             --gold-dark: #b5952f;
             --dark: #0f172a; 
-            --c
+            --cream: #f8f9fa;
         }
         
         body { 
@@ -28,13 +28,33 @@
 
         .serif { font-family: 'Rubik', sans-serif; }
         
-        /* Hero Styling */
+        /* --- Hero / Background Styling (תיקון הבהירות) --- */
         #hero-bg {
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.8)), url(''); 
+            /* צבע בסיס למקרה שהתמונה לא נטענת */
+            background-color: var(--dark);
+            
+            /* הגדרות מיקום - קריטי למובייל */
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-position: center center; /* ממקם את התמונה תמיד במרכז */
+            background-repeat: no-repeat;
+            
+            /* מעבר חלק בטעינה */
             transition: background-image 0.5s ease-in-out;
+            
+            /* במובייל - גלילה רגילה כדי למנוע קפיצות */
+            background-attachment: scroll; 
+        }
+
+        /* במחשב בלבד - אפקט פרלקס (התמונה זזה לאט) */
+        @media (min-width: 768px) {
+            #hero-bg {
+                background-attachment: fixed;
+            }
+        }
+
+        /* צל לטקסט כדי שיהיה קריא על רקע בהיר */
+        .text-shadow-strong {
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4);
         }
 
         /* Animations */
@@ -72,6 +92,7 @@
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            text-shadow: none; /* כפתור לא צריך צל לטקסט */
         }
         .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
     </style>
@@ -84,21 +105,30 @@
     </a>
 
     <!-- Header / Hero -->
-    <header id="hero-bg" class="min-h-[85vh] flex flex-col justify-center items-center text-center text-white px-4">
-        <div class="max-w-4xl animate-[fadeIn_1s_ease-out]">
-            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-gold mb-6">
+    <!-- שיניתי את min-h ל-screen במובייל כדי שיראה מרשים, והוספתי flex ליישור -->
+    <header id="hero-bg" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center text-white px-4">
+        
+        <div class="max-w-4xl animate-[fadeIn_1s_ease-out] z-10 p-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-gold mb-6 shadow-lg">
                 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">אולם האירועים של פתח תקווה</span>
             </div>
-            <h1 class="text-5xl md:text-8xl font-extrabold mb-6 serif">ישראל הצעיר</h1>
-            <p class="text-xl md:text-3xl font-light opacity-90 mb-10 max-w-2xl mx-auto leading-relaxed">
+            
+            <!-- הוספתי מחלקה text-shadow-strong לקריאות מוגברת -->
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-6 serif text-shadow-strong">
+                ישראל הצעיר
+            </h1>
+            
+            <p class="text-xl md:text-3xl font-medium opacity-100 mb-10 max-w-2xl mx-auto leading-relaxed text-shadow-strong">
                 חוגגים בריתות, שבתות חתן ואירועים משפחתיים <br>באווירה יוקרתית, חמה ומכובדת.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4 w-full md:w-auto">
                 <a href="tel:0507341851" class="btn-gold text-lg">
                     לתיאום סיור: 050-7341851
                 </a>
-                <a href="#about" class="bg-white/10 backdrop-blur-md border border-white/30 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-all">
+                <!-- כפתור שקוף עם רקע כהה יותר לקריאות -->
+                <a href="#about" class="bg-black/40 backdrop-blur-md border border-white/30 px-10 py-4 rounded-full font-bold hover:bg-black/60 transition-all text-shadow-strong">
                     גלה עוד
                 </a>
             </div>
@@ -174,13 +204,13 @@
                                 <i data-lucide="phone"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-500"></p>
-                                <p class="text-xl font-bold">050-7341851</p>
+                                <p class="text-sm text-gray-500">לתיאום ופרטים:</p>
+                                <a href="tel:0507341851" class="text-xl font-bold hover:text-gold transition">050-7341851</a>
                             </div>
                         </div>
                     </div>
 
-                    <a href="https://wa.me/972507341851" class="inline-flex items-center gap-3 bg-[#25D366] px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+                    <a href="https://wa.me/972507341851" class="inline-flex items-center gap-3 bg-[#25D366] px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform w-full md:w-auto justify-center">
                         <i data-lucide="message-circle"></i>
                         שלחו לנו הודעה בוואטסאפ
                     </a>
@@ -190,14 +220,14 @@
                     <iframe 
                         width="100%" height="100%" frameborder="0" style="border:0" 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.8872688406796!2d34.87614592425625!3d32.07684061962383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35e3e7fba209%3A0x79b59c1eb6c0f1e4!2z15rep16rXmSDXmdeo15DXnCDXlNem16LXmdeoINek16rXlyDXqten15XXldeU!5e0!3m2!1siw!2sil!4v1700000000000" 
-                        allowfullscreen>
+                        allowfullscreen loading="lazy">
                     </iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 text-center text-gray-500 text-sm border-t border-gray-100">
+    <footer class="py-12 text-center text-gray-500 text-sm border-t border-gray-100 bg-white">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה</p>
     </footer>
 
@@ -205,27 +235,39 @@
         // אתחול אייקונים
         lucide.createIcons();
 
-        // פונקציה חכמה לטעינת תמונות בכל הפורמטים
+        // פונקציה חכמה לטעינת תמונות
         function autoLoadImages() {
-            const formats = ['webp', 'jpg', 'jpeg', 'png', 'avif'];
+            const formats = ['webp', 'jpg', 'jpeg', 'png'];
             
+            // כאן הגדרנו את הגרדיאנט החדש והבהיר יותר (0.6 בקצוות ו-0.1 במרכז)
+            const lightGradient = "linear-gradient(to bottom, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.6))";
+
             const imageMap = [
                 { id: 'hero-bg', base: '01', isBg: true },
                 { id: 'img-02', base: '02', isBg: false },
-                { id: 'img-02-gallery', base: '02', isBg: false },
+                { id: 'img-02-gallery', base: '02', isBg: false }, // שים לב: אם זו אותה תמונה, וודא שיש לך קובץ בשם 02
                 { id: 'img-03', base: '03', isBg: false },
                 { id: 'img-04', base: '04', isBg: false }
             ];
 
             imageMap.forEach(item => {
+                let found = false;
                 formats.forEach(ext => {
+                    if(found) return; // אם נמצאה תמונה, לא להמשיך לחפש
+                    
                     const testUrl = `${item.base}.${ext}`;
                     const img = new Image();
+                    
                     img.onload = function() {
+                        found = true;
+                        const element = document.getElementById(item.id);
+                        if (!element) return;
+
                         if (item.isBg) {
-                            document.getElementById(item.id).style.backgroundImage = `linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.8)), url('${testUrl}')`;
+                            // שימוש בגרדיאנט הבהיר החדש
+                            element.style.backgroundImage = `${lightGradient}, url('${testUrl}')`;
                         } else {
-                            document.getElementById(item.id).src = testUrl;
+                            element.src = testUrl;
                         }
                     };
                     img.src = testUrl;
