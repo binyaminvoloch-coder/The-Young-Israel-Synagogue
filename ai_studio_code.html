@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אולם אירועים ישראל הצעיר - ניהול והזמנות</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap');
+        body { font-family: 'Assistant', sans-serif; background-color: #fffcf7; }
+        .bg-gold { background-color: #D4AF37; }
+        .text-gold { color: #D4AF37; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s all ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <header id="hero-bg" class="min-h-[60vh] flex flex-col justify-center items-center text-center text-white bg-slate-900 bg-cover bg-center bg-fixed">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg">ישראל הצעיר פתח תקווה</h1>
+        <p class="text-xl opacity-90">אולם האירועים המושלם לשמחה שלכם</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        
+        <!-- בחירת תאריך -->
+        <section class="reveal mb-20 bg-white p-8 rounded-3xl shadow-xl border border-gold/20">
+            <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">
+                <i data-lucide="calendar" class="text-gold"></i> תאריכים פנויים ושיריון מקום
+            </h2>
+            <div id="dates-container" class="space-y-4">
+                <p class="text-center text-gray-400">טוען תאריכים...</p>
+            </div>
+        </section>
+
+        <!-- ניהול מנהל (מוסתר) -->
+        <div class="text-center mb-10">
+            <button onclick="showAdmin()" class="text-xs text-gray-300 hover:text-gold transition-colors italic">כניסת הנהלה</button>
+        </div>
+    </main>
+
+    <!-- Modal הזמנה -->
+    <div id="order-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full relative">
+            <button onclick="closeModal()" class="absolute top-4 left-4 text-gray-400"><i data-lucide="x"></i></button>
+            <h3 class="text-2xl font-bold mb-2">שיריון אירוע</h3>
+            <p id="selected-date-display" class="text-gold font-bold mb-6"></p>
+            <div class="space-y-4">
+                <input type="text" id="user-name" placeholder="שם מלא" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-gold">
+                <input type="tel" id="user-phone" placeholder="טלפון" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-gold">
+                <textarea id="user-notes" placeholder="הערות נוספות" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-gold h-24"></textarea>
+                <button onclick="sendOrder()" id="send-btn" class="w-full bg-gold text-white py-4 rounded-xl font-bold shadow-lg">שלח בקשה למנהל</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'הדבק_כאן_את_הכתובת_מגוגל_אפס_סקריפט';
+        let selectedDate = "";
+
+        async function loadDates() {
+            try {
+                const res = await fetch(SCRIPT_URL + "?action=getDates");
+                const data = await res.json();
+                const container = document.getElementById('dates-container');
+                container.innerHTML = "";
+                
+                data.dates.forEach(d => {
+                    const isBooked = d.status === 'booked';
+                    const div = document.createElement('div');
+                    div.className = `p-4 border-2 rounded-2xl flex justify-between items-center transition-all ${isBooked ? 'bg-gray-100 border-gray-200 opacity-60' : 'bg-white border-gold/30 hover:border-gold cursor-pointer'}`;
+                    div.innerHTML = `
+                        <div>
+                            <span class="block font-bold text-lg">${d.date}</span>
+                            <span class="text-sm text-gray-500">${d.category}</span>
+                        </div>
+                        <span class="font-bold ${isBooked ? 'text-red-500' : 'text-green-600'}">
+                            ${isBooked ? 'תפוס' : 'פנוי - לחץ להזמנה'}
+                        </span>
+                    `;
+                    if (!isBooked) div.onclick = () => openModal(d.date);
+                    container.appendChild(div);
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        function openModal(date) {
+            selectedDate = date;
+            document.getElementById('selected-date-display').innerText = "לתאריך: " + date;
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeModal() { document.getElementById('order-modal').classList.add('hidden'); }
+
+        async function sendOrder() {
+            const name = document.getElementById('user-name').value;
+            const phone = document.getElementById('user-phone').value;
+            const notes = document.getElementById('user-notes').value;
+
+            if (!name || !phone) return alert("חובה למלא שם וטלפון");
+            
+            document.getElementById('send-btn').innerText = "...שולח";
+            
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({ action: "submitOrder", name, phone, date: selectedDate, notes })
+            });
+
+            alert("הפנייה נשלחה בהצלחה! המנהל יצור איתך קשר.");
+            closeModal();
+            document.getElementById('send-btn').innerText = "שלח בקשה למנהל";
+        }
+
+        function showAdmin() {
+            const pass = prompt("סיסמת מנהל:");
+            if (pass === "1234") { // הסיסמה שקבעת
+                window.open("https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit", "_blank");
+            } else {
+                alert("סיסמה שגויה");
+            }
+        }
+
+        window.onload = () => {
+            loadDates();
+            lucide.createIcons();
+            // Fallback לתמונות שהוספנו קודם
+            document.getElementById('hero-bg').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('01.jpg')";
+        };
+    </script>
+</body>
+</html>
