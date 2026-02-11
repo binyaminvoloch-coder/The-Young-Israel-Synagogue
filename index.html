@@ -3,132 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אולם אירועים ישראל הצעיר - ניהול והזמנות</title>
+    <title>ניהול אולם ישראל הצעיר - פתח תקווה</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap');
-        body { font-family: 'Assistant', sans-serif; background-color: #fffcf7; }
-        .bg-gold { background-color: #D4AF37; }
-        .text-gold { color: #D4AF37; }
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s all ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap');
+        body { font-family: 'Assistant', sans-serif; background-color: #fcfaf7; }
+        .gold-gradient { background: linear-gradient(135deg, #D4AF37 0%, #b5952f 100%); }
+        .admin-panel { display: none; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #D4AF37; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
+<body class="pb-20">
 
-    <!-- Hero -->
-    <header id="hero-bg" class="min-h-[60vh] flex flex-col justify-center items-center text-center text-white bg-slate-900 bg-cover bg-center bg-fixed">
-        <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg">ישראל הצעיר פתח תקווה</h1>
-        <p class="text-xl opacity-90">אולם האירועים המושלם לשמחה שלכם</p>
+    <!-- Hero Section -->
+    <header class="h-[50vh] flex flex-col justify-center items-center text-white bg-slate-900 relative overflow-hidden">
+        <div id="hero-img" class="absolute inset-0 opacity-40 bg-cover bg-center"></div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4">ישראל הצעיר</h1>
+            <p class="text-xl text-gold opacity-90 italic">המקום המושלם לאירוע בפתח תקווה</p>
+        </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12">
+    <main class="max-w-5xl mx-auto px-4 -mt-10 relative z-20">
         
-        <!-- בחירת תאריך -->
-        <section class="reveal mb-20 bg-white p-8 rounded-3xl shadow-xl border border-gold/20">
-            <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">
-                <i data-lucide="calendar" class="text-gold"></i> תאריכים פנויים ושיריון מקום
-            </h2>
-            <div id="dates-container" class="space-y-4">
-                <p class="text-center text-gray-400">טוען תאריכים...</p>
+        <!-- User View: Date Selection -->
+        <section class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold flex items-center gap-3"><i data-lucide="calendar" class="text-gold"></i> תאריכים זמינים</h2>
+                <button onclick="toggleAdminView()" class="text-gray-300 hover:text-gold transition-colors"><i data-lucide="lock" class="w-4"></i></button>
+            </div>
+            
+            <div id="dates-list" class="grid gap-4">
+                <div class="text-center py-10"><div class="loader"></div></div>
             </div>
         </section>
 
-        <!-- ניהול מנהל (מוסתר) -->
-        <div class="text-center mb-10">
-            <button onclick="showAdmin()" class="text-xs text-gray-300 hover:text-gold transition-colors italic">כניסת הנהלה</button>
-        </div>
+        <!-- Admin Dashboard (Hidden by default) -->
+        <section id="admin-dashboard" class="admin-panel mt-12 bg-slate-900 text-white rounded-3xl p-8 shadow-2xl animate-bounce-in">
+            <h2 class="text-3xl font-bold mb-8 text-gold border-b border-gold/20 pb-4">לוח ניהול מנהל</h2>
+            
+            <!-- Add New Date -->
+            <div class="grid md:grid-cols-3 gap-4 mb-10 bg-white/5 p-6 rounded-2xl border border-white/10">
+                <input type="text" id="new-date" placeholder="תאריך (למשל: 25.05 יום ג')" class="bg-transparent border-b border-white/30 p-2 outline-none focus:border-gold">
+                <select id="new-cat" class="bg-slate-800 border-none p-2 rounded-lg">
+                    <option value="אמצע שבוע">אמצע שבוע</option>
+                    <option value="שבת חתן">שבת חתן</option>
+                    <option value="אירוע ערב">אירוע ערב</option>
+                </select>
+                <button onclick="adminAction('addDate')" class="gold-gradient text-white font-bold py-2 rounded-xl">הוסף תאריך</button>
+            </div>
+
+            <!-- Manage Dates Table -->
+            <div id="admin-dates-list" class="space-y-3">
+                <!-- Admin date items here -->
+            </div>
+        </section>
     </main>
 
     <!-- Modal הזמנה -->
     <div id="order-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full relative">
-            <button onclick="closeModal()" class="absolute top-4 left-4 text-gray-400"><i data-lucide="x"></i></button>
-            <h3 class="text-2xl font-bold mb-2">שיריון אירוע</h3>
-            <p id="selected-date-display" class="text-gold font-bold mb-6"></p>
+        <div class="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl transform transition-all">
+            <h3 class="text-2xl font-bold mb-1" id="modal-date-title">שיריון אירוע</h3>
+            <p class="text-gold font-bold mb-6">נא למלא פרטים והמנהל יחזור אליך</p>
             <div class="space-y-4">
-                <input type="text" id="user-name" placeholder="שם מלא" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-gold">
-                <input type="tel" id="user-phone" placeholder="טלפון" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-gold">
-                <textarea id="user-notes" placeholder="הערות נוספות" class="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-gold h-24"></textarea>
-                <button onclick="sendOrder()" id="send-btn" class="w-full bg-gold text-white py-4 rounded-xl font-bold shadow-lg">שלח בקשה למנהל</button>
+                <input type="text" id="u-name" placeholder="שם מלא" class="w-full p-4 bg-gray-50 rounded-2xl outline-none border focus:border-gold">
+                <input type="tel" id="u-phone" placeholder="טלפון" class="w-full p-4 bg-gray-50 rounded-2xl outline-none border focus:border-gold">
+                <textarea id="u-notes" placeholder="סוג האירוע והערות" class="w-full p-4 bg-gray-50 rounded-2xl outline-none border focus:border-gold h-24"></textarea>
+                <button onclick="submitOrder()" id="sub-btn" class="w-full gold-gradient text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-95 transition-transform">שלח בקשה</button>
+                <button onclick="closeModal()" class="w-full text-gray-400 text-sm">ביטול</button>
             </div>
         </div>
     </div>
 
     <script>
-        const SCRIPT_URL = 'הדבק_כאן_את_הכתובת_מגוגל_אפס_סקריפט';
+        const SCRIPT_URL = 'הדבק_כאן_את_ה-URL_מגוגל_אפס_סקריפט';
+        let adminPass = "";
         let selectedDate = "";
 
-        async function loadDates() {
-            try {
-                const res = await fetch(SCRIPT_URL + "?action=getDates");
-                const data = await res.json();
-                const container = document.getElementById('dates-container');
-                container.innerHTML = "";
-                
-                data.dates.forEach(d => {
-                    const isBooked = d.status === 'booked';
-                    const div = document.createElement('div');
-                    div.className = `p-4 border-2 rounded-2xl flex justify-between items-center transition-all ${isBooked ? 'bg-gray-100 border-gray-200 opacity-60' : 'bg-white border-gold/30 hover:border-gold cursor-pointer'}`;
-                    div.innerHTML = `
-                        <div>
-                            <span class="block font-bold text-lg">${d.date}</span>
-                            <span class="text-sm text-gray-500">${d.category}</span>
-                        </div>
-                        <span class="font-bold ${isBooked ? 'text-red-500' : 'text-green-600'}">
-                            ${isBooked ? 'תפוס' : 'פנוי - לחץ להזמנה'}
-                        </span>
-                    `;
-                    if (!isBooked) div.onclick = () => openModal(d.date);
-                    container.appendChild(div);
-                });
-            } catch (e) { console.error(e); }
+        // טעינת תמונות אוטומטית (ממה שבנינו קודם)
+        function loadImages() {
+            const formats = ['webp','jpg','png'];
+            formats.forEach(ext => {
+                let img = new Image();
+                img.src = `01.${ext}`;
+                img.onload = () => document.getElementById('hero-img').style.backgroundImage = `url('01.${ext}')`;
+            });
+        }
+
+        // טעינת תאריכים
+        async function fetchDates() {
+            const res = await fetch(SCRIPT_URL);
+            const data = await res.json();
+            renderUserList(data.dates);
+            if (adminPass) renderAdminList(data.dates);
+        }
+
+        function renderUserList(dates) {
+            const list = document.getElementById('dates-list');
+            list.innerHTML = dates.map(d => `
+                <div onclick="${d.status === 'available' ? `openModal('${d.date}')` : ''}" 
+                     class="flex justify-between items-center p-5 border-2 rounded-2xl transition-all ${d.status === 'available' ? 'border-gold/20 hover:border-gold cursor-pointer bg-white' : 'bg-gray-50 border-gray-100 opacity-50'}">
+                    <div>
+                        <span class="block font-bold text-xl">${d.date}</span>
+                        <span class="text-sm text-gray-500">${d.category}</span>
+                    </div>
+                    <span class="font-bold ${d.status === 'available' ? 'text-green-600' : 'text-red-400'}">
+                        ${d.status === 'available' ? 'פנוי - לחץ לשיריון' : 'תפוס'}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminList(dates) {
+            const list = document.getElementById('admin-dates-list');
+            list.innerHTML = `<h3 class="text-gold font-bold mb-4">ניהול תאריכים קיימים:</h3>` + dates.map(d => `
+                <div class="flex justify-between items-center bg-white/10 p-4 rounded-xl border border-white/5">
+                    <span>${d.date} (${d.category})</span>
+                    <div class="flex gap-2">
+                        <button onclick="adminAction('updateStatus', {date:'${d.date}', status:'${d.status==='available'?'booked':'available'}'})" class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-lg">שנה סטטוס</button>
+                        <button onclick="adminAction('deleteDate', {date:'${d.date}'})" class="text-xs bg-red-500/20 text-red-300 px-3 py-1 rounded-lg">מחק</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function adminAction(action, extraData = {}) {
+            if (!adminPass) return;
+            const body = { action, password: adminPass, ...extraData };
+            if (action === 'addDate') {
+                body.date = document.getElementById('new-date').value;
+                body.category = document.getElementById('new-cat').value;
+                if (!body.date) return alert("הכנס תאריך");
+            }
+            
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(body) });
+            fetchDates(); // רענון
+        }
+
+        function toggleAdminView() {
+            const pass = prompt("סיסמת מנהל:");
+            if (pass) {
+                adminPass = pass;
+                document.getElementById('admin-dashboard').classList.toggle('admin-panel');
+                fetchDates();
+            }
         }
 
         function openModal(date) {
             selectedDate = date;
-            document.getElementById('selected-date-display').innerText = "לתאריך: " + date;
+            document.getElementById('modal-date-title').innerText = date;
             document.getElementById('order-modal').classList.remove('hidden');
         }
-
         function closeModal() { document.getElementById('order-modal').classList.add('hidden'); }
 
-        async function sendOrder() {
-            const name = document.getElementById('user-name').value;
-            const phone = document.getElementById('user-phone').value;
-            const notes = document.getElementById('user-notes').value;
+        async function submitOrder() {
+            const name = document.getElementById('u-name').value;
+            const phone = document.getElementById('u-phone').value;
+            const notes = document.getElementById('u-notes').value;
+            if(!name || !phone) return alert("נא למלא שם וטלפון");
 
-            if (!name || !phone) return alert("חובה למלא שם וטלפון");
-            
-            document.getElementById('send-btn').innerText = "...שולח";
-            
-            await fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify({ action: "submitOrder", name, phone, date: selectedDate, notes })
-            });
-
-            alert("הפנייה נשלחה בהצלחה! המנהל יצור איתך קשר.");
+            document.getElementById('sub-btn').innerText = "...שולח";
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({action:'submitOrder', name, phone, notes, date: selectedDate}) });
+            alert("הבקשה נשלחה למנהל!");
             closeModal();
-            document.getElementById('send-btn').innerText = "שלח בקשה למנהל";
+            fetchDates();
         }
 
-        function showAdmin() {
-            const pass = prompt("סיסמת מנהל:");
-            if (pass === "1234") { // הסיסמה שקבעת
-                window.open("https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit", "_blank");
-            } else {
-                alert("סיסמה שגויה");
-            }
-        }
-
-        window.onload = () => {
-            loadDates();
-            lucide.createIcons();
-            // Fallback לתמונות שהוספנו קודם
-            document.getElementById('hero-bg').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('01.jpg')";
-        };
+        window.onload = () => { loadImages(); fetchDates(); lucide.createIcons(); };
     </script>
 </body>
 </html>
