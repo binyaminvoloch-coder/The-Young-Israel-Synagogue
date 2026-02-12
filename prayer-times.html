@@ -94,10 +94,9 @@
             transform: translateY(-2px);
         }
 
-        /* PDF Container Styles - תיקון הרקע השחור */
+        /* PDF Container Styles */
         .pdf-wrapper {
-            background: white; /* רקע לבן מונע את השחור */
-            /* הגבלת רוחב כדי להתאים לפרופורציה של דף רגיל */
+            background: white; 
             max-width: 850px; 
             margin: 0 auto;
             border-radius: 0.5rem;
@@ -149,22 +148,21 @@
         
         <!-- PDF Section -->
         <section class="reveal w-full">
+
+            <!-- הערת עדכון (הועברה לכאן - למעלה) -->
+            <div class="text-center mb-6">
+                <p class="inline-block text-white bg-black/40 backdrop-blur px-6 py-2 rounded-full text-sm shadow-md border border-white/10">
+                    * הלוח מתעדכן באופן שוטף
+                </p>
+            </div>
             
-            <!-- 
-               הגדרות גובה:
-               h-[550px] במובייל - גובה נוח
-               md:h-[1150px] במחשב - גובה מלא לדף
-            -->
+            <!-- PDF Viewer -->
             <div class="pdf-wrapper h-[550px] md:h-[1150px]">
                 <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
             </div>
 
-            <!-- הורדה וכפתורים -->
-            <div class="text-center mt-6 flex flex-col items-center gap-6">
-                <p class="text-white bg-black/40 backdrop-blur px-4 py-1 rounded-full text-sm shadow-md">
-                    * הלוח מתעדכן באופן שוטף
-                </p>
-                
+            <!-- כפתורים למטה -->
+            <div class="text-center mt-8 flex flex-col items-center gap-6">
                 <!-- מיכל הכפתורים -->
                 <div class="flex flex-wrap justify-center gap-4">
                     <!-- כפתור הורדה -->
