@@ -31,7 +31,7 @@
         
         /* Hero Section */
         #hero-bg {
-            background-color: #f8fafc; /* שונה לרקע בהיר כברירת מחדל */
+            background-color: #e2e8f0; /* רקע בסיס אפור בהיר */
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -39,8 +39,10 @@
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
-        /* שונה לצל לבן כדי להדגיש טקסט כהה על רקע בהיר */
-        .text-glow-white { text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.6); }
+        /* טקסט כהה צריך הילה לבנה חזקה כדי לבלוט על תמונה */
+        .text-glow-white { 
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7); 
+        }
 
         /* Animations */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -111,17 +113,18 @@
     </a>
 
     <!-- Header / Hero -->
-    <!-- שיניתי כאן את text-white ל-text-slate-900 (כהה) -->
+    <!-- שימוש בטקסט כהה (slate-900) -->
     <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
         <!-- Prayer Times Button -->
         <a href="prayer-times.html" class="prayer-times-btn">זמני תפילות בבית הכנסת</a>
 
         <div class="max-w-4xl z-10 p-4">
-            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 text-gold mb-6 shadow-sm">
+            <!-- רקע חצי שקוף לבן לכותרת המשנית -->
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/70 backdrop-blur-sm border border-slate-300 text-gold mb-6 shadow-sm">
                 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">אולם האירועים של פתח תקווה</span>
             </div>
-            <!-- הוספתי text-glow-white במקום text-shadow-strong -->
+            
             <h1 class="text-5xl md:text-8xl font-extrabold mb-6 serif text-glow-white">ישראל הצעיר</h1>
             <p class="text-xl md:text-3xl font-medium opacity-100 mb-10 max-w-2xl mx-auto leading-relaxed text-glow-white font-bold">
                 חוגגים בריתות, שבתות חתן ואירועים משפחתיים <br>באווירה יוקרתית, חמה ומכובדת.
@@ -292,8 +295,8 @@
         function autoLoadImages() {
             const formats = ['webp', 'jpg', 'jpeg', 'png'];
             
-            // שינוי לגרדיאנט לבן/בהיר כדי שהטקסט הכהה ייראה טוב
-            const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9))";
+            // שינוי לגרדיאנט עדין יותר (40%-50% אטימות) במקום 85%
+            const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.4))";
 
             const imageMap = [
                 { id: 'hero-bg', base: '01', isBg: true },
