@@ -94,17 +94,17 @@
             transform: translateY(-2px);
         }
 
-        /* PDF Container Styles */
+        /* PDF Container Styles - תיקון הרקע השחור */
         .pdf-wrapper {
-            background: transparent;
-            max-width: 900px; 
+            background: white; /* שינוי לרקע לבן מלא */
+            /* הקטנת הרוחב המקסימלי כדי להתאים לפרופורציית דף A4 ולמנוע שוליים שחורים פנימיים */
+            max-width: 850px; 
             margin: 0 auto;
-            /* הגובה הוסר מכאן ומוגדר ב-HTML כדי לשלוט עליו לפי סוג מסך */
             border-radius: 0.5rem;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
             width: 100%;
+            border: none; /* הסרת מסגרת */
         }
         
         iframe {
@@ -152,9 +152,9 @@
         <section class="reveal w-full">
             
             <!-- 
-               שינוי גובה כאן:
-               h-[550px] = גובה במובייל (מונע את החור השחור למטה)
-               md:h-[1150px] = גובה במחשב (מלבן ארוך במקום ריבוע)
+               הגדרות גובה:
+               h-[550px] במובייל - גובה נוח
+               md:h-[1150px] במחשב - גובה מלא לדף
             -->
             <div class="pdf-wrapper h-[550px] md:h-[1150px]">
                 <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
