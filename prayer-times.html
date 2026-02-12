@@ -31,11 +31,13 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            display: flex;
+            flex-direction: column;
         }
 
         .serif { font-family: 'Rubik', sans-serif; }
         
-        /* צל חזק לטקסט כדי שיראה טוב גם על רקע בהיר */
+        /* צל חזק לטקסט */
         .text-shadow-strong { text-shadow: 0 1px 4px rgba(0,0,0,0.6), 0 0 10px rgba(0,0,0,0.5); }
 
         /* Animations */
@@ -92,13 +94,12 @@
             transform: translateY(-2px);
         }
 
-        /* PDF Container Styles - תיקון השוליים השחורים */
+        /* PDF Container Styles */
         .pdf-wrapper {
             background: transparent;
-            /* הגבלת הרוחב ל-900 פיקסלים מונעת את המתיחה שיוצרת את השוליים השחורים */
             max-width: 900px; 
-            margin: 0 auto; /* מרכוז */
-            height: 85vh;
+            margin: 0 auto;
+            /* הגובה הוסר מכאן ומוגדר ב-HTML כדי לשלוט עליו לפי סוג מסך */
             border-radius: 0.5rem;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -120,9 +121,9 @@
     </a>
 
     <!-- Header Section -->
-    <header class="relative pt-24 pb-8 flex flex-col justify-center items-center text-center px-4">
+    <header class="relative pt-24 pb-8 flex flex-col justify-center items-center text-center px-4 shrink-0">
         
-        <!-- כפתור חזרה לדף הבית/אולם -->
+        <!-- כפתור חזרה -->
         <a href="index.html" class="home-btn">
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
             חזרה לאולם האירועים
@@ -145,18 +146,22 @@
     </header>
 
     <!-- Main Content -->
-    <main class="w-full px-2 md:px-4 pb-12 relative z-20">
+    <main class="w-full px-2 md:px-4 pb-8 relative z-20 flex-grow">
         
         <!-- PDF Section -->
         <section class="reveal w-full">
             
-            <!-- PDF Frame -->
-            <div class="pdf-wrapper">
+            <!-- 
+               שינוי גובה כאן:
+               h-[550px] = גובה במובייל (מונע את החור השחור למטה)
+               md:h-[1150px] = גובה במחשב (מלבן ארוך במקום ריבוע)
+            -->
+            <div class="pdf-wrapper h-[550px] md:h-[1150px]">
                 <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
             </div>
 
             <!-- הורדה והערה -->
-            <div class="text-center mt-8 flex flex-col items-center gap-4">
+            <div class="text-center mt-6 flex flex-col items-center gap-4">
                 <p class="text-white bg-black/40 backdrop-blur px-4 py-1 rounded-full text-sm shadow-md">
                     * הלוח מתעדכן באופן שוטף
                 </p>
@@ -169,7 +174,8 @@
 
     </main>
 
-    <footer class="py-8 text-center text-white/80 text-sm bg-black/60 backdrop-blur-sm mt-auto border-t border-white/10">
+    <!-- Footer -->
+    <footer class="py-6 text-center text-white/80 text-sm bg-black/60 backdrop-blur-sm border-t border-white/10 shrink-0 mt-auto">
         <p>© כל הזכויות שמורות - בית הכנסת ישראל הצעיר פתח תקווה</p>
     </footer>
 
@@ -177,7 +183,6 @@
         lucide.createIcons();
 
         // PDF Logic
-        // שים לב: זהו קישור לדוגמה, וודא שהוא הקישור הנכון ל-PDF שלך
         let prayerTimesPdfLink = "https://drive.google.com/file/d/1xSKhNrApxPppHFj32XRNbdy2obfYeca_/preview";
         
         function loadPrayerTimesPdf() {
@@ -190,12 +195,12 @@
             }
         }
 
-        // Background Image Loader (Applied to BODY now)
+        // Background Image Loader
         function loadBackground() {
             const formats = ['jpg', 'jpeg', 'png', 'webp'];
             const body = document.body;
             
-            // שינוי לגרדיאנט הרבה יותר עדין (30%-40%) במקום הכהה הקודם
+            // גרדיאנט עדין (30%-40%)
             const overlay = "linear-gradient(to bottom, rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.4))";
             
             let found = false;
@@ -207,13 +212,11 @@
                 
                 img.onload = function() {
                     found = true;
-                    // הגדרת הרקע ל-Body
                     body.style.backgroundImage = `${overlay}, url('${imgName}')`;
                 };
                 img.src = imgName;
             });
             
-            // הגדרת ברירת מחדל
             if(!found) {
                 body.style.backgroundImage = overlay;
             }
