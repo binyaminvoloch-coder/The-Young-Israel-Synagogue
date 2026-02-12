@@ -96,15 +96,14 @@
 
         /* PDF Container Styles - תיקון הרקע השחור */
         .pdf-wrapper {
-            background: white; /* שינוי לרקע לבן מלא */
-            /* הקטנת הרוחב המקסימלי כדי להתאים לפרופורציית דף A4 ולמנוע שוליים שחורים פנימיים */
+            background: white; /* רקע לבן מונע את השחור */
+            /* הגבלת רוחב כדי להתאים לפרופורציה של דף רגיל */
             max-width: 850px; 
             margin: 0 auto;
             border-radius: 0.5rem;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             overflow: hidden;
             width: 100%;
-            border: none; /* הסרת מסגרת */
         }
         
         iframe {
@@ -160,15 +159,26 @@
                 <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
             </div>
 
-            <!-- הורדה והערה -->
-            <div class="text-center mt-6 flex flex-col items-center gap-4">
+            <!-- הורדה וכפתורים -->
+            <div class="text-center mt-6 flex flex-col items-center gap-6">
                 <p class="text-white bg-black/40 backdrop-blur px-4 py-1 rounded-full text-sm shadow-md">
                     * הלוח מתעדכן באופן שוטף
                 </p>
-                <a id="download-pdf-link" href="#" target="_blank" class="btn-gold text-lg">
-                    <i data-lucide="download" class="w-5 h-5"></i>
-                    הורדת קובץ הלוח (PDF)
-                </a>
+                
+                <!-- מיכל הכפתורים -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <!-- כפתור הורדה -->
+                    <a id="download-pdf-link" href="#" target="_blank" class="btn-gold text-lg">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        הורדת קובץ הלוח (PDF)
+                    </a>
+
+                    <!-- כפתור פייסבוק -->
+                    <a href="https://www.facebook.com/groups/983947816436826?locale=he_IL" target="_blank" class="bg-[#1877F2] text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 hover:bg-[#166fe5] transition shadow-md shadow-blue-900/20">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                        <span>דף הפייסבוק</span>
+                    </a>
+                </div>
             </div>
         </section>
 
