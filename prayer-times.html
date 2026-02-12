@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +12,12 @@
 
         :root {
             --gold: #D4AF37;
+            --gold-light: #FFD700; /* Slightly lighter gold for accents */
             --gold-dark: #b5952f;
             --dark: #0f172a;
             --cream: #fdfdfd;
+            --blue-dark: #1e3a8a; /* A deep blue for contrast */
+            --blue-medium: #3b82f6; /* A mid-tone blue */
         }
 
         body {
@@ -24,6 +26,23 @@
             color: var(--dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            position: relative; /* Needed for background overlay */
+        }
+
+        /* Background image with overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('AAA'); /* Your background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.1; /* Adjust opacity as needed */
+            z-index: -1; /* Place behind content */
         }
 
         .serif { font-family: 'Rubik', sans-serif; }
@@ -48,22 +67,24 @@
             border-radius: 9999px;
             font-weight: bold;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); /* Stronger shadow */
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            text-decoration: none; /* Ensure no underline */
         }
-        .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
+        .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-3px); /* More pronounced hover */ }
 
         /* Navigation styles */
         .nav-bar {
-            background-color: var(--dark);
+            background-color: rgba(15, 23, 42, 0.95); /* Semi-transparent dark background */
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4); /* Stronger shadow */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
         }
         .nav-container {
             max-width: 1280px;
@@ -77,47 +98,84 @@
         }
         .nav-link {
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem; /* Increased padding */
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+            font-weight: 600; /* Slightly less bold for subtlety */
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 0.5rem; /* Rounded corners */
         }
         .nav-link:hover {
-            color: var(--gold);
+            color: var(--gold-light); /* Lighter gold on hover */
+            background-color: rgba(212, 175, 55, 0.1); /* Subtle gold background on hover */
         }
         .nav-link.active {
             color: var(--gold);
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+
+        /* Main content section styling */
+        .main-section {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for readability */
+            border-radius: 1.5rem; /* More rounded corners for the section */
+            padding: 3rem; /* Increased padding */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Deeper shadow */
+            margin-top: 4rem; /* Adjusted margin-top for content below nav */
         }
 
         /* Improved PDF viewer container with title */
         .pdf-viewer-wrapper {
-            background-color: var(--dark); /* Dark background for the container */
-            border-radius: 1rem; /* Rounded corners */
-            padding: 1.5rem; /* Increased padding inside the wrapper */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+            background-color: var(--blue-dark); /* Changed to dark blue for more vibrancy */
+            border-radius: 1.5rem; /* More rounded corners */
+            padding: 2rem; /* Further increased padding */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Very strong shadow */
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem; /* Space between title and iframe */
-            margin-top: 2rem; /* Add some space above the PDF viewer */
+            gap: 2rem; /* Increased space between title and iframe */
+            margin-top: 3rem; /* More space above the PDF viewer */
+            position: relative;
+            overflow: hidden; /* Ensure content stays within borders */
         }
 
         .pdf-viewer-title {
-            color: white; /* White text for the title */
-            font-size: 2rem; /* Larger font size */
-            font-weight: 700; /* Bold text */
+            color: var(--gold-light); /* Gold text for the title */
+            font-size: 2.5rem; /* Even larger font size */
+            font-weight: 800; /* Extra bold */
             font-family: 'Rubik', sans-serif;
             text-align: center;
-            line-height: 1.3;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Text shadow for better visibility */
         }
 
         /* Ensure the iframe itself is styled correctly within the wrapper */
         .pdf-viewer-wrapper iframe {
-            border: 3px solid var(--gold); /* Thicker gold border for the iframe */
-            border-radius: 0.75rem; /* Slightly smaller border-radius than wrapper */
+            border: 4px solid var(--gold); /* Thicker gold border */
+            border-radius: 1rem; /* Slightly larger border-radius than wrapper */
             width: 100%; /* Ensure iframe takes full width of its container */
-            min-height: 600px; /* Minimum height for the iframe */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Shadow for the iframe */
+            min-height: 750px; /* Increased minimum height for the iframe */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Shadow for the iframe */
+            background-color: white; /* Ensure PDF background is white */
+        }
+
+        /* Styling for the main headings and paragraphs */
+        .text-5xl {
+            color: var(--blue-dark); /* Dark blue for main heading */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .text-xl {
+            color: #333; /* Darker grey for paragraph for contrast */
+            line-height: 1.6;
+        }
+        .w-20.h-1.bg-gold {
+            height: 3px; /* Thicker separator line */
+            background-color: var(--gold-light); /* Lighter gold for separator */
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: var(--blue-dark); /* Dark blue footer */
+            color: rgba(255,255,255,0.7); /* Lighter text for footer */
+            font-weight: 400;
         }
 
         /* Responsive adjustments */
@@ -129,24 +187,44 @@
             .nav-bar {
                 padding: 0.75rem 0;
             }
+            .main-section {
+                padding: 1.5rem;
+                margin-top: 2rem;
+            }
             .text-5xl {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             .pdf-viewer-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             .pdf-viewer-wrapper {
                 padding: 1rem;
-                margin-top: 1.5rem;
+                margin-top: 2rem;
+                gap: 1rem;
             }
             .pdf-viewer-wrapper iframe {
-                min-height: 400px;
+                min-height: 500px;
             }
             #whatsapp-float {
                 width: 50px;
                 height: 50px;
                 bottom: 20px;
                 left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-5xl {
+                font-size: 2rem;
+            }
+            .pdf-viewer-title {
+                font-size: 1.4rem;
+            }
+            .btn-gold {
+                padding: 0.8rem 1.5rem;
+            }
+            .pdf-viewer-wrapper iframe {
+                min-height: 350px;
             }
         }
     </style>
@@ -157,7 +235,7 @@
             <div>
                 <a href="index.html" class="nav-link">הזמנת אולם</a>
             </div>
-            <a href="index.html" class="text-2xl font-bold text-gold serif">ישראל הצעיר</a>
+            <a href="index.html" class="text-2xl font-bold text-gold-light serif">ישראל הצעיר</a>
         </div>
     </nav>
 
@@ -165,11 +243,11 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <main class="max-w-7xl mx-auto px-6 py-20 pt-32"> <!-- Increased pt for header space -->
-        <section class="max-w-4xl mx-auto text-center reveal">
-            <h1 class="text-5xl font-extrabold serif mb-6 text-slate-800">זמני תפילות ושיעורים</h1>
+    <main class="max-w-7xl mx-auto px-6 py-20 pt-32">
+        <section class="max-w-4xl mx-auto text-center reveal main-section">
+            <h1 class="text-5xl font-extrabold serif mb-6">זמני תפילות ושיעורים</h1>
             <div class="w-20 h-1 bg-gold mx-auto mb-8"></div>
-            <p class="text-xl text-gray-600 mt-6 mb-12">
+            <p class="text-xl mt-6 mb-12">
                 כאן תוכלו לצפות בלוח זמני התפילות המעודכן ובמועדי השיעורים בבית הכנסת ישראל הצעיר.
             </p>
 
@@ -183,7 +261,7 @@
         </section>
     </main>
 
-    <footer class="py-12 text-center text-white/50 text-sm bg-slate-950">
+    <footer class="py-12 text-center text-sm">
         <p>© בית הכנסת ישראל הצעיר פתח תקווה</p>
     </footer>
 
