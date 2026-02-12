@@ -21,26 +21,21 @@
         
         body { 
             font-family: 'Assistant', sans-serif; 
-            background-color: var(--cream); 
-            color: var(--dark);
+            background-color: var(--dark); /* צבע גיבוי */
+            color: white; /* טקסט לבן כברירת מחדל כי הרקע כהה */
             overflow-x: hidden;
             scroll-behavior: smooth;
+            min-height: 100vh;
+            /* הגדרות רקע לתמונה שתכסה את הכל */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .serif { font-family: 'Rubik', sans-serif; }
         
-        /* Hero Section */
-        #hero-bg {
-            background-color: var(--dark);
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            /* רקע ברירת מחדל כהה עד שהתמונה תיטען */
-            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.6));
-        }
-        @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
-
-        .text-shadow-strong { text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .text-shadow-strong { text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
         /* Animations */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -67,15 +62,16 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            text-shadow: none;
         }
         .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
 
-        /* Home Button (Top Right) */
+        /* Home Button */
         .home-btn {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
@@ -83,31 +79,33 @@
             border-radius: 9999px;
             font-weight: bold;
             transition: all 0.3s;
-            z-index: 20;
+            z-index: 50;
             display: flex;
             align-items: center;
             gap: 8px;
+            text-shadow: none;
         }
         .home-btn:hover {
             background-color: var(--gold);
             border-color: var(--gold);
             transform: translateY(-2px);
-            color: white;
         }
 
         /* PDF Container Styles */
         .pdf-wrapper {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 0.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.1); /* רקע חצי שקוף */
+            backdrop-filter: blur(5px);
+            border-radius: 0.5rem;
+            padding: 0; /* ביטול ריפוד פנימי */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
+            width: 100%;
         }
         
         iframe {
-            border-radius: 1rem;
-            background-color: #f8fafc;
+            display: block; /* מונע רווחים בתחתית */
+            background-color: #fff; /* רקע לבן ל-PDF עצמו */
         }
     </style>
 </head>
@@ -118,8 +116,8 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <!-- Header / Hero with Background AAA -->
-    <header id="hero-bg" class="relative min-h-[60vh] flex flex-col justify-center items-center text-center text-white px-4 pt-16">
+    <!-- Header Section (Transparent now) -->
+    <header class="relative pt-24 pb-12 flex flex-col justify-center items-center text-center px-4">
         
         <!-- כפתור חזרה לדף הבית/אולם -->
         <a href="index.html" class="home-btn">
@@ -127,39 +125,38 @@
             חזרה לאולם האירועים
         </a>
 
-        <div class="max-w-4xl z-10 p-4 reveal">
-            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-gold mb-6">
+        <div class="max-w-4xl z-10 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-gold mb-6 shadow-lg">
                 <i data-lucide="clock" class="w-4 h-4"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">לוח זמנים</span>
             </div>
             
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 serif text-shadow-strong">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 serif text-shadow-strong">
                 זמני תפילות ושיעורים
             </h1>
             
-            <p class="text-xl md:text-2xl font-medium opacity-90 mb-8 max-w-2xl mx-auto leading-relaxed text-shadow-strong">
+            <p class="text-xl md:text-2xl font-medium opacity-100 mb-6 max-w-2xl mx-auto leading-relaxed text-shadow-strong">
                 בית הכנסת ישראל הצעיר פתח תקווה
             </p>
-            
-            <div class="w-24 h-1 bg-gold mx-auto rounded-full shadow-lg"></div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-16 -mt-20 relative z-20">
+    <!-- Main Content - Wide Width -->
+    <main class="w-full px-2 md:px-4 pb-12 relative z-20">
         
         <!-- PDF Section -->
-        <section class="reveal">
-            <div class="text-center mb-10">
-                <p class="text-gray-600 bg-white/90 backdrop-blur inline-block px-6 py-2 rounded-full shadow-sm">
-                    הלוח מתעדכן באופן שוטף. ניתן לצפות בקובץ או להוריד אותו למכשירכם.
+        <section class="reveal w-full max-w-[98%] mx-auto">
+            
+            <!-- PDF Frame -->
+            <div class="pdf-wrapper h-[85vh]">
+                <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
+            </div>
+
+            <!-- הורדה והערה -->
+            <div class="text-center mt-8 flex flex-col items-center gap-4">
+                <p class="text-white/90 bg-black/50 backdrop-blur px-4 py-1 rounded-full text-sm shadow-md">
+                    * הלוח מתעדכן באופן שוטף
                 </p>
-            </div>
-
-            <div class="pdf-wrapper">
-                <iframe id="pdf-viewer" src="" width="100%" height="800px" style="border: none;" title="זמני תפילות PDF"></iframe>
-            </div>
-
-            <div class="text-center mt-12">
                 <a id="download-pdf-link" href="#" target="_blank" class="btn-gold text-lg">
                     <i data-lucide="download" class="w-5 h-5"></i>
                     הורדת קובץ הלוח (PDF)
@@ -169,7 +166,7 @@
 
     </main>
 
-    <footer class="py-12 text-center text-white/50 text-sm bg-slate-950 mt-20">
+    <footer class="py-8 text-center text-white/60 text-sm bg-black/80 backdrop-blur-sm mt-auto border-t border-white/10">
         <p>© כל הזכויות שמורות - בית הכנסת ישראל הצעיר פתח תקווה</p>
     </footer>
 
@@ -177,6 +174,7 @@
         lucide.createIcons();
 
         // PDF Logic
+        // שים לב: זהו קישור לדוגמה, וודא שהוא הקישור הנכון ל-PDF שלך
         let prayerTimesPdfLink = "https://drive.google.com/file/d/1xSKhNrApxPppHFj32XRNbdy2obfYeca_/preview";
         
         function loadPrayerTimesPdf() {
@@ -185,17 +183,17 @@
 
             if (pdfViewer && downloadLink && prayerTimesPdfLink) {
                 pdfViewer.src = prayerTimesPdfLink;
-                // Convert preview link to view link for download button
-                downloadLink.href = "https://drive.google.com/file/d/1xSKhNrApxPppHFj32XRNbdy2obfYeca_/view?usp=sharing";
+                // המרת קישור תצוגה לקישור הורדה
+                downloadLink.href = prayerTimesPdfLink.replace('/preview', '/view?usp=sharing');
             }
         }
 
-        // Background Image Loader (Looks for AAA in various formats)
+        // Background Image Loader (Applied to BODY now)
         function loadBackground() {
             const formats = ['jpg', 'jpeg', 'png', 'webp'];
-            const element = document.getElementById('hero-bg');
-            // Gradient overlay to ensure text readability
-            const overlay = "linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.9))";
+            const body = document.body;
+            // גרדיאנט כהה כדי שהטקסט יהיה קריא על כל תמונה
+            const overlay = "linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85))";
             
             let found = false;
             
@@ -206,12 +204,16 @@
                 
                 img.onload = function() {
                     found = true;
-                    if(element) {
-                        element.style.backgroundImage = `${overlay}, url('${imgName}')`;
-                    }
+                    // הגדרת הרקע ל-Body
+                    body.style.backgroundImage = `${overlay}, url('${imgName}')`;
                 };
                 img.src = imgName;
             });
+            
+            // הגדרת ברירת מחדל אם התמונה לא נמצאת (רק גרדיאנט)
+            if(!found) {
+                body.style.backgroundImage = overlay;
+            }
         }
 
         // Animation Observer
