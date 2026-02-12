@@ -21,12 +21,12 @@
         
         body { 
             font-family: 'Assistant', sans-serif; 
-            background-color: var(--dark); /* צבע גיבוי */
-            color: white; /* טקסט לבן כברירת מחדל כי הרקע כהה */
+            background-color: var(--dark);
+            color: white; 
             overflow-x: hidden;
             scroll-behavior: smooth;
             min-height: 100vh;
-            /* הגדרות רקע לתמונה שתכסה את הכל */
+            /* הגדרות רקע */
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -35,7 +35,8 @@
 
         .serif { font-family: 'Rubik', sans-serif; }
         
-        .text-shadow-strong { text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        /* צל חזק לטקסט כדי שיראה טוב גם על רקע בהיר */
+        .text-shadow-strong { text-shadow: 0 1px 4px rgba(0,0,0,0.6), 0 0 10px rgba(0,0,0,0.5); }
 
         /* Animations */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -91,21 +92,23 @@
             transform: translateY(-2px);
         }
 
-        /* PDF Container Styles */
+        /* PDF Container Styles - תיקון השוליים השחורים */
         .pdf-wrapper {
-            background: rgba(255, 255, 255, 0.1); /* רקע חצי שקוף */
-            backdrop-filter: blur(5px);
+            background: transparent;
+            /* הגבלת הרוחב ל-900 פיקסלים מונעת את המתיחה שיוצרת את השוליים השחורים */
+            max-width: 900px; 
+            margin: 0 auto; /* מרכוז */
+            height: 85vh;
             border-radius: 0.5rem;
-            padding: 0; /* ביטול ריפוד פנימי */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
             width: 100%;
         }
         
         iframe {
-            display: block; /* מונע רווחים בתחתית */
-            background-color: #fff; /* רקע לבן ל-PDF עצמו */
+            display: block; 
+            background-color: #fff;
         }
     </style>
 </head>
@@ -116,8 +119,8 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <!-- Header Section (Transparent now) -->
-    <header class="relative pt-24 pb-12 flex flex-col justify-center items-center text-center px-4">
+    <!-- Header Section -->
+    <header class="relative pt-24 pb-8 flex flex-col justify-center items-center text-center px-4">
         
         <!-- כפתור חזרה לדף הבית/אולם -->
         <a href="index.html" class="home-btn">
@@ -126,7 +129,7 @@
         </a>
 
         <div class="max-w-4xl z-10 reveal">
-            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-gold mb-6 shadow-lg">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-gold mb-6 shadow-lg">
                 <i data-lucide="clock" class="w-4 h-4"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">לוח זמנים</span>
             </div>
@@ -141,20 +144,20 @@
         </div>
     </header>
 
-    <!-- Main Content - Wide Width -->
+    <!-- Main Content -->
     <main class="w-full px-2 md:px-4 pb-12 relative z-20">
         
         <!-- PDF Section -->
-        <section class="reveal w-full max-w-[98%] mx-auto">
+        <section class="reveal w-full">
             
             <!-- PDF Frame -->
-            <div class="pdf-wrapper h-[85vh]">
+            <div class="pdf-wrapper">
                 <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
             </div>
 
             <!-- הורדה והערה -->
             <div class="text-center mt-8 flex flex-col items-center gap-4">
-                <p class="text-white/90 bg-black/50 backdrop-blur px-4 py-1 rounded-full text-sm shadow-md">
+                <p class="text-white bg-black/40 backdrop-blur px-4 py-1 rounded-full text-sm shadow-md">
                     * הלוח מתעדכן באופן שוטף
                 </p>
                 <a id="download-pdf-link" href="#" target="_blank" class="btn-gold text-lg">
@@ -166,7 +169,7 @@
 
     </main>
 
-    <footer class="py-8 text-center text-white/60 text-sm bg-black/80 backdrop-blur-sm mt-auto border-t border-white/10">
+    <footer class="py-8 text-center text-white/80 text-sm bg-black/60 backdrop-blur-sm mt-auto border-t border-white/10">
         <p>© כל הזכויות שמורות - בית הכנסת ישראל הצעיר פתח תקווה</p>
     </footer>
 
@@ -183,7 +186,6 @@
 
             if (pdfViewer && downloadLink && prayerTimesPdfLink) {
                 pdfViewer.src = prayerTimesPdfLink;
-                // המרת קישור תצוגה לקישור הורדה
                 downloadLink.href = prayerTimesPdfLink.replace('/preview', '/view?usp=sharing');
             }
         }
@@ -192,8 +194,9 @@
         function loadBackground() {
             const formats = ['jpg', 'jpeg', 'png', 'webp'];
             const body = document.body;
-            // גרדיאנט כהה כדי שהטקסט יהיה קריא על כל תמונה
-            const overlay = "linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85))";
+            
+            // שינוי לגרדיאנט הרבה יותר עדין (30%-40%) במקום הכהה הקודם
+            const overlay = "linear-gradient(to bottom, rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.4))";
             
             let found = false;
             
@@ -210,7 +213,7 @@
                 img.src = imgName;
             });
             
-            // הגדרת ברירת מחדל אם התמונה לא נמצאת (רק גרדיאנט)
+            // הגדרת ברירת מחדל
             if(!found) {
                 body.style.backgroundImage = overlay;
             }
