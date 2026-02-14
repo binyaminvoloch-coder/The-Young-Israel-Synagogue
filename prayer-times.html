@@ -26,7 +26,6 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
             min-height: 100vh;
-            /* הגדרות רקע */
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -36,8 +35,6 @@
         }
 
         .serif { font-family: 'Rubik', sans-serif; }
-        
-        /* צל חזק לטקסט */
         .text-shadow-strong { text-shadow: 0 1px 4px rgba(0,0,0,0.6), 0 0 10px rgba(0,0,0,0.5); }
 
         /* Animations */
@@ -94,7 +91,7 @@
             transform: translateY(-2px);
         }
 
-        /* PDF Container Styles */
+        /* PDF Wrapper */
         .pdf-wrapper {
             background: white; 
             max-width: 850px; 
@@ -105,19 +102,36 @@
             width: 100%;
         }
         
-        /* Iframe Styles */
         iframe {
             display: block; 
             background-color: #fff;
         }
 
-        /* Widget Container */
+        /* Widget Container Styles */
         .widget-container {
             background: white;
             border-radius: 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
             display: inline-block;
+            /* הגדרות להגדלת הוידג'ט */
+            transform-origin: top center;
+            transition: transform 0.3s;
+        }
+
+        /* הגדלה במסכים רגילים */
+        .scale-up {
+            transform: scale(1.3); /* הגדלה ב-30% */
+            margin-bottom: 80px; /* פיצוי על המקום שההגדלה תופסת */
+            margin-top: 20px;
+        }
+
+        /* הגדלה מתונה יותר בנייד כדי שלא יצא מהמסך */
+        @media (max-width: 600px) {
+            .scale-up {
+                transform: scale(1.15); 
+                margin-bottom: 50px;
+            }
         }
     </style>
 </head>
@@ -159,7 +173,6 @@
         <!-- PDF Section -->
         <section class="reveal w-full mb-16">
 
-            <!-- הערת עדכון -->
             <div class="text-center mb-6">
                 <p class="inline-block text-white bg-black/40 backdrop-blur px-6 py-2 rounded-full text-sm shadow-md border border-white/10">
                     * הלוח מתעדכן באופן שוטף
@@ -171,16 +184,12 @@
                 <iframe id="pdf-viewer" src="" width="100%" height="100%" style="border: none;" title="זמני תפילות PDF"></iframe>
             </div>
 
-            <!-- כפתורים למטה -->
             <div class="text-center mt-8 flex flex-col items-center gap-6">
                 <div class="flex flex-wrap justify-center gap-4">
-                    <!-- כפתור הורדה -->
                     <a id="download-pdf-link" href="#" target="_blank" class="btn-gold text-lg">
                         <i data-lucide="download" class="w-5 h-5"></i>
                         הורדת קובץ הלוח (PDF)
                     </a>
-
-                    <!-- כפתור פייסבוק -->
                     <a href="https://www.facebook.com/groups/983947816436826?locale=he_IL" target="_blank" class="bg-[#1877F2] text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 hover:bg-[#166fe5] transition shadow-md shadow-blue-900/20">
                         <i data-lucide="facebook" class="w-5 h-5"></i>
                         <span>קבוצת הפייסבוק</span>
@@ -189,7 +198,7 @@
             </div>
         </section>
 
-        <!-- New Section: Only Times of Day (Zmanim) -->
+        <!-- New Section: Only Times of Day (Zmanim) - ENLARGED -->
         <section class="reveal w-full max-w-4xl mx-auto border-t border-white/10 pt-12 text-center">
             
             <div class="mb-8">
@@ -197,15 +206,14 @@
                 <p class="text-lg opacity-80">לפי אופק פתח תקווה</p>
             </div>
 
-            <!-- Zmanim Widget (Petah Tikva - 181) - Centered -->
-            <div class="flex justify-center">
-                <div class="widget-container p-4 bg-white">
-                    <!-- Iframe from Yeshiva.org.il with place=181 -->
+            <!-- Zmanim Widget - Centered & Scaled Up -->
+            <div class="flex justify-center h-[450px]"> <!-- גובה קבוע כדי למנוע חפיפה -->
+                <div class="widget-container scale-up p-4 bg-white">
                     <iframe src="https://www.yeshiva.org.il/generalpages/yeshivatimes?bgcolor=ffffff&place=181" width="280" height="340" scrolling="no" frameborder="0" title="זמני היום"></iframe>
                 </div>
             </div>
 
-            <p class="text-center text-sm mt-4 opacity-60">
+            <p class="text-center text-sm mt-4 opacity-60 relative z-20">
                 הזמנים באדיבות אתר <a href="https://www.yeshiva.org.il" target="_blank" class="underline hover:text-gold">ישיבה</a>
             </p>
 
@@ -214,7 +222,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-6 text-center text-white/80 text-sm bg-black/60 backdrop-blur-sm border-t border-white/10 shrink-0 mt-auto">
+    <footer class="py-6 text-center text-white/80 text-sm bg-black/60 backdrop-blur-sm border-t border-white/10 shrink-0 mt-auto relative z-30">
         <p>© כל הזכויות שמורות - בית הכנסת ישראל הצעיר פתח תקווה</p>
     </footer>
 
@@ -234,21 +242,16 @@
             }
         }
 
-        // Background Image Loader
         function loadBackground() {
             const formats = ['jpg', 'jpeg', 'png', 'webp'];
             const body = document.body;
-            
-            // גרדיאנט עדין (30%-40%)
             const overlay = "linear-gradient(to bottom, rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.4))";
-            
             let found = false;
             
             formats.forEach(ext => {
                 if(found) return;
                 const imgName = `AAA.${ext}`;
                 const img = new Image();
-                
                 img.onload = function() {
                     found = true;
                     body.style.backgroundImage = `${overlay}, url('${imgName}')`;
@@ -261,7 +264,6 @@
             }
         }
 
-        // Animation Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
