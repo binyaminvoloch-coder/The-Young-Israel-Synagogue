@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אולם אירועים ישראל הצעיר פתח תקווה</title>
     
-    <!-- Scripts & Fonts -->
+    <title>אולם אירועים ישראל הצעיר פתח תקווה | בריתות ושבתות חתן</title>
+    <meta name="description" content="אולם האירועים של בית הכנסת ישראל הצעיר בפתח תקווה. המקום המושלם לבריתות, שבת חתן, בר מצווה ואירועים משפחתיים. נגישות מלאה, מחירים נוחים ואווירה יוקרתית.">
+    <meta name="keywords" content="אולם אירועים בפתח תקווה, אולם לברית פתח תקווה, אולם לשבת חתן, בית כנסת ישראל הצעיר פתח תקווה, אולם אירועים קטן, מקום לאירוח בפתח תקווה, אולם אירועים דתי, השכרת אולם בפתח תקווה">
+    <meta name="author" content="ישראל הצעיר">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;700;800&family=Rubik:wght@400;700&display=swap');
-        
+                
         :root { 
-            --gold: #D4AF37; 
-            --gold-dark: #b5952f;
+             --gold: #D4AF37; 
+             --gold-dark: #b5952f;
             --dark: #0f172a; 
             --cream: #fdfdfd;
         }
-        
+                
         body { 
-            font-family: 'Assistant', sans-serif; 
-            background-color: var(--cream); 
-            color: var(--dark);
+             font-family: 'Assistant', sans-serif; 
+             background-color: var(--cream); 
+             color: var(--dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
         .serif { font-family: 'Rubik', sans-serif; }
         
+        /* Lightbox for Gallery */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center; align-items: center;
+        }
+        #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid white; border-radius: 8px; }
+
         /* Hero Section */
         #hero-bg {
-            background-color: #e2e8f0; /* רקע בסיס אפור בהיר */
+            background-color: #e2e8f0;
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -39,16 +53,13 @@
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
-        /* טקסט כהה צריך הילה לבנה חזקה כדי לבלוט על תמונה */
         .text-glow-white { 
             text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7); 
         }
 
-        /* Animations */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* WhatsApp Button */
         #whatsapp-float { 
             position: fixed; bottom: 30px; left: 30px; z-index: 999; 
             background: #25D366; color: white; width: 60px; height: 60px; 
@@ -65,10 +76,10 @@
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
         }
         .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
 
-        /* כרטיסי מידע */
         .info-box {
             background: white;
             border-radius: 1.5rem;
@@ -77,7 +88,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
-        /* Waze Icon Styling */
         .waze-btn {
             background-color: white;
             border: 2px solid #f0f0f0;
@@ -85,7 +95,6 @@
         }
         .waze-btn:hover { background-color: #f9f9f9; border-color: #33ccff; }
 
-        /* Prayer Times Button */
         .prayer-times-btn {
             position: absolute;
             top: 20px;
@@ -97,62 +106,74 @@
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            z-index: 20; /* Ensure it's above other elements */
-        }
-        .prayer-times-btn:hover {
-            background-color: var(--gold-dark);
-            transform: translateY(-2px);
+            z-index: 20;
         }
     </style>
 </head>
 <body>
 
-    <!-- WhatsApp -->
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="תמונה מוגדלת">
+    </div>
+
     <a href="https://wa.me/972507341851" target="_blank" id="whatsapp-float">
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <!-- Header / Hero -->
-    <!-- שימוש בטקסט כהה (slate-900) -->
     <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
-        <!-- Prayer Times Button -->
         <a href="prayer-times.html" class="prayer-times-btn">זמני תפילות בבית הכנסת</a>
 
         <div class="max-w-4xl z-10 p-4">
-            <!-- רקע חצי שקוף לבן לכותרת המשנית -->
             <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/70 backdrop-blur-sm border border-slate-300 text-gold mb-6 shadow-sm">
                 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">אולם האירועים של פתח תקווה</span>
             </div>
-            
+                        
             <h1 class="text-5xl md:text-8xl font-extrabold mb-6 serif text-glow-white">ישראל הצעיר</h1>
             <p class="text-xl md:text-3xl font-medium opacity-100 mb-10 max-w-2xl mx-auto leading-relaxed text-glow-white font-bold">
                 חוגגים בריתות, שבתות חתן ואירועים משפחתיים <br>באווירה יוקרתית, חמה ומכובדת.
             </p>
-            <a href="tel:0507341851" class="btn-gold text-lg">
-                לפרטים: 050-7341851
-            </a>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:0507341851" class="btn-gold text-lg">לפרטים: 050-7341851</a>
+                <a href="#booking-form" class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition">בדיקת זמינות ושיריון</a>
+            </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-20">
-
-        <!-- About Section -->
+        
         <section id="about" class="grid md:grid-cols-2 gap-16 items-center reveal mb-32">
             <div class="space-y-6">
                 <h2 class="text-gold font-bold tracking-tighter text-lg uppercase italic">קצת עלינו</h2>
                 <h3 class="text-4xl md:text-5xl font-bold serif leading-tight">המקום המושלם לשמחה שלכם</h3>
                 <p class="text-gray-600 text-lg leading-relaxed">
                     אולם האירועים בבית הכנסת "ישראל הצעיר" עוצב ותוכנן כדי לתת מענה מושלם לאירועים קהילתיים ומשפחתיים. 
-                    אנחנו מספקים חלל ממוזג, נקי ומטופח בלב פתח תקווה, בניהולו המסור של <b>אשר פלואר</b>.
+                    אנחנו מספקים חלל ממוזג, נקי ומטופח בלב פתח תקווה, בניהולו המסור של <b>אשר פלאור</b>.
                 </p>
             </div>
             <div class="rounded-[2rem] overflow-hidden shadow-2xl h-[400px]">
-                <img id="img-02" src="" alt="אולם אירועים" class="w-full h-full object-cover">
+                <img id="img-02" src="" alt="אולם אירועים בפתח תקווה" class="w-full h-full object-cover cursor-pointer" onclick="openLightbox(this.src)">
             </div>
         </section>
 
-        <!-- Information & Booking Section -->
+        <section class="reveal mb-32">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold serif">גלריית תמונות</h2>
+                <p class="text-gray-500">לחצו על תמונה להגדלה</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
+                    <img id="img-02-gallery" src="" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
+                    <img id="img-03" src="" alt="עיצוב שולחנות" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
+                    <img id="img-04" src="" alt="בית הכנסת פתח תקווה" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </section>
+
         <section id="booking-info" class="reveal mb-32">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold serif mb-4">מידע והזמנת אולם</h2>
@@ -160,8 +181,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 text-right">
-                
-                <!-- מחירון -->
                 <div class="info-box bg-slate-900 text-white">
                     <h4 class="text-gold font-bold text-xl mb-6 flex items-center gap-2 italic">
                         <i data-lucide="tag" class="w-5 h-5"></i> מחירון השכרה
@@ -183,7 +202,6 @@
                     </div>
                 </div>
 
-                <!-- תשלום ושיריון -->
                 <div class="info-box">
                     <h4 class="font-bold text-xl mb-6 flex items-center gap-2 text-slate-800 italic underline">
                         <i data-lucide="landmark" class="text-gold"></i> תשלום ושיריון
@@ -193,10 +211,8 @@
                         <p class="font-bold">בנק המזרחי | סניף 481 | חשבון 134940</p>
                         <p>ע"ש קהילת צעירי ישראל</p>
                     </div>
-                    <p class="text-[11px] mt-4 text-gray-500 italic">* העברה, שיק או מזומן בלבד (אין ביט/פייבוקס).</p>
                 </div>
 
-                <!-- ציוד ומטבח -->
                 <div class="info-box">
                     <h4 class="font-bold text-xl mb-6 flex items-center gap-2 text-slate-800 italic underline">
                         <i data-lucide="chef-hat" class="text-gold"></i> ציוד ומטבח
@@ -204,14 +220,13 @@
                     <ul class="text-sm space-y-2 text-gray-600">
                         <li>• 10 שולחנות עגולים (קוטר 160)</li>
                         <li>• 19 שולחנות מלבניים (250x60)</li>
-                        <li>• 200 כסאות לבנים (לא כתר)</li>
+                        <li>• 200 כסאות לבנים</li>
                         <li>• 2 מקררים, מקפיא, 8 פלטות, 2 מיחמים</li>
                         <li class="font-bold text-slate-800">• WiFi: hall | סיסמה: 12345678</li>
                     </ul>
                 </div>
             </div>
-
-            <!-- דגשים נוספים -->
+            
             <div class="mt-8 info-box bg-slate-50 border-none">
                 <h4 class="font-bold mb-4 flex items-center gap-2 italic underline text-slate-800">דגשים ונהלים חשובים:</h4>
                 <div class="grid md:grid-cols-2 gap-x-12 gap-y-3 text-[13px] leading-relaxed text-gray-700">
@@ -219,21 +234,50 @@
                     <p>• <b>נגישות:</b> האולם נגיש מלא (כולל שירותי נכים ושביל נגיש).</p>
                     <p>• <b>עיצוב:</b> חל איסור מוחלט לתלות קישוטים בתקרה.</p>
                     <p>• <b>ניקיון:</b> באחריותכם לסדר חזרה שולחנות ולפנות זבל לפחים בכניסה.</p>
-                    <p>• <b>מפתחות:</b> יש לשלשל לתיבת הדואר בכניסה בסיום האירוע.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery Grid -->
-        <section class="reveal mb-32">
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3]"><img id="img-02-gallery" src="" alt="גלריה 1" class="w-full h-full object-cover"></div>
-                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3]"><img id="img-03" src="" alt="גלריה 2" class="w-full h-full object-cover"></div>
-                <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3]"><img id="img-04" src="" alt="גלריה 3" class="w-full h-full object-cover"></div>
+        <section id="booking-form" class="reveal mb-32 bg-slate-100 p-8 md:p-16 rounded-[2.5rem]">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold serif mb-4">בדיקת זמינות ושיריון</h2>
+                    <p class="text-gray-600">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
+                </div>
+                
+                <form action="mailto:YOUR_EMAIL@GMAIL.COM" method="post" enctype="text/plain" class="grid md:grid-cols-2 gap-6">
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-bold mb-2">שם מלא</label>
+                        <input type="text" name="name" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-bold mb-2">טלפון</label>
+                        <input type="tel" name="phone" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-bold mb-2">תאריך מבוקש (לוח שנה)</label>
+                        <input type="date" name="date" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-bold mb-2">סוג האירוע</label>
+                        <select name="type" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                            <option>ברית</option>
+                            <option>שבת חתן</option>
+                            <option>סעודת מצווה</option>
+                            <option>אחר</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-sm font-bold mb-2">הודעה / בקשות מיוחדות</label>
+                        <textarea name="message" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm"></textarea>
+                    </div>
+                    <div class="col-span-2 text-center mt-4">
+                        <button type="submit" class="btn-gold w-full md:w-auto">שלח בקשה בדוא"ל</button>
+                    </div>
+                </form>
             </div>
         </section>
 
-        <!-- Map & Social Connection -->
         <section class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-16 text-slate-800 reveal shadow-2xl">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
@@ -241,7 +285,7 @@
                         <h3 class="text-3xl font-bold serif text-slate-800 mb-2">צרו קשר וניווט</h3>
                         <p class="text-gray-600">רחוב יוסף פלדמן 6, פתח תקווה</p>
                     </div>
-                    
+                                        
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gold">
@@ -253,9 +297,7 @@
                             </div>
                         </div>
 
-                        <!-- כפתורי ניווט ורשתות חברתיות -->
                         <div class="flex flex-wrap gap-4 pt-6">
-                            <!-- כפתור וויז עם SVG מוטמע לתיקון האייקון -->
                             <a href="https://www.waze.com/ul?ll=32.0768361,34.8783346&navigate=yes" target="_blank" class="waze-btn px-6 py-3 rounded-xl font-bold flex items-center gap-3 shadow-sm">
                                 <svg width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21.5 18.5C20.12 18.5 19 19.62 19 21C19 22.38 20.12 23.5 21.5 23.5C22.88 23.5 24 22.38 24 21C24 19.62 22.88 18.5 21.5 18.5Z" fill="#33CCFF"/>
@@ -268,7 +310,7 @@
                     </div>
                 </div>
                 
-                <!-- Google Maps Embed עם הקואורדינטות המדויקות -->
+                         <!-- Google Maps Embed עם הקואורדינטות המדויקות -->
                 <div class="h-80 rounded-[1.5rem] overflow-hidden border-4 border-gray-50 shadow-inner">
                     <iframe 
                         width="100%" height="100%" frameborder="0" style="border:0" 
@@ -280,6 +322,7 @@
         </section>
     </main>
 
+
     <footer class="py-12 text-center text-white/50 text-sm bg-slate-950">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה </p>
     </footer>
@@ -287,10 +330,15 @@
     <script>
         lucide.createIcons();
 
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = src;
+            lb.style.display = 'flex';
+        }
+
         function autoLoadImages() {
             const formats = ['webp', 'jpg', 'jpeg', 'png'];
-            
-            // שינוי לגרדיאנט עדין יותר (40%-50% אטימות) במקום 85%
             const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.4))";
 
             const imageMap = [
