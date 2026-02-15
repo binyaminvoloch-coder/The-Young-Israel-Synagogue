@@ -77,6 +77,7 @@
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             cursor: pointer;
+            border: none;
         }
         .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
 
@@ -152,7 +153,7 @@
                 </p>
             </div>
             <div class="rounded-[2rem] overflow-hidden shadow-2xl h-[400px]">
-                <img id="img-02" src="" alt="אולם אירועים בפתח תקווה" class="w-full h-full object-cover cursor-pointer" onclick="openLightbox(this.src)">
+                <img id="img-02" src="02.jpg" alt="אולם אירועים בפתח תקווה" class="w-full h-full object-cover cursor-pointer" onclick="openLightbox(this.src)">
             </div>
         </section>
 
@@ -163,13 +164,13 @@
             </div>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-02-gallery" src="" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                    <img id="img-02-gallery" src="02.jpg" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-03" src="" alt="עיצוב שולחנות" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                    <img id="img-03" src="03.jpg" alt="עיצוב שולחנות" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-04" src="" alt="בית הכנסת פתח תקווה" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                    <img id="img-04" src="04.jpg" alt="בית הכנסת פתח תקווה" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
                 </div>
             </div>
         </section>
@@ -226,16 +227,6 @@
                     </ul>
                 </div>
             </div>
-            
-            <div class="mt-8 info-box bg-slate-50 border-none">
-                <h4 class="font-bold mb-4 flex items-center gap-2 italic underline text-slate-800">דגשים ונהלים חשובים:</h4>
-                <div class="grid md:grid-cols-2 gap-x-12 gap-y-3 text-[13px] leading-relaxed text-gray-700">
-                    <p>• <b>כשרות:</b> הקייטרינג חייב להיות בעל תעודת כשרות.</p>
-                    <p>• <b>נגישות:</b> האולם נגיש מלא (כולל שירותי נכים ושביל נגיש).</p>
-                    <p>• <b>עיצוב:</b> חל איסור מוחלט לתלות קישוטים בתקרה.</p>
-                    <p>• <b>ניקיון:</b> באחריותכם לסדר חזרה שולחנות ולפנות זבל לפחים בכניסה.</p>
-                </div>
-            </div>
         </section>
 
         <section id="booking-form" class="reveal mb-32 bg-slate-100 p-8 md:p-16 rounded-[2.5rem]">
@@ -245,22 +236,22 @@
                     <p class="text-gray-600">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
                 </div>
                 
-                <form action="mailto:binyaminvoloch@GMAIL.COM" method="post" enctype="text/plain" class="grid md:grid-cols-2 gap-6">
+                <form action="https://formspree.io/f/xbdaoqjd" method="POST" class="grid md:grid-cols-2 gap-6">
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">שם מלא</label>
-                        <input type="text" name="name" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <input type="text" name="שם" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">טלפון</label>
-                        <input type="tel" name="phone" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <input type="tel" name="טלפון" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <label class="block text-sm font-bold mb-2">תאריך מבוקש (לוח שנה)</label>
-                        <input type="date" name="date" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <label class="block text-sm font-bold mb-2">תאריך מבוקש</label>
+                        <input type="date" name="תאריך" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">סוג האירוע</label>
-                        <select name="type" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <select name="סוג_אירוע" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
                             <option>ברית</option>
                             <option>שבת חתן</option>
                             <option>סעודת מצווה</option>
@@ -269,10 +260,10 @@
                     </div>
                     <div class="col-span-2">
                         <label class="block text-sm font-bold mb-2">הודעה / בקשות מיוחדות</label>
-                        <textarea name="message" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm"></textarea>
+                        <textarea name="הודעה" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm"></textarea>
                     </div>
                     <div class="col-span-2 text-center mt-4">
-                        <button type="submit" class="btn-gold w-full md:w-auto">שלח בקשה בדוא"ל</button>
+                        <button type="submit" class="btn-gold w-full md:w-auto">שלח בקשה לשיריון</button>
                     </div>
                 </form>
             </div>
@@ -284,8 +275,7 @@
                     <div>
                         <h3 class="text-3xl font-bold serif text-slate-800 mb-2">צרו קשר וניווט</h3>
                         <p class="text-gray-600">רחוב יוסף פלדמן 6, פתח תקווה</p>
-                    </div>
-                                        
+                    </div>                                                            
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gold">
@@ -308,13 +298,12 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                
-                         <!-- Google Maps Embed עם הקואורדינטות המדויקות -->
+                </div>                                         
+
                 <div class="h-80 rounded-[1.5rem] overflow-hidden border-4 border-gray-50 shadow-inner">
                     <iframe 
-                        width="100%" height="100%" frameborder="0" style="border:0" 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.887!2d34.8783346!3d32.0768361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35e3e7fba209%3A0x79b59c1eb6c0f1e4!2z15rep16rXmSDXmdeo15DXnCDXlNem16LXmdeoINek16rXlyDXqten15XXldeU!5e0!3m2!1siw!2sil!4v1700000000000" 
+                        width="100%" height="100%" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.932909477616!2d34.87614592443048!3d32.0718360739665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d368d4474775d%3A0x63a830026e95c1a4!2z15nXldeR16Yg16TXnNXntefIDYsINek16rXlyDXqtep15XXlA!5e0!3m2!1siw!2sil!4v1707000000000!5m2!1siw!2sil"
                         allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -322,14 +311,12 @@
         </section>
     </main>
 
-
     <footer class="py-12 text-center text-white/50 text-sm bg-slate-950">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה </p>
     </footer>
 
     <script>
         lucide.createIcons();
-
         function openLightbox(src) {
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
@@ -338,7 +325,7 @@
         }
 
         function autoLoadImages() {
-            const formats = ['webp', 'jpg', 'jpeg', 'png'];
+            const formats = ['jpg', 'webp', 'png', 'jpeg'];
             const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.4))";
 
             const imageMap = [
