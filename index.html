@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -13,7 +12,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;700;800&family=Rubik:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;700&display=swap');
                 
         :root { 
              --gold: #D4AF37; 
@@ -45,6 +44,8 @@
         #hero-bg {
             background-color: #e2e8f0;
             background-size: cover; background-position: center;
+            position: relative;
+            overflow: hidden;
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
@@ -65,13 +66,16 @@
             background-color: var(--gold); color: white; padding: 1rem 2.5rem;
             border-radius: 9999px; font-weight: bold; transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); cursor: pointer; border: none;
+            display: inline-block; text-decoration: none;
         }
-        .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
+        .btn-gold:hover { background-color: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
 
         .info-box {
             background: white; border-radius: 1.5rem; padding: 2rem;
             border: 1px solid #f0f0f0; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
         }
+        .info-box:hover { transform: translateY(-5px); }
 
         /* Admin Styles */
         #admin-modal {
@@ -87,6 +91,30 @@
         .loader-overlay {
             position: absolute; inset: 0; background: rgba(255,255,255,0.7);
             display: none; justify-content: center; align-items: center; z-index: 10;
+        }
+
+        /* --- Living Elements Animation --- */
+        .gold-particle {
+            position: fixed;
+            background: radial-gradient(circle, rgba(212,175,55,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        .breathing {
+            animation: breathe 4s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
     </style>
 </head>
@@ -147,10 +175,10 @@
 
     <!-- Header -->
     <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
-        <!-- Prayer Times Button -->
-        <a href="prayer-times.html" class="absolute top-5 right-5 bg-gold text-white px-6 py-3 rounded-full font-bold shadow-lg z-20 hover:scale-105 transition">זמני תפילות בבית הכנסת</a>
+        <!-- Prayer Times Button - CHANGED TO GOLD -->
+        <a href="prayer-times.html" class="absolute top-5 right-5 btn-gold shadow-lg z-20 hover:scale-105 transition">זמני תפילות בבית הכנסת</a>
 
-        <div class="max-w-4xl z-10 p-4">
+        <div class="max-w-4xl z-10 p-4 breathing">
             <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/70 backdrop-blur-sm border border-slate-300 text-gold mb-6 shadow-sm">
                 <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                 <span class="text-sm font-bold tracking-widest uppercase">אולם האירועים של פתח תקווה</span>
@@ -167,7 +195,7 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
+    <main class="max-w-7xl mx-auto px-6 py-20 relative z-10">
         
         <!-- About Section -->
         <section id="about" class="grid md:grid-cols-2 gap-16 items-center reveal mb-32">
@@ -180,7 +208,7 @@
                 </p>
             </div>
             <div class="rounded-[2rem] overflow-hidden shadow-2xl h-[400px]">
-                <img id="img-02" src="02.jpg" alt="אולם אירועים בפתח תקווה" class="w-full h-full object-cover cursor-pointer" onclick="openLightbox(this.src)">
+                <img id="img-02" src="02.jpg" alt="אולם אירועים בפתח תקווה" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-700" onclick="openLightbox(this.src)">
             </div>
         </section>
 
@@ -192,13 +220,13 @@
             </div>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-02-gallery" src="02.jpg" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                    <img id="img-02-gallery" src="02.jpg" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-03" src="03.jpg" alt="עיצוב שולחנות" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                    <img id="img-03" src="03.jpg" alt="עיצוב שולחנות" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-04" src="04.jpg" alt="בית הכנסת פתח תקווה" class="w-full h-full object-cover transition hover:scale-105" onclick="openLightbox(this.src)">
+                    <img id="img-04" src="04.jpg" alt="בית הכנסת פתח תקווה" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
             </div>
         </section>
@@ -259,7 +287,7 @@
         </section>
 
         <!-- Form Section -->
-        <section id="booking-form" class="reveal mb-32 bg-slate-100 p-8 md:p-16 rounded-[2.5rem] relative">
+        <section id="booking-form" class="reveal mb-32 bg-slate-100 p-8 md:p-16 rounded-[2.5rem] relative shadow-lg">
             <div class="loader-overlay rounded-[2.5rem]" id="form-loader">
                 <div class="text-center">
                     <div class="spinner mx-auto mb-4"></div>
@@ -276,38 +304,34 @@
                 <form id="newBookingForm" class="grid md:grid-cols-2 gap-6" onsubmit="handleFormSubmit(event)">
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">שם מלא</label>
-                        <input type="text" id="fname" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <input type="text" id="fname" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">טלפון</label>
-                        <input type="tel" id="fphone" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <input type="tel" id="fphone" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">תאריך מבוקש</label>
-                        <input type="date" id="fdate" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
+                        <input type="date" id="fdate" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">סוג האירוע</label>
-                        <select id="ftype" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm">
-                            <option>ברית</option>
-                            <option>שבת חתן</option>
-                            <option>סעודת מצווה</option>
-                            <option>אחר</option>
-                        </select>
+                        <!-- CHANGED TO INPUT TEXT -->
+                        <input type="text" id="ftype" required placeholder="לדוגמה: ברית, שבת חתן, בר מצווה..." class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2">
                         <label class="block text-sm font-bold mb-2">הודעה / בקשות מיוחדות</label>
-                        <textarea id="fmsg" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm"></textarea>
+                        <textarea id="fmsg" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20"></textarea>
                     </div>
                     <div class="col-span-2 text-center mt-4">
-                        <button type="submit" class="btn-gold w-full md:w-auto">שלח בקשה לשיריון</button>
+                        <button type="submit" class="btn-gold w-full md:w-auto text-xl shadow-xl hover:shadow-2xl">שלח בקשה לשיריון</button>
                     </div>
                 </form>
             </div>
         </section>
 
         <!-- Contact & Map -->
-        <section class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-16 text-slate-800 reveal shadow-2xl">
+        <section class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-16 text-slate-800 reveal shadow-2xl relative z-10">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
                     <div>
@@ -340,7 +364,7 @@
         </section>
     </main>
 
-    <footer class="py-12 text-center text-white/50 text-sm bg-slate-950 relative">
+    <footer class="py-12 text-center text-white/50 text-sm bg-slate-950 relative z-10">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה </p>
         <!-- Admin Trigger -->
         <button onclick="document.getElementById('admin-modal').style.display='flex'" class="absolute bottom-4 right-4 text-white/20 hover:text-white transition">
@@ -350,8 +374,8 @@
 
     <!-- SCRIPT LOGIC -->
     <script>
-        // *** כאן יש לשים את הקישור שקיבלת מהגוגל סקריפט ***
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygN4XZlobtvOAEAl5sslPAxVl3jJdRwpbbGL2fabIGQvz72HXG2vcXnbntCeQn7HVH_Q/exec';
+        // *** כאן יש לשים את הקישור שקיבלת מהגוגל סקריפט אחרי שעשית Deploy ***
+        const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE';
         
         lucide.createIcons();
 
@@ -388,6 +412,31 @@
             });
         }
 
+        // --- Living Elements (Gold Dust) ---
+        function createParticles() {
+            const container = document.body;
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.classList.add('gold-particle');
+                
+                // Random position
+                const size = Math.random() * 8 + 2; // 2px to 10px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Random animation duration
+                particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                
+                container.appendChild(particle);
+
+                // Remove after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 10000);
+            }, 800); // New particle every 800ms
+        }
+
         // --- Form Submission Logic ---
         function handleFormSubmit(e) {
             e.preventDefault();
@@ -410,7 +459,7 @@
                     alert('הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם.');
                     document.getElementById('newBookingForm').reset();
                 } else {
-                    alert('שגיאה בשליחה, נסה שנית.');
+                    alert('שגיאה בשליחה: ' + (data.error || 'נסה שנית'));
                 }
             })
             .catch(error => {
@@ -433,7 +482,7 @@
             errorMsg.classList.add('hidden');
             loading.classList.remove('hidden');
 
-            // בדיקת סיסמה מול השרת וקבלת נתונים
+            // בדיקת סיסמה וקבלת נתונים דרך doGet
             fetch(`${SCRIPT_URL}?password=${pass}`)
             .then(res => res.json())
             .then(data => {
@@ -441,14 +490,16 @@
                     currentPassword = pass;
                     loginView.classList.add('hidden');
                     dashboard.classList.remove('hidden');
-                    renderTable(data.data);
+                    renderTable(data.data); // data.data מכיל את המערך מהסקריפט
                 } else {
                     errorMsg.classList.remove('hidden');
+                    loading.classList.add('hidden');
                 }
             })
             .catch(err => {
                 console.error(err);
-                alert('שגיאה בהתחברות');
+                loading.classList.add('hidden');
+                alert('שגיאה בהתחברות או בטעינת הנתונים');
             });
         }
 
@@ -457,7 +508,7 @@
             tbody.innerHTML = '';
             document.getElementById('loading-data').classList.add('hidden');
 
-            if(rows.length === 0) {
+            if(!rows || rows.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="6" class="text-center p-4">אין הזמנות כרגע</td></tr>';
                 return;
             }
@@ -465,6 +516,8 @@
             rows.forEach((row, index) => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition";
+                // מבנה העמודות תואם לגוגל סקריפט:
+                // timestamp, name, phone, eventDate, eventType, message, status
                 tr.innerHTML = `
                     <td class="p-3 font-bold text-slate-700">${row.eventDate}</td>
                     <td class="p-3">${row.name}</td>
@@ -488,7 +541,7 @@
             const formData = new FormData();
             formData.append('action', 'delete');
             formData.append('password', currentPassword);
-            formData.append('rowIndex', index); // אינדקס במערך (השרת ימיר לשורה)
+            formData.append('rowIndex', index); // שולח אינדקס (0, 1, 2...), הסקריפט מוסיף את ה-Offset
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
             .then(res => res.json())
@@ -497,9 +550,10 @@
                     // רענון הנתונים
                     loginAdmin(); 
                 } else {
-                    alert('שגיאה במחיקה');
+                    alert('שגיאה במחיקה: ' + (data.error || 'לא ידועה'));
                 }
-            });
+            })
+            .catch(err => alert('שגיאת תקשורת במחיקה'));
         }
 
         // Scroll Reveal
@@ -510,7 +564,10 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
-        window.onload = autoLoadImages;
+        window.onload = function() {
+            autoLoadImages();
+            createParticles(); // הפעלת האנימציה
+        };
     </script>
 </body>
 </html>
