@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -131,13 +132,7 @@
             <div id="live-clock" class="clock-widget text-6xl md:text-8xl font-black text-white drop-shadow-2xl">
                 --:--
             </div>
-            
-            <!-- NEW: Dynamic Greeting -->
-            <div id="greeting-text" class="text-xl md:text-2xl text-blue-200/90 font-medium mt-2 mb-3 tracking-wide drop-shadow-lg">
-                <!-- הטקסט יתמלא ע"י JS -->
-            </div>
-
-            <div id="live-date" class="text-lg md:text-xl text-white/70 font-light mt-1 bg-black/20 px-4 py-1 rounded-full backdrop-blur-sm border border-white/5">
+            <div id="live-date" class="text-lg md:text-xl text-white/70 font-light mt-2 bg-black/20 px-4 py-1 rounded-full backdrop-blur-sm border border-white/5">
                 טוען תאריך...
             </div>
         </div>
@@ -155,10 +150,12 @@
         <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1 h-full">
             
             <!-- Zmanim Card -->
+            <!-- שינוי: הוספת h-full ו-min-h גדול יותר כדי שהכרטיס ימתח -->
             <div class="glass-panel p-6 flex flex-col items-center h-full min-h-[600px] relative overflow-hidden group">
                 <!-- Hover Glow Effect -->
                 <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 
+                <!-- שינוי: shrink-0 כדי שהכותרת לא תתכווץ -->
                 <div class="w-full flex items-center justify-between mb-4 border-b border-white/10 pb-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="p-2 bg-white/10 rounded-xl text-white">
@@ -170,8 +167,9 @@
                 </div>
 
                 <!-- Widget Container -->
+                <!-- שינוי: flex-1 כדי למלא את כל הגובה הנותר, הסרת הגובה הקבוע -->
                 <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg flex-1 relative">
-                    <!-- Iframe full size fix -->
+                    <!-- שינוי: Iframe מותאם למלא 100% רוחב וגובה ללא מניפולציות של scale שחותכות אותו -->
                     <iframe src="https://www.yeshiva.org.il/generalpages/yeshivatimes?bgcolor=ffffff&place=181" 
                             class="absolute inset-0 w-full h-full" 
                             scrolling="auto" frameborder="0" title="זמני היום">
@@ -227,6 +225,13 @@
         <p>© כל הזכויות שמורות לישראל הצעיר פתח תקווה</p>
     </footer>
 
+    <!-- WhatsApp Floating Button (Optional - Removed from top, kept at bottom right/left if needed, otherwise remove this block) -->
+    <!-- 
+    <a href="https://wa.me/972507341851" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a> 
+    -->
+
     <script>
         lucide.createIcons();
 
@@ -251,12 +256,12 @@
             const dlBtn = document.getElementById('download-pdf-btn');
             if(dlBtn) dlBtn.href = pdfLink.replace('/preview', '/view?usp=sharing');
 
-            // Clock & Greeting
+            // Clock
             setInterval(updateClock, 1000);
             updateClock();
         }
 
-        // 2. Background Image Logic
+        // 2. Background Image Logic (AAA Support)
         function loadBackground() {
             const formats = ['jpg', 'jpeg', 'png', 'webp'];
             let found = false;
@@ -272,7 +277,7 @@
             });
         }
 
-        // 3. Digital Clock & Greeting Logic
+        // 3. Digital Clock Logic
         function updateClock() {
             const now = new Date();
             
@@ -285,23 +290,6 @@
             const dateOptions = { weekday: 'long', day: 'numeric', month: 'long' };
             const dateEl = document.getElementById('live-date');
             if(dateEl) dateEl.textContent = now.toLocaleDateString('he-IL', dateOptions);
-
-            // Dynamic Greeting
-            const hour = now.getHours();
-            let greeting = "שלום רב";
-            
-            if (hour >= 5 && hour < 12) {
-                greeting = "בוקר טוב";
-            } else if (hour >= 12 && hour < 18) {
-                greeting = "צהריים טובים";
-            } else if (hour >= 18 && hour < 22) {
-                greeting = "ערב טוב";
-            } else {
-                greeting = "לילה טוב";
-            }
-
-            const greetingEl = document.getElementById('greeting-text');
-            if(greetingEl) greetingEl.textContent = greeting;
         }
 
         window.onload = initApp;
