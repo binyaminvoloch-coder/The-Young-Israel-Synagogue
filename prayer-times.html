@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -147,14 +146,16 @@
     <main class="w-full max-w-7xl px-4 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-6 animate-enter delay-200">
         
         <!-- Left Column: Zmanim Widget + Facebook -->
-        <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1">
+        <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1 h-full">
             
             <!-- Zmanim Card -->
-            <div class="glass-panel p-6 flex flex-col items-center h-full min-h-[500px] relative overflow-hidden group">
+            <!-- שינוי: הוספת h-full ו-min-h גדול יותר כדי שהכרטיס ימתח -->
+            <div class="glass-panel p-6 flex flex-col items-center h-full min-h-[600px] relative overflow-hidden group">
                 <!-- Hover Glow Effect -->
                 <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 
-                <div class="w-full flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                <!-- שינוי: shrink-0 כדי שהכותרת לא תתכווץ -->
+                <div class="w-full flex items-center justify-between mb-4 border-b border-white/10 pb-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="p-2 bg-white/10 rounded-xl text-white">
                             <i data-lucide="sun" class="w-5 h-5"></i>
@@ -165,18 +166,18 @@
                 </div>
 
                 <!-- Widget Container -->
-                <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg h-[450px] relative">
-                    <!-- Adjusted iframe scale and position to fit container perfectly -->
+                <!-- שינוי: flex-1 כדי למלא את כל הגובה הנותר, הסרת הגובה הקבוע -->
+                <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg flex-1 relative">
+                    <!-- שינוי: Iframe מותאם למלא 100% רוחב וגובה ללא מניפולציות של scale שחותכות אותו -->
                     <iframe src="https://www.yeshiva.org.il/generalpages/yeshivatimes?bgcolor=ffffff&place=181" 
-                            class="absolute top-0 left-0 w-full h-[600px] -mt-[50px]" 
-                            style="width: 130%; transform: scale(0.77); transform-origin: top right;"
-                            scrolling="no" frameborder="0" title="זמני היום">
+                            class="absolute inset-0 w-full h-full" 
+                            scrolling="auto" frameborder="0" title="זמני היום">
                     </iframe>
                 </div>
             </div>
 
             <!-- Facebook Button -->
-            <a href="https://www.facebook.com/groups/983947816436826?locale=he_IL" target="_blank" class="glass-panel p-5 flex items-center justify-between hover:bg-blue-600/30 transition-colors group cursor-pointer border-blue-400/20">
+            <a href="https://www.facebook.com/groups/983947816436826?locale=he_IL" target="_blank" class="glass-panel p-5 flex items-center justify-between hover:bg-blue-600/30 transition-colors group cursor-pointer border-blue-400/20 shrink-0">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center shadow-lg shadow-blue-900/50">
                         <i data-lucide="facebook" class="w-6 h-6 text-white"></i>
