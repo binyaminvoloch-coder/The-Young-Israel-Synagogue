@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -16,8 +17,6 @@
             --glass-border: rgba(255, 255, 255, 0.1);
             --glass-bg: rgba(18, 18, 24, 0.65);
             --glass-highlight: rgba(255, 255, 255, 0.05);
-            --accent: #a78bfa; /* סגול רך אנדרואיד */
-            --accent-gold: #fbbf24;
         }
 
         body {
@@ -30,23 +29,26 @@
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* The Overlay to make text readable on top of AAA image */
+        /* The Overlay */
         .bg-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
             z-index: -1;
-            backdrop-filter: blur(3px); /* טשטוש קל לתמונת הרקע */
+            backdrop-filter: blur(4px);
         }
 
-        /* Super Glass Card - The core of the design */
+        /* Super Glass Card */
         .glass-panel {
             background: var(--glass-bg);
             backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid var(--glass-border);
-            border-radius: 2rem; /* 32px rounded like Samsung One UI */
+            border-radius: 2rem; 
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -63,23 +65,23 @@
             backdrop-filter: blur(10px);
             border-radius: 9999px;
             transition: all 0.3s;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .glass-btn:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
+            transform: translateY(-2px);
         }
         .glass-btn:active { transform: scale(0.95); }
 
-        /* Typography Gradients */
-        .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+        /* Unified Title Gradient */
+        .title-unified {
+            background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .text-gold {
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
         /* Animations */
@@ -97,26 +99,29 @@
         }
     </style>
 </head>
-<body class="flex flex-col items-center">
+<body>
 
     <!-- Background Overlay -->
     <div class="bg-overlay"></div>
 
-    <!-- Top Navigation (Floating Pill) -->
+    <!-- Top Navigation -->
     <nav class="fixed top-6 z-50 animate-enter w-[90%] max-w-lg">
-        <div class="glass-panel py-3 px-4 flex items-center justify-between shadow-2xl rounded-full border border-white/10">
-            <a href="index.html" class="glass-btn w-10 h-10 flex items-center justify-center text-white">
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        <div class="glass-panel py-2 px-3 flex items-center justify-between shadow-2xl rounded-full border border-white/10">
+            
+            <!-- Hall Booking Button -->
+            <a href="index.html" class="glass-btn px-4 py-2 text-sm text-white no-underline gap-2">
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <span>לאתר האולם</span>
             </a>
             
-            <div class="flex flex-col items-center leading-tight">
+            <!-- Center Text -->
+            <div class="flex flex-col items-center leading-tight mx-auto">
                 <span class="text-[10px] uppercase tracking-widest opacity-60">בית הכנסת</span>
                 <span class="font-bold text-sm">ישראל הצעיר פ"ת</span>
             </div>
 
-            <a href="https://wa.me/972507341851" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-green-400 border-green-400/30">
-                <i data-lucide="message-circle" class="w-5 h-5"></i>
-            </a>
+            <!-- Spacer for balance (hidden on mobile if needed, keeps center text centered) -->
+            <div class="w-[100px] hidden md:block"></div> 
         </div>
     </nav>
 
@@ -127,41 +132,43 @@
             <div id="live-clock" class="clock-widget text-6xl md:text-8xl font-black text-white drop-shadow-2xl">
                 --:--
             </div>
-            <div id="live-date" class="text-lg md:text-xl text-white/70 font-light mt-2 bg-black/20 px-4 py-1 rounded-full backdrop-blur-sm">
+            <div id="live-date" class="text-lg md:text-xl text-white/70 font-light mt-2 bg-black/20 px-4 py-1 rounded-full backdrop-blur-sm border border-white/5">
                 טוען תאריך...
             </div>
         </div>
 
-        <h1 class="text-3xl md:text-5xl font-bold mb-2">
-            <span class="text-gradient">לוח זמנים</span>
-            <span class="text-gold block md:inline text-2xl md:text-4xl align-middle mx-2">ותפילות</span>
+        <!-- Unified Title -->
+        <h1 class="title-unified text-4xl md:text-6xl font-black tracking-tight mt-6 leading-tight">
+            לוח זמנים ותפילות
         </h1>
     </header>
 
     <!-- Main Grid -->
     <main class="w-full max-w-7xl px-4 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-6 animate-enter delay-200">
         
-        <!-- Left Column: Zmanim Widget (Android Widget Style) -->
+        <!-- Left Column: Zmanim Widget + Facebook -->
         <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1">
             
             <!-- Zmanim Card -->
             <div class="glass-panel p-6 flex flex-col items-center h-full min-h-[500px] relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <!-- Hover Glow Effect -->
+                <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 
                 <div class="w-full flex items-center justify-between mb-6 border-b border-white/10 pb-4">
                     <div class="flex items-center gap-3">
-                        <div class="p-2 bg-amber-500/20 rounded-xl text-amber-400">
+                        <div class="p-2 bg-white/10 rounded-xl text-white">
                             <i data-lucide="sun" class="w-5 h-5"></i>
                         </div>
                         <h2 class="text-xl font-bold">זמני היום</h2>
                     </div>
-                    <span class="text-xs bg-white/10 px-2 py-1 rounded text-white/60">פ"ת</span>
+                    <span class="text-xs bg-white/10 px-2 py-1 rounded text-white/60">אופק פ"ת</span>
                 </div>
 
                 <!-- Widget Container -->
-                <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg h-[400px]">
+                <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg h-[450px] relative">
+                    <!-- Adjusted iframe scale and position to fit container perfectly -->
                     <iframe src="https://www.yeshiva.org.il/generalpages/yeshivatimes?bgcolor=ffffff&place=181" 
-                            class="w-full h-[550px] -mt-[60px]" 
+                            class="absolute top-0 left-0 w-full h-[600px] -mt-[50px]" 
                             style="width: 130%; transform: scale(0.77); transform-origin: top right;"
                             scrolling="no" frameborder="0" title="זמני היום">
                     </iframe>
@@ -184,16 +191,16 @@
         </div>
 
         <!-- Right Column: PDF Viewer -->
-        <div class="lg:col-span-8 order-1 lg:order-2 h-[600px] md:h-[900px]">
+        <div class="lg:col-span-8 order-1 lg:order-2 md:h-[900px] h-[600px]">
             <div class="glass-panel w-full h-full flex flex-col p-2 md:p-3 relative">
                 
                 <!-- Toolbar -->
-                <div class="flex justify-between items-center px-4 py-3">
+                <div class="flex justify-between items-center px-4 py-3 border-b border-white/5 mb-2">
                     <div class="flex items-center gap-2">
-                         <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                         <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
                          <span class="text-sm font-medium text-white/80">לוח שבועי עדכני</span>
                     </div>
-                    <a id="download-pdf-btn" href="#" target="_blank" class="glass-btn px-4 py-1.5 text-xs font-bold flex items-center gap-2 hover:bg-white/20">
+                    <a id="download-pdf-btn" href="#" target="_blank" class="glass-btn px-4 py-1.5 text-xs font-bold gap-2 hover:bg-white/20">
                         <i data-lucide="download" class="w-3 h-3"></i>
                         שמור PDF
                     </a>
@@ -211,9 +218,17 @@
 
     </main>
 
-    <footer class="py-6 text-center text-white/30 text-xs">
-        © כל הזכויות שמורות לישראל הצעיר פתח תקווה
+    <!-- Footer -->
+    <footer class="py-6 text-center text-white/30 text-xs mt-auto w-full border-t border-white/5 bg-black/20 backdrop-blur-sm">
+        <p>© כל הזכויות שמורות לישראל הצעיר פתח תקווה</p>
     </footer>
+
+    <!-- WhatsApp Floating Button (Optional - Removed from top, kept at bottom right/left if needed, otherwise remove this block) -->
+    <!-- 
+    <a href="https://wa.me/972507341851" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a> 
+    -->
 
     <script>
         lucide.createIcons();
@@ -230,10 +245,14 @@
             if(viewer) {
                 viewer.src = pdfLink;
                 // Fake loader removal
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 1500);
+                setTimeout(() => {
+                    const loader = document.getElementById('loader');
+                    if(loader) loader.style.display = 'none';
+                }, 2000);
             }
             
-            document.getElementById('download-pdf-btn').href = pdfLink.replace('/preview', '/view?usp=sharing');
+            const dlBtn = document.getElementById('download-pdf-btn');
+            if(dlBtn) dlBtn.href = pdfLink.replace('/preview', '/view?usp=sharing');
 
             // Clock
             setInterval(updateClock, 1000);
@@ -254,7 +273,6 @@
                     found = true;
                 };
             });
-            // Default handled in CSS
         }
 
         // 3. Digital Clock Logic
@@ -263,11 +281,13 @@
             
             // Time
             const timeString = now.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('live-clock').textContent = timeString;
+            const clockEl = document.getElementById('live-clock');
+            if(clockEl) clockEl.textContent = timeString;
 
             // Date
             const dateOptions = { weekday: 'long', day: 'numeric', month: 'long' };
-            document.getElementById('live-date').textContent = now.toLocaleDateString('he-IL', dateOptions);
+            const dateEl = document.getElementById('live-date');
+            if(dateEl) dateEl.textContent = now.toLocaleDateString('he-IL', dateOptions);
         }
 
         window.onload = initApp;
