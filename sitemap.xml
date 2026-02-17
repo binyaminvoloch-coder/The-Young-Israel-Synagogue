@@ -3,28 +3,45 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <!-- החלף את הכתובת למטה לכתובת האמיתית של האתר שלך -->
-    <loc>https://www.YOUR-DOMAIN.co.il/</loc>
+    <loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     
-    <!-- מידע לגוגל על התמונות באתר -->
+    <!-- תמונות האתר -->
     <image:image>
-      <image:loc>https://www.YOUR-DOMAIN.co.il/01.jpeg</image:loc>
-      <image:title>אולם אירועים ישראל הצעיר כפר גנים</image:title>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/01.jpg</image:loc>
+      <image:title>אולם אירועים ישראל הצעיר - תמונה ראשית</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.YOUR-DOMAIN.co.il/02.jpeg</image:loc>
-      <image:title>עיצוב שולחנות ברית מילה פתח תקווה</image:title>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/02.jpg</image:loc>
+      <image:title>אולם האירועים - מבט כללי</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.YOUR-DOMAIN.co.il/03.jpeg</image:loc>
-      <image:title>אולם בוטיק לאירועים קטנים</image:title>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/03.jpg</image:loc>
+      <image:title>עיצוב שולחנות וכיסאות</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.YOUR-DOMAIN.co.il/04.jpeg</image:loc>
-      <image:title>בית הכנסת ישראל הצעיר</image:title>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/04.jpg</image:loc>
+      <image:title>בית הכנסת ישראל הצעיר פתח תקווה</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/05.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/06.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/07.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/08.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/09.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://binyaminvoloch-coder.github.io/The-Young-Israel-Synagogue/10.jpg</image:loc>
     </image:image>
   </url>
 
