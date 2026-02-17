@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NRV67LBD');</script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -119,6 +127,10 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRV67LBD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Lightbox -->
     <div id="lightbox" onclick="this.style.display='none'">
@@ -227,22 +239,22 @@
                 </div>
                 <!-- תמונות חדשות 05-10 -->
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-05" src="" alt="תמונה 05" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
+                    <img id="img-05" src="05.jpg" alt="תמונה 05" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-06" src="" alt="תמונה 06" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
+                    <img id="img-06" src="06.jpg" alt="תמונה 06" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-07" src="" alt="תמונה 07" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
+                    <img id="img-07" src="07.jpg" alt="תמונה 07" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-08" src="" alt="תמונה 08" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
+                    <img id="img-08" src="08.jpg" alt="תמונה 08" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-09" src="" alt="תמונה 09" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
+                    <img id="img-09" src="09.jpg" alt="תמונה 09" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
-                    <img id="img-10" src="" alt="תמונה 10" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
+                    <img id="img-10" src="10.jpg" alt="תמונה 10" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
             </div>
         </section>
@@ -430,41 +442,35 @@
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
+
+        // --- תיקון שגיאות 404: טעינה ישירה של קבצי JPG בלבד ---
         function autoLoadImages() {
-            const formats = ['jpg', 'webp', 'png', 'jpeg'];
             const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.4))";
             
-            // עודכן כדי לתמוך ב-10 תמונות
+            // המערך מצביע ישירות על קבצי JPG הקיימים
             const imageMap = [
-                { id: 'hero-bg', base: '01', isBg: true },
-                { id: 'img-02', base: '02', isBg: false },
-                { id: 'img-02-gallery', base: '02', isBg: false },
-                { id: 'img-03', base: '03', isBg: false },
-                { id: 'img-04', base: '04', isBg: false },
-                // תמונות חדשות שנוספו:
-                { id: 'img-05', base: '05', isBg: false },
-                { id: 'img-06', base: '06', isBg: false },
-                { id: 'img-07', base: '07', isBg: false },
-                { id: 'img-08', base: '08', isBg: false },
-                { id: 'img-09', base: '09', isBg: false },
-                { id: 'img-10', base: '10', isBg: false }
+                { id: 'hero-bg', file: '01.jpg', isBg: true },
+                { id: 'img-02', file: '02.jpg', isBg: false },
+                { id: 'img-02-gallery', file: '02.jpg', isBg: false },
+                { id: 'img-03', file: '03.jpg', isBg: false },
+                { id: 'img-04', file: '04.jpg', isBg: false },
+                { id: 'img-05', file: '05.jpg', isBg: false },
+                { id: 'img-06', file: '06.jpg', isBg: false },
+                { id: 'img-07', file: '07.jpg', isBg: false },
+                { id: 'img-08', file: '08.jpg', isBg: false },
+                { id: 'img-09', file: '09.jpg', isBg: false },
+                { id: 'img-10', file: '10.jpg', isBg: false }
             ];
             
             imageMap.forEach(item => {
-                let found = false;
-                formats.forEach(ext => {
-                    if(found) return;
-                    const testUrl = `${item.base}.${ext}`;
-                    const img = new Image();
-                    img.onload = function() {
-                        found = true;
-                        const element = document.getElementById(item.id);
-                        if (!element) return;
-                        if (item.isBg) element.style.backgroundImage = `${lightGradient}, url('${testUrl}')`;
-                        else element.src = testUrl;
-                    };
-                    img.src = testUrl;
-                });
+                const element = document.getElementById(item.id);
+                if (!element) return;
+                
+                if (item.isBg) {
+                    element.style.backgroundImage = `${lightGradient}, url('${item.file}')`;
+                } else {
+                    element.src = item.file;
+                }
             });
         }
 
