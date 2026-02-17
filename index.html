@@ -175,14 +175,9 @@
 
     <!-- Header -->
     <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
-        <!-- Prayer Times Button - CHANGED TO GOLD -->
-        <a href="prayer-times.html" class="absolute top-5 right-5 btn-gold shadow-lg z-20 hover:scale-105 transition">זמני תפילות בבית הכנסת</a>
-
+        
         <div class="max-w-4xl z-10 p-4 breathing">
-            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/70 backdrop-blur-sm border border-slate-300 text-gold mb-6 shadow-sm">
-                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                <span class="text-sm font-bold tracking-widest uppercase">אולם האירועים של פתח תקווה</span>
-            </div>
+            <!-- Removed the "Petah Tikva Event Hall" badge line as requested -->
                         
             <h1 class="text-5xl md:text-8xl font-extrabold mb-6 serif text-glow-white">אולם אירועים ביכ"ס ישראל הצעיר כפר גנים פ"ת</h1>
             <p class="text-xl md:text-3xl font-medium mb-10 max-w-2xl mx-auto leading-relaxed text-glow-white font-bold">
@@ -252,9 +247,17 @@
                             <p class="font-bold underline mb-1">שבת (סעודה אחת)</p>
                             <div class="flex justify-between"><span>חבר: 1000 ₪</span> <span>לא חבר: 2000 ₪</span></div>
                         </div>
-                        <div>
-                            <p class="font-bold underline mb-1">שבת (2 סעודות+)</p>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">שבת (2 סעודות)</p>
                             <div class="flex justify-between"><span>חבר: 1100 ₪</span> <span>לא חבר: 2200 ₪</span></div>
+                        </div>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">שבת (3 סעודות)</p>
+                            <div class="flex justify-between"><span>חבר: 1200 ₪</span> <span>לא חבר: 2400 ₪</span></div>
+                        </div>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">תוספת מוצאי שבת</p>
+                            <div class="flex justify-between"><span>חבר: 200 ₪</span> <span>לא חבר: 400 ₪</span></div>
                         </div>
                         <p class="text-xs text-gold/80 pt-2 italic">* הגברה/מקרן/מסך: 200 ₪ נוספים</p>
                     </div>
@@ -316,7 +319,6 @@
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">סוג האירוע</label>
-                        <!-- CHANGED TO INPUT TEXT -->
                         <input type="text" id="ftype" required placeholder="לדוגמה: ברית, שבת חתן, בר מצווה..." class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2">
@@ -349,8 +351,18 @@
                             </div>
                         </div>
 
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gold">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">אימייל:</p>
+                                <a href="mailto:fluerasat@gmail.com" class="text-xl font-bold text-slate-800 hover:text-gold transition">fluerasat@gmail.com</a>
+                            </div>
+                        </div>
+
                         <div class="flex flex-wrap gap-4 pt-6">
-                            <a href="https://www.waze.com/ul?ll=32.0768361,34.8783346&navigate=yes" target="_blank" class="waze-btn px-6 py-3 rounded-xl font-bold flex items-center gap-3 shadow-sm border hover:bg-gray-50 transition">
+                            <a href="https://www.waze.com/ul?ll=32.0768361,34.8783346&navigate=yes" target="_blank" class="px-6 py-3 rounded-xl font-bold flex items-center gap-3 shadow-sm bg-[#33ccff] text-white hover:brightness-90 transition">
                                 <span>ניווט ב-Waze</span>
                             </a>
                         </div>
