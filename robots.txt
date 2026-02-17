@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# החלף את הכתובת למטה לכתובת האמיתית של האתר שלך
+Sitemap: https://www.YOUR-DOMAIN.co.il/sitemap.xml
