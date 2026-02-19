@@ -296,7 +296,7 @@
             
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="tel:0507341851" class="btn-gold text-lg">לפרטים: 050-7341851</a>
-                <a href="#booking-form" class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition">בדיקת זמינות ושיריון</a>
+                <a href="#calendar-section" class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition">בדיקת זמינות ושיריון</a>
             </div>
         </div>
     </header>
@@ -304,17 +304,12 @@
     <main class="max-w-7xl mx-auto px-6 py-20 relative z-10">
         
         <!-- About Section -->
-        <section id="about" class="grid md:grid-cols-2 gap-16 items-center reveal mb-32">
-            <div class="space-y-6">
-                <h2 class="text-gold font-bold tracking-tighter text-lg uppercase italic">קצת עלינו</h2>
-                <h3 class="text-4xl md:text-5xl font-bold serif leading-tight">המקום המושלם לשמחה שלכם</h3>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    אולם האירועים בבית הכנסת "ישראל הצעיר" עוצב ותוכנן כדי לתת מענה מושלם לאירועים קהילתיים ומשפחתיים. 
-                    אנחנו מספקים חלל ממוזג, נקי ומטופח בלב פתח תקווה, בניהולו המסור של <b>אשר פלואר</b>.
+        <section id="about" class="reveal mb-32 max-w-4xl mx-auto text-center">
+            <div class="space-y-6 bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-gray-100">
+                <p class="text-slate-800 text-2xl md:text-3xl font-bold leading-relaxed serif">
+                    אולם אירועים לקיום אירועים חברתיים באופי דתי בלבד.<br>
+                    כגון, בר/בת מצוה, אירוסין, שבע ברכות, ברית מילה, הפרשת חלה, ערבי לימוד וכדומה.
                 </p>
-            </div>
-            <div class="rounded-[2rem] overflow-hidden shadow-2xl h-[400px]">
-                <img id="img-02" src="02.jpg" alt="אולם אירועים בפתח תקווה" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-700" onclick="openLightbox(this.src)">
             </div>
         </section>
 
@@ -364,7 +359,7 @@
                 <div class="w-20 h-1 bg-gold mx-auto"></div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 text-right">
+            <div class="grid md:grid-cols-2 gap-8 text-right mb-8">
                 <div class="info-box bg-slate-900 text-white">
                     <h4 class="text-gold font-bold text-xl mb-6 flex items-center gap-2 italic">
                         <i data-lucide="tag" class="w-5 h-5"></i> מחירון השכרה
@@ -394,34 +389,95 @@
                     </div>
                 </div>
 
-                <div class="info-box">
+                <div class="info-box flex flex-col justify-center">
                     <h4 class="font-bold text-xl mb-6 flex items-center gap-2 text-slate-800 italic underline">
                         <i data-lucide="landmark" class="text-gold"></i> תשלום ושיריון
                     </h4>
                     <p class="text-sm mb-4 leading-relaxed">לשיריון תאריך יש להעביר <b>מקדמה של 50%</b>:</p>
-                    <div class="bg-gray-50 p-4 rounded-xl text-sm border-r-4 border-gold">
-                        <p class="font-bold">בנק המזרחי | סניף 481 | חשבון 134940</p>
-                        <p>ע"ש קהילת צעירי ישראל</p>
+                    <div class="bg-gray-50 p-6 rounded-xl text-base border-r-4 border-gold">
+                        <p class="font-bold text-lg mb-1">בנק המזרחי | סניף 481 | חשבון 134940</p>
+                        <p class="text-gray-600">ע"ש קהילת צעירי ישראל</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="info-box">
-                    <h4 class="font-bold text-xl mb-6 flex items-center gap-2 text-slate-800 italic underline">
-                        <i data-lucide="chef-hat" class="text-gold"></i> ציוד ומטבח
-                    </h4>
-                    <ul class="text-sm space-y-2 text-gray-600">
-                        <li>• 10 שולחנות עגולים (קוטר 160)</li>
-                        <li>• 19 שולחנות מלבניים (250x60)</li>
-                        <li>• 200 כסאות לבנים</li>
-                        <li>• 2 מקררים, מקפיא, 8 פלטות, 2 מיחמים</li>
-                        <li class="font-bold text-slate-800">• WiFi: hall | סיסמה: 12345678</li>
-                    </ul>
+            <!-- Full width info box for extensive rules and equipment -->
+            <div class="info-box text-right">
+                <h4 class="font-bold text-2xl mb-8 flex items-center gap-2 text-slate-800 italic underline">
+                    <i data-lucide="file-text" class="text-gold w-6 h-6"></i> מידע, ציוד וכללי האולם
+                </h4>
+                
+                <div class="grid md:grid-cols-2 gap-10 text-gray-700">
+                    <!-- Column 1 -->
+                    <div class="space-y-6">
+                        <div>
+                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">כשרות</h5>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>הקייטרינג חייב להיות בעל תעודת כשרות.</li>
+                                <li>אין להביא מזון ביתי שלא אושר על ידינו. ניתן להביא מזון קנוי שיש לו הכשר.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">חניה ונגישות</h5>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>מגרש חניה חופשי ממול לבית הכנסת.</li>
+                                <li>כניסה מונגשת לאולם כולל שירותים לנכים.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">קבלת האולם</h5>
+                            <p class="text-sm">בשעה 8 בבוקר מלבד ימי ראשון ורביעי בשעה 12 בצהרים.</p>
+                        </div>
+
+                        <div>
+                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - אולם</h5>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>10 שולחנות עגולים בקוטר 160 ס"מ (מתאים עד 10 סועדים).</li>
+                                <li>19 שולחנות מלבניים בגודל 250X60 ס"מ.</li>
+                                <li>220 כסאות פלסטיק לבנים משודרגים (לא של כתר).</li>
+                                <li>4 מזגנים.</li>
+                                <li>מערכת הגברה עם 4 רמקולים, מיקרופון, מקרן ומסך.</li>
+                                <li class="font-bold">רשת WIFI.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="space-y-6">
+                        <div>
+                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - מטבח</h5>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li>2 מקררים תעשיתים, 1 מקפיא.</li>
+                                <li>1 ארון חימום.</li>
+                                <li>7 פלטות לשבת, 2 מיחמים.</li>
+                                <li>2 כיורים ומשטחי נירוסטה.</li>
+                                <li>1 עגלת שירות.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">הקפדה על כללים</h5>
+                            <ul class="list-disc list-inside space-y-2 text-sm">
+                                <li>הציוד במטבח משמש <b class="text-slate-900">רק לחימום ולא לבישול</b>.</li>
+                                <li>אסור להביא ציוד חשמלי ללא תיאום.</li>
+                                <li>אסור להשמיע מוזיקה לאחר שעה 23 בלילה.</li>
+                                <li>אסור לתלות קישוטים בתקרה ואסור השימוש באקדח קונפטי ובזיקוקים.</li>
+                                <li>אסור לעשות מנגל באולם או בחוץ.</li>
+                                <li>סידור השולחנות והכסאות באחריות מזמין האולם. בתום האירוע יש להחזיר שולחנות למקומם, מלבד 4 ארוכים, וכסאות להשאיר במקומם ולא להערים אחד על השני.</li>
+                                <li>הזבל ילקח לפחים הגדולים של העיריה בכניסה לבית הכנסת.</li>
+                                <li>הניקיון היסודי באחריות בית הכנסת.</li>
+                                <li>בתום האירוע יש לכבות את התאורה, מזגנים וכל מכשירי החשמל, ולשלשל לתיבת הדאר את המפתח.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
         
         <!-- Calendar Section -->
-        <section class="reveal mb-32 max-w-5xl mx-auto">
+        <section id="calendar-section" class="reveal mb-32 max-w-5xl mx-auto">
              <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold serif">לוח זמינות אירועים</h2>
             </div>
@@ -548,7 +604,6 @@
             // המערך מצביע ישירות על קבצי JPG הקיימים
             const imageMap = [
                 { id: 'hero-bg', file: '01.jpg', isBg: true },
-                { id: 'img-02', file: '02.jpg', isBg: false },
                 { id: 'img-02-gallery', file: '02.jpg', isBg: false },
                 { id: 'img-03', file: '03.jpg', isBg: false },
                 { id: 'img-04', file: '04.jpg', isBg: false },
