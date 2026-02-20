@@ -27,7 +27,9 @@
     <link rel="canonical" href="                                              " />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 
     <!-- Open Graph / Facebook / Whatsapp -->
     <meta property="og:type" content="website">
@@ -286,7 +288,7 @@
 
 <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
         <div class="max-w-5xl z-10 p-4 breathing">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-6 serif text-glow-white leading-tight">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-6 text-glow-white leading-tight" style="font-family: Arial, sans-serif;">
                 אולם אירועים ביכ"ס ישראל הצעיר <br class="hidden md:block"> כפר גנים פ"ת
             </h1>
         </div>
@@ -376,7 +378,11 @@
                             <p class="font-bold underline mb-2">תוספת מוצאי שבת</p>
                             <div class="flex justify-between text-gray-700"><span>חבר: 200 ₪</span> <span>לא חבר: 400 ₪</span></div>
                         </div>
-                        <p class="text-lg font-bold text-slate-900 pt-3 text-center bg-gold/10 rounded-lg p-2">* הגברה / מקרן / מסך: 200 ₪ נוספים</p>
+                        
+                        <div class="pt-3">
+                            <p class="font-bold underline mb-2">תוספות</p>
+                            <div class="flex justify-between text-gray-700"><span>הגברה / מקרן / מסך:</span> <span>200 ₪</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -462,18 +468,6 @@
                 <h2 class="text-3xl font-bold serif">לוח זמינות אירועים</h2>
             </div>
 
-            <!-- קוביית התשלום שמוקמה בין הכותרת ליומן -->
-            <div class="info-box bg-white flex flex-col justify-center text-center max-w-2xl mx-auto mb-10 shadow-lg border-2 border-gold/20">
-                <h4 class="font-bold text-2xl mb-4 flex items-center justify-center gap-2 text-slate-800 italic underline">
-                    <i data-lucide="landmark" class="text-gold"></i> תשלום
-                </h4>
-                <p class="text-lg mb-4 leading-relaxed font-bold text-slate-800">תשלום לאחר קבלת אישור ממנהל האולם:</p>
-                <div class="bg-gray-50 p-6 rounded-xl text-base border-r-4 border-gold inline-block w-full">
-                    <p class="font-bold text-lg mb-1 text-slate-900">בנק המזרחי | סניף 481 | חשבון 134940</p>
-                    <p class="text-gray-600">ע"ש קהילת צעירי ישראל</p>
-                </div>
-            </div>
-
             <div class="relative w-full rounded-2xl overflow-hidden shadow-xl bg-white flex justify-center border border-gray-100">
                 <!-- Wrapper for responsive iframe (מותאם למובייל) -->
                 <div class="w-full overflow-x-auto" style="-webkit-overflow-scrolling: touch;">
@@ -526,6 +520,20 @@
                         <button type="submit" class="btn-gold w-full md:w-auto text-xl shadow-xl hover:shadow-2xl">שלח בקשה לשיריון</button>
                     </div>
                 </form>
+            </div>
+        </section>
+
+        <!-- Payment Info Section -->
+        <section class="reveal mb-32 max-w-2xl mx-auto">
+            <div class="info-box bg-white flex flex-col justify-center text-center shadow-lg border-2 border-gold/20">
+                <h4 class="font-bold text-2xl mb-4 flex items-center justify-center gap-2 text-slate-800 italic underline">
+                    <i data-lucide="landmark" class="text-gold"></i> תשלום
+                </h4>
+                <p class="text-lg mb-4 leading-relaxed font-bold text-slate-800">תשלום לאחר קבלת אישור ממנהל האולם:</p>
+                <div class="bg-gray-50 p-6 rounded-xl text-base border-r-4 border-gold inline-block w-full">
+                    <p class="font-bold text-lg mb-1 text-slate-900">בנק המזרחי | סניף 481 | חשבון 134940</p>
+                    <p class="text-gray-600">ע"ש קהילת צעירי ישראל</p>
+                </div>
             </div>
         </section>
 
