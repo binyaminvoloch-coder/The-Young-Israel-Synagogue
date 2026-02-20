@@ -24,7 +24,7 @@
     <meta name="robots" content="index, follow">
     
     <!-- Canonical Tag -->
-    <link rel="canonical" href="                                              " />
+    <link rel="canonical" href="https://the-young-israel-synagogue.vercel.app/" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -32,11 +32,11 @@
     <!-- Open Graph / Facebook / Whatsapp -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="אולם ישראל הצעיר פתח תקווה">
-    <meta property="og:url" content="                                              ">
+    <meta property="og:url" content="https://the-young-israel-synagogue.vercel.app/">
     <meta property="og:title" content="אולם אירועים ישראל הצעיר פתח תקווה | בריתות ושבתות חתן">
     <meta property="og:description" content="מחפשים אולם לברית, שבת חתן, הרצאה או אירוע משפחתי בפתח תקווה? אולם ישראל הצעיר מציע חלל מטופח, נקי ומאובזר בכפר גנים.">
     <!-- תמונה לוואטסאפ (חייבת להיות אבסולוטית) -->
-    <meta property="og:image" content="                                                          ">
+    <meta property="og:image" content="https://the-young-israel-synagogue.vercel.app/og-image.jpg">
     <meta property="og:locale" content="he_IL">
 
     <!-- Schema.org Markup - הגדרות מתקדמות לגוגל -->
@@ -48,9 +48,9 @@
       "alternateName": "אולם ישראל הצעיר כפר גנים",
       "description": "אולם אירועים בפתח תקווה המותאם לבריתות, שבתות חתן, בר מצוות, הרצאות ואירועים קהילתיים. אולם מרווח, נקי וממוזג עם מטבח כשר.",
       "image": [
-        "                                                          ",
-        "                                                    ",
-        "                                                    "
+        "https://the-young-israel-synagogue.vercel.app/og-image.jpg",
+        "https://the-young-israel-synagogue.vercel.app/02.jpg",
+        "https://the-young-israel-synagogue.vercel.app/01.jpg"
       ],
       "address": {
         "@type": "PostalAddress",
@@ -66,7 +66,7 @@
         "longitude": 34.8783346
       },
       "telephone": "+972-50-7341851",
-      "url": "                                              ",
+      "url": "https://the-young-israel-synagogue.vercel.app/",
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -118,7 +118,7 @@
     
     <style>
         /* תיקון הקישור לפונטים */
-        @import url('                                                           ;400;600;700;800&family=Rubik:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;700&display=swap');
                 
         :root { 
              --gold: #D4AF37; 
@@ -265,7 +265,6 @@
                                 <th class="p-3 rounded-r-lg">תאריך אירוע</th>
                                 <th class="p-3">שם</th>
                                 <th class="p-3">טלפון</th>
-                                <th class="p-3">אימייל</th>
                                 <th class="p-3">סוג</th>
                                 <th class="p-3">הערות</th>
                                 <th class="p-3 rounded-l-lg">פעולות</th>
@@ -286,9 +285,19 @@
 
 <header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
         <div class="max-w-5xl z-10 p-4 breathing">
+            
             <h1 class="text-3xl md:text-5xl font-extrabold mb-6 serif text-glow-white leading-tight">
                 אולם אירועים ביכ"ס ישראל הצעיר <br class="hidden md:block"> כפר גנים פ"ת
             </h1>
+            
+            <p class="text-xl md:text-2xl font-medium mb-10 max-w-2xl mx-auto leading-relaxed text-glow-white font-bold">
+                חוגגים בריתות, בר מצווה, אירוסין שבתות חתן ואירועים משפחתיים.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:0507341851" class="btn-gold text-lg">לפרטים: 050-7341851</a>
+                <a href="#calendar-section" class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition">בדיקת זמינות ושיריון</a>
+            </div>
         </div>
     </header>
     
@@ -343,46 +352,49 @@
             </div>
         </section>
 
-        <!-- Booking Info & Pricing -->
+        <!-- Booking Info -->
         <section id="booking-info" class="reveal mb-32">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold serif mb-4">מחירון</h2>
+                <h2 class="text-4xl font-bold serif mb-4">מידע והזמנת אולם</h2>
                 <div class="w-20 h-1 bg-gold mx-auto"></div>
             </div>
 
-            <div class="mb-12 max-w-2xl mx-auto">
-                <div class="info-box bg-[#fdfdfc] border-2 border-gold/40 shadow-xl text-slate-800 text-right">
-                    <h4 class="text-gold-dark font-bold text-2xl mb-6 flex items-center justify-center gap-2 italic">
-                        <i data-lucide="tag" class="w-6 h-6"></i> מחירון השכרה
+            <div class="max-w-2xl mx-auto text-right mb-8">
+                <div class="info-box bg-slate-900 text-white">
+                    <h4 class="text-gold font-bold text-xl mb-6 flex items-center gap-2 italic">
+                        <i data-lucide="tag" class="w-5 h-5"></i> מחירון השכרה
                     </h4>
-                    <div class="space-y-4 text-base md:text-lg">
-                        <div class="border-b border-gray-200 pb-3">
-                            <p class="font-bold underline mb-2">ימי חול</p>
-                            <div class="flex justify-between text-gray-700"><span>חבר: 850 ₪</span> <span>לא חבר: 1700 ₪</span></div>
+                    <div class="space-y-4 text-sm">
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">ימי חול</p>
+                            <div class="flex justify-between"><span>חבר: 850 ₪</span> <span>לא חבר: 1700 ₪</span></div>
                         </div>
-                        <div class="border-b border-gray-200 pb-3">
-                            <p class="font-bold underline mb-2">שבת (סעודה אחת)</p>
-                            <div class="flex justify-between text-gray-700"><span>חבר: 1000 ₪</span> <span>לא חבר: 2000 ₪</span></div>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">שבת (סעודה אחת)</p>
+                            <div class="flex justify-between"><span>חבר: 1000 ₪</span> <span>לא חבר: 2000 ₪</span></div>
                         </div>
-                        <div class="border-b border-gray-200 pb-3">
-                            <p class="font-bold underline mb-2">שבת (2 סעודות)</p>
-                            <div class="flex justify-between text-gray-700"><span>חבר: 1100 ₪</span> <span>לא חבר: 2200 ₪</span></div>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">שבת (2 סעודות)</p>
+                            <div class="flex justify-between"><span>חבר: 1100 ₪</span> <span>לא חבר: 2200 ₪</span></div>
                         </div>
-                        <div class="border-b border-gray-200 pb-3">
-                            <p class="font-bold underline mb-2">שבת (3 סעודות)</p>
-                            <div class="flex justify-between text-gray-700"><span>חבר: 1200 ₪</span> <span>לא חבר: 2400 ₪</span></div>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">שבת (3 סעודות)</p>
+                            <div class="flex justify-between"><span>חבר: 1200 ₪</span> <span>לא חבר: 2400 ₪</span></div>
                         </div>
-                        <div class="border-b border-gray-200 pb-3">
-                            <p class="font-bold underline mb-2">תוספת מוצאי שבת</p>
-                            <div class="flex justify-between text-gray-700"><span>חבר: 200 ₪</span> <span>לא חבר: 400 ₪</span></div>
+                        <div class="border-b border-white/10 pb-2">
+                            <p class="font-bold underline mb-1">תוספת מוצאי שבת</p>
+                            <div class="flex justify-between"><span>חבר: 200 ₪</span> <span>לא חבר: 400 ₪</span></div>
                         </div>
-                        <p class="text-lg font-bold text-slate-900 pt-3 text-center bg-gold/10 rounded-lg p-2">* הגברה / מקרן / מסך: 200 ₪ נוספים</p>
+                        <div class="pb-2">
+                            <p class="font-bold underline mb-1">הגברה / מקרן / מסך</p>
+                            <div class="flex justify-between"><span>200 ₪ נוספים</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Full width info box for extensive rules and equipment -->
-            <div class="info-box text-right max-w-5xl mx-auto border-gray-100 shadow-md">
+            <div class="info-box text-right">
                 <h4 class="font-bold text-2xl mb-8 flex items-center gap-2 text-slate-800 italic underline">
                     <i data-lucide="file-text" class="text-gold w-6 h-6"></i> מידע, ציוד וכללי האולם
                 </h4>
@@ -461,23 +473,10 @@
              <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold serif">לוח זמינות אירועים</h2>
             </div>
-
-            <!-- קוביית התשלום שמוקמה בין הכותרת ליומן -->
-            <div class="info-box bg-white flex flex-col justify-center text-center max-w-2xl mx-auto mb-10 shadow-lg border-2 border-gold/20">
-                <h4 class="font-bold text-2xl mb-4 flex items-center justify-center gap-2 text-slate-800 italic underline">
-                    <i data-lucide="landmark" class="text-gold"></i> תשלום
-                </h4>
-                <p class="text-lg mb-4 leading-relaxed font-bold text-slate-800">תשלום לאחר קבלת אישור ממנהל האולם:</p>
-                <div class="bg-gray-50 p-6 rounded-xl text-base border-r-4 border-gold inline-block w-full">
-                    <p class="font-bold text-lg mb-1 text-slate-900">בנק המזרחי | סניף 481 | חשבון 134940</p>
-                    <p class="text-gray-600">ע"ש קהילת צעירי ישראל</p>
-                </div>
-            </div>
-
-            <div class="relative w-full rounded-2xl overflow-hidden shadow-xl bg-white flex justify-center border border-gray-100">
-                <!-- Wrapper for responsive iframe (מותאם למובייל) -->
-                <div class="w-full overflow-x-auto" style="-webkit-overflow-scrolling: touch;">
-                   <iframe src="https://calendar.google.com/calendar/embed?src=yikg1974%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0; min-width: 600px; width: 100%; height: 600px;" frameborder="0" scrolling="no"></iframe>
+            <div class="relative w-full rounded-2xl overflow-hidden shadow-xl bg-white flex justify-center">
+                <!-- Wrapper for responsive iframe -->
+                <div style="width: 100%; overflow: auto;">
+                   <iframe src="https://calendar.google.com/calendar/embed?src=yikg1974%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0; min-width: 800px; max-width: 100%;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
                 </div>
             </div>
         </section>
@@ -493,7 +492,7 @@
 
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold serif mb-4">בקשה לשיריון תאריך</h2>
+                    <h2 class="text-4xl font-bold serif mb-4">בדיקת זמינות ושיריון</h2>
                     <p class="text-gray-600">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
                 </div>
                 
@@ -507,14 +506,10 @@
                         <input type="tel" id="fphone" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <label class="block text-sm font-bold mb-2">אימייל</label>
-                        <input type="email" id="femail" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
-                    </div>
-                    <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">תאריך מבוקש</label>
                         <input type="date" id="fdate" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
-                    <div class="col-span-2">
+                    <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-2">סוג האירוע</label>
                         <input type="text" id="ftype" required placeholder="לדוגמה: ברית, שבת חתן, בר מצווה..." class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
@@ -526,6 +521,20 @@
                         <button type="submit" class="btn-gold w-full md:w-auto text-xl shadow-xl hover:shadow-2xl">שלח בקשה לשיריון</button>
                     </div>
                 </form>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="payment-section" class="reveal mb-32 max-w-2xl mx-auto text-right">
+            <div class="info-box flex flex-col justify-center">
+                <h4 class="font-bold text-xl mb-6 flex items-center gap-2 text-slate-800 italic underline">
+                    <i data-lucide="landmark" class="text-gold"></i> תשלום ושיריון
+                </h4>
+                <p class="text-sm mb-4 leading-relaxed">לשיריון תאריך יש להעביר <b>מקדמה של 50%</b>:</p>
+                <div class="bg-gray-50 p-6 rounded-xl text-base border-r-4 border-gold">
+                    <p class="font-bold text-lg mb-1">בנק המזרחי | סניף 481 | חשבון 134940</p>
+                    <p class="text-gray-600">ע"ש קהילת צעירי ישראל</p>
+                </div>
             </div>
         </section>
 
@@ -543,19 +552,18 @@
                                 <i data-lucide="phone"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-500">לתיאום טלפוני עם אשר פלאור:</p>
+                                <p class="text-sm text-gray-500">לתיאום עם אשר פלאור:</p>
                                 <a href="tel:0507341851" class="text-2xl font-bold text-slate-800 hover:text-gold transition">050-7341851</a>
                             </div>
                         </div>
 
-                        <!-- שונה מוואטסאפ במקום מייל לפי הבקשה -->
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#25D366]/10 rounded-full flex items-center justify-center text-[#25D366]">
-                                <i data-lucide="message-circle"></i>
+                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gold">
+                                <i data-lucide="mail"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-500">וואטסאפ מנהל אולם:</p>
-                                <a href="https://wa.me/972507341851" target="_blank" class="text-xl font-bold text-slate-800 hover:text-[#25D366] transition">לחץ כאן לשליחת הודעה</a>
+                                <p class="text-sm text-gray-500">אימייל:</p>
+                                <a href="mailto:fluerasat@gmail.com" class="text-xl font-bold text-slate-800 hover:text-gold transition">fluerasat@gmail.com</a>
                             </div>
                         </div>
 
@@ -595,10 +603,11 @@
             document.getElementById('lightbox').style.display = 'flex';
         }
 
-        // --- טעינה ישירה של קבצי JPG בלבד ---
+        // --- תיקון שגיאות 404: טעינה ישירה של קבצי JPG בלבד ---
         function autoLoadImages() {
             const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.4))";
             
+            // המערך מצביע ישירות על קבצי JPG הקיימים
             const imageMap = [
                 { id: 'hero-bg', file: '01.jpg', isBg: true },
                 { id: 'img-02-gallery', file: '02.jpg', isBg: false },
@@ -659,7 +668,6 @@
             formData.append('action', 'submit');
             formData.append('name', document.getElementById('fname').value);
             formData.append('phone', document.getElementById('fphone').value);
-            formData.append('email', document.getElementById('femail').value); // נוסף שדה אימייל
             formData.append('eventDate', document.getElementById('fdate').value);
             formData.append('eventType', document.getElementById('ftype').value);
             formData.append('message', document.getElementById('fmsg').value);
@@ -695,6 +703,7 @@
             errorMsg.classList.add('hidden');
             loading.classList.remove('hidden');
 
+            // בדיקת סיסמה וקבלת נתונים דרך doGet
             fetch(`${SCRIPT_URL}?password=${pass}`)
             .then(res => res.json())
             .then(data => {
@@ -702,7 +711,7 @@
                     currentPassword = pass;
                     loginView.classList.add('hidden');
                     dashboard.classList.remove('hidden');
-                    renderTable(data.data);
+                    renderTable(data.data); // data.data מכיל את המערך מהסקריפט
                 } else {
                     errorMsg.classList.remove('hidden');
                     loading.classList.add('hidden');
@@ -721,22 +730,19 @@
             document.getElementById('loading-data').classList.add('hidden');
 
             if(!rows || rows.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center p-4">אין הזמנות כרגע</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center p-4">אין הזמנות כרגע</td></tr>';
                 return;
             }
 
             rows.forEach((row, index) => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition";
-                
-                // הוספת עמודת אימייל לתצוגה במערכת הניהול (אם הסקריפט יחזיר אותה)
-                let emailHtml = row.email ? `<a href="mailto:${row.email}" class="text-blue-500">${row.email}</a>` : '-';
-                
+                // מבנה העמודות תואם לגוגל סקריפט:
+                // timestamp, name, phone, eventDate, eventType, message, status
                 tr.innerHTML = `
                     <td class="p-3 font-bold text-slate-700">${row.eventDate}</td>
                     <td class="p-3">${row.name}</td>
                     <td class="p-3"><a href="tel:${row.phone}" class="text-blue-500">${row.phone}</a></td>
-                    <td class="p-3">${emailHtml}</td>
                     <td class="p-3">${row.eventType}</td>
                     <td class="p-3 text-xs text-gray-500 max-w-[150px] truncate" title="${row.message}">${row.message}</td>
                     <td class="p-3">
@@ -756,12 +762,13 @@
             const formData = new FormData();
             formData.append('action', 'delete');
             formData.append('password', currentPassword);
-            formData.append('rowIndex', index); 
+            formData.append('rowIndex', index); // שולח אינדקס (0, 1, 2...), הסקריפט מוסיף את ה-Offset
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
             .then(res => res.json())
             .then(data => {
                 if(data.result === 'success') {
+                    // רענון הנתונים
                     loginAdmin(); 
                 } else {
                     alert('שגיאה במחיקה: ' + (data.error || 'לא ידועה'));
@@ -780,7 +787,7 @@
         
         window.onload = function() {
             autoLoadImages();
-            createParticles();
+            createParticles(); // הפעלת האנימציה
         };
     </script>
 </body>
