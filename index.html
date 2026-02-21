@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -12,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- === SEO & Meta Tags - מקסימום חשיפה בגוגל === -->
+    <!-- === SEO & Meta Tags === -->
     <title>אולם אירועים ישראל הצעיר פתח תקווה | בריתות, שבת חתן ואירועים בכפר גנים</title>
     
     <meta name="description" content="אולם אירועים ישראל הצעיר בכפר גנים פתח תקווה. המקום המושלם לברית, שבת חתן, בר מצווה, הרצאות, אזכרות, כנסים ואירועים משפחתיים עד 200 איש. אולם בוטיק נקי, מטופח, כשר ונגיש במחיר הוגן.">
@@ -42,7 +43,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* תיקון פונטים - שוחזר הקישור שנמחק */
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;700&display=swap');
                 
         :root { 
@@ -58,10 +58,15 @@
              color: var(--dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            padding-top: 60px;
         }
 
         .serif { font-family: 'Rubik', sans-serif; }
         
+        section, #rules-info {
+            scroll-margin-top: 100px;
+        }
+
         /* Lightbox */
         #lightbox {
             display: none; position: fixed; z-index: 9999;
@@ -77,10 +82,12 @@
             background-size: cover; background-position: center;
             position: relative;
             overflow: hidden;
+            margin-top: -60px; 
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
         .text-glow-white { text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7); }
+        .text-drop-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -155,6 +162,26 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- === תפריט ניווט עליון === -->
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-black/70 backdrop-blur-md py-4 px-2 shadow-lg transition-all">
+        <div class="max-w-7xl mx-auto">
+            <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-white font-bold text-sm md:text-base serif">
+                <li><a href="#hero-bg" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">ראשי</a></li>
+                <li><a href="#gallery" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">גלריה</a></li>
+                <li><a href="#booking-info" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">מחירון</a></li>
+                <li><a href="#rules-info" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">נהלים וציוד</a></li>
+                <li><a href="#calendar-section" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">לוח זמינות</a></li>
+                <li><a href="#booking-form" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">שיריון אירוע</a></li>
+                <li><a href="#reviews" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">המלצות</a></li>
+                <li><a href="#payment" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">תשלום</a></li>
+                <li><a href="#contact" class="hover:text-[#D4AF37] hover:-translate-y-1 inline-block transition-all duration-300">צור קשר</a></li>
+            </ul>
+        </div>
+        <div class="absolute bottom-0 right-0 w-full h-1 bg-white/10">
+            <div id="progress-bar" class="h-full bg-[#D4AF37] w-0 transition-all duration-100 ease-out float-right"></div>
+        </div>
+    </nav>
+
     <!-- Lightbox -->
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="lightbox-img" src="" alt="תמונה מוגדלת">
@@ -165,14 +192,13 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <!-- Admin Login / Dashboard Modal -->
+    <!-- Admin Modal -->
     <div id="admin-modal">
         <div class="bg-white p-8 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative mx-4">
             <button onclick="document.getElementById('admin-modal').style.display='none'" class="absolute top-4 left-4 text-gray-500 hover:text-red-500">
                 <i data-lucide="x"></i>
             </button>
             
-            <!-- Login View -->
             <div id="admin-login-view" class="text-center space-y-4">
                 <h3 class="text-2xl font-bold serif">כניסת מנהל</h3>
                 <input type="password" id="admin-pass" placeholder="474945" class="p-3 border rounded-lg w-full max-w-xs text-center mx-auto block">
@@ -180,7 +206,6 @@
                 <p id="login-error" class="text-red-500 text-sm hidden">סיסמה שגויה</p>
             </div>
 
-            <!-- Dashboard View -->
             <div id="admin-dashboard-view" class="hidden">
                 <h3 class="text-2xl font-bold serif mb-6 text-center border-b pb-4">ניהול הזמנות (ממוין לפי תאריך אירוע)</h3>
                 <div class="overflow-x-auto">
@@ -191,13 +216,11 @@
                                 <th class="p-3">שם</th>
                                 <th class="p-3">טלפון</th>
                                 <th class="p-3">אימייל</th>
-                                <th class="p-3">סוג</th>
                                 <th class="p-3">הערות</th>
                                 <th class="p-3 rounded-l-lg">פעולות</th>
                             </tr>
                         </thead>
                         <tbody id="bookings-table-body" class="divide-y divide-gray-100">
-                            <!-- Rows inserted via JS -->
                         </tbody>
                     </table>
                 </div>
@@ -209,33 +232,28 @@
         </div>
     </div>
 
-<header id="hero-bg" class="relative min-h-[85vh] flex flex-col justify-center items-center text-center text-slate-900 px-4">
-        <div class="max-w-5xl z-10 p-4 breathing">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-6 text-glow-white leading-tight" style="font-family: Arial, sans-serif;">
+    <!-- Hero Section -->
+    <header id="hero-bg" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center text-slate-900 px-4 pt-16">
+        <div class="max-w-5xl z-10 p-4 breathing mt-8">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-glow-white leading-tight" style="font-family: Arial, sans-serif;">
                 אולם אירועים ביכ"ס ישראל הצעיר <br class="hidden md:block"> כפר גנים פ"ת
             </h1>
+            
+            <p class="text-xl md:text-3xl text-white font-bold text-drop-shadow max-w-3xl mx-auto leading-relaxed mt-4">
+                אירועים חברתיים באופי דתי בלבד.<br>
+                <span class="text-lg md:text-2xl font-normal mt-2 block">כגון, בר/בת מצוה, אירוסין, שבע ברכות, ברית מילה, הפרשת חלה, ערבי לימוד וכדומה.</span>
+            </p>
         </div>
     </header>
     
     <main class="max-w-7xl mx-auto px-6 py-20 relative z-10">
         
-        <!-- About Section -->
-        <section id="about" class="reveal mb-32 max-w-4xl mx-auto text-center">
-            <div class="space-y-6 bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-gray-100">
-                <p class="text-slate-800 text-2xl md:text-3xl font-bold leading-relaxed serif">
-                    אולם אירועים לקיום אירועים חברתיים באופי דתי בלבד.<br>
-                    כגון, בר/בת מצוה, אירוסין, שבע ברכות, ברית מילה, הפרשת חלה, ערבי לימוד וכדומה.
-                </p>
-            </div>
-        </section>
-
         <!-- Gallery Section -->
-        <section class="reveal mb-32">
+        <section id="gallery" class="reveal mb-32 pt-8">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold serif">גלריית תמונות</h2>
                 <p class="text-gray-500">לחצו על תמונה להגדלה</p>
             </div>
-            <!-- הורחב לתמיכה ב-10 תמונות (9 בגלריה + הירו) -->
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
                     <img id="img-02-gallery" src="02.jpg" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
@@ -246,7 +264,6 @@
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
                     <img id="img-04" src="04.jpg" alt="בית הכנסת פתח תקווה" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
-                <!-- תמונות חדשות 05-10 -->
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
                     <img id="img-05" src="05.jpg" alt="תמונה 05" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
@@ -269,8 +286,8 @@
         </section>
 
         <!-- Booking Info & Pricing -->
-        <section id="booking-info" class="reveal mb-32">
-            <div class="text-center mb-16">
+        <section id="booking-info" class="reveal mb-12 pt-8">
+            <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold serif mb-4">מחירון</h2>
                 <div class="w-20 h-1 bg-gold mx-auto"></div>
             </div>
@@ -309,90 +326,87 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Full width info box for extensive rules and equipment -->
-            <div class="info-box text-right max-w-5xl mx-auto border-gray-100 shadow-md">
-                <h4 class="font-bold text-2xl mb-8 flex items-center gap-2 text-slate-800 italic underline">
-                    <i data-lucide="file-text" class="text-gold w-6 h-6"></i> מידע, ציוד וכללי האולם
-                </h4>
-                
-                <div class="grid md:grid-cols-2 gap-10 text-gray-700">
-                    <!-- Column 1 -->
-                    <div class="space-y-6">
-                        <div>
-                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">כשרות</h5>
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>הקייטרינג חייב להיות בעל תעודת כשרות.</li>
-                                <li>אין להביא מזון ביתי שלא אושר על ידינו. ניתן להביא מזון קנוי שיש לו הכשר.</li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">חניה ונגישות</h5>
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>מגרש חניה חופשי ממול לבית הכנסת.</li>
-                                <li>כניסה מונגשת לאולם כולל שירותים לנכים.</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">קבלת האולם</h5>
-                            <p class="text-sm">בשעה 8 בבוקר מלבד ימי ראשון ורביעי בשעה 12 בצהרים.</p>
-                        </div>
-
-                        <div>
-                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - אולם</h5>
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>10 שולחנות עגולים בקוטר 160 ס"מ (מתאים עד 10 סועדים).</li>
-                                <li>19 שולחנות מלבניים בגודל 250X60 ס"מ.</li>
-                                <li>220 כסאות פלסטיק לבנים משודרגים (לא של כתר).</li>
-                                <li>4 מזגנים.</li>
-                                <li>מערכת הגברה עם 4 רמקולים, מיקרופון, מקרן ומסך.</li>
-                                <li class="font-bold">רשת WIFI.</li>
-                            </ul>
-                        </div>
+        <!-- Rules and Equipment Section -->
+        <div id="rules-info" class="reveal mb-32 info-box text-right max-w-5xl mx-auto border-gray-100 shadow-md pt-8 mt-8">
+            <h4 class="font-bold text-2xl mb-8 flex items-center gap-2 text-slate-800 italic underline">
+                <i data-lucide="file-text" class="text-gold w-6 h-6"></i> מידע, ציוד וכללי האולם
+            </h4>
+            
+            <div class="grid md:grid-cols-2 gap-10 text-gray-700">
+                <div class="space-y-6">
+                    <div>
+                        <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">כשרות</h5>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>הקייטרינג חייב להיות בעל תעודת כשרות.</li>
+                            <li>אין להביא מזון ביתי שלא אושר על ידינו. ניתן להביא מזון קנוי שיש לו הכשר.</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">חניה ונגישות</h5>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>מגרש חניה חופשי ממול לבית הכנסת.</li>
+                            <li>כניסה מונגשת לאולם כולל שירותים לנכים.</li>
+                        </ul>
                     </div>
 
-                    <!-- Column 2 -->
-                    <div class="space-y-6">
-                        <div>
-                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - מטבח</h5>
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>2 מקררים תעשיתים, 1 מקפיא.</li>
-                                <li>1 ארון חימום.</li>
-                                <li>7 פלטות לשבת, 2 מיחמים.</li>
-                                <li>2 כיורים ומשטחי נירוסטה.</li>
-                                <li>1 עגלת שירות.</li>
-                            </ul>
-                        </div>
+                    <div>
+                        <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">קבלת האולם</h5>
+                        <p class="text-sm">בשעה 8 בבוקר מלבד ימי ראשון ורביעי בשעה 12 בצהרים.</p>
+                    </div>
 
-                        <div>
-                            <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">הקפדה על כללים</h5>
-                            <ul class="list-disc list-inside space-y-2 text-sm">
-                                <li>הציוד במטבח משמש <b class="text-slate-900">רק לחימום ולא לבישול</b>.</li>
-                                <li>אסור להביא ציוד חשמלי ללא תיאום.</li>
-                                <li>אסור להשמיע מוזיקה לאחר שעה 23 בלילה.</li>
-                                <li>אסור לתלות קישוטים בתקרה ואסור השימוש באקדח קונפטי ובזיקוקים.</li>
-                                <li>אסור לעשות מנגל באולם או בחוץ.</li>
-                                <li>סידור השולחנות והכסאות באחריות מזמין האולם. בתום האירוע יש להחזיר שולחנות למקומם, מלבד 4 ארוכים, וכסאות להשאיר במקומם ולא להערים אחד על השני.</li>
-                                <li>הזבל ילקח לפחים הגדולים של העיריה בכניסה לבית הכנסת.</li>
-                                <li>הניקיון היסודי באחריות בית הכנסת.</li>
-                                <li>בתום האירוע יש לכבות את התאורה, מזגנים וכל מכשירי החשמל, ולשלשל לתיבת הדאר את המפתח.</li>
-                            </ul>
-                        </div>
+                    <div>
+                        <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - אולם</h5>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>10 שולחנות עגולים בקוטר 160 ס"מ (מתאים עד 10 סועדים).</li>
+                            <li>19 שולחנות מלבניים בגודל 250X60 ס"מ.</li>
+                            <li>220 כסאות פלסטיק לבנים משודרגים (לא של כתר).</li>
+                            <li>4 מזגנים.</li>
+                            <li>מערכת הגברה עם 4 רמקולים, מיקרופון, מקרן ומסך.</li>
+                            <li class="font-bold">רשת WIFI.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - מטבח</h5>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>2 מקררים תעשיתים, 1 מקפיא.</li>
+                            <li>1 ארון חימום.</li>
+                            <li>7 פלטות לשבת, 2 מיחמים.</li>
+                            <li>2 כיורים ומשטחי נירוסטה.</li>
+                            <li>1 עגלת שירות.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">הקפדה על כללים</h5>
+                        <ul class="list-disc list-inside space-y-2 text-sm">
+                            <li>הציוד במטבח משמש <b class="text-slate-900">רק לחימום ולא לבישול</b>.</li>
+                            <li>אסור להביא ציוד חשמלי ללא תיאום.</li>
+                            <li>אסור להשמיע מוזיקה לאחר שעה 23 בלילה.</li>
+                            <li>אסור לתלות קישוטים בתקרה ואסור השימוש באקדח קונפטי ובזיקוקים.</li>
+                            <li>אסור לעשות מנגל באולם או בחוץ.</li>
+                            <li>סידור השולחנות והכסאות באחריות מזמין האולם. בתום האירוע יש להחזיר שולחנות למקומם, מלבד 4 ארוכים, וכסאות להשאיר במקומם ולא להערים אחד על השני.</li>
+                            <li>הזבל ילקח לפחים הגדולים של העיריה בכניסה לבית הכנסת.</li>
+                            <li>הניקיון היסודי באחריות בית הכנסת.</li>
+                            <li>בתום האירוע יש לכבות את התאורה, מזגנים וכל מכשירי החשמל, ולשלשל לתיבת הדאר את המפתח.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         
         <!-- Calendar Section -->
-        <section id="calendar-section" class="reveal mb-32 max-w-5xl mx-auto">
+        <section id="calendar-section" class="reveal mb-32 pt-8 max-w-5xl mx-auto">
              <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold serif">לוח זמינות אירועים</h2>
             </div>
 
             <div class="relative w-full rounded-2xl overflow-hidden shadow-xl bg-white flex justify-center border border-gray-100">
-                <!-- Wrapper for responsive iframe (מותאם למובייל) -->
                 <div class="w-full overflow-x-auto" style="-webkit-overflow-scrolling: touch;">
                    <iframe src="https://calendar.google.com/calendar/embed?src=yikg1974%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0; min-width: 600px; width: 100%; height: 600px;" frameborder="0" scrolling="no"></iframe>
                 </div>
@@ -400,7 +414,7 @@
         </section>
 
         <!-- Form Section -->
-        <section id="booking-form" class="reveal mb-32 bg-slate-100 p-8 md:p-16 rounded-[2.5rem] relative shadow-lg">
+        <section id="booking-form" class="reveal mb-32 pt-8 bg-slate-100 p-6 md:p-10 rounded-[2.5rem] relative shadow-lg">
             <div class="loader-overlay rounded-[2.5rem]" id="form-loader">
                 <div class="text-center">
                     <div class="spinner mx-auto mb-4"></div>
@@ -409,59 +423,98 @@
             </div>
 
             <div class="max-w-3xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold serif mb-4">בקשה לשיריון תאריך</h2>
-                    <p class="text-gray-600">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold serif mb-2">בקשה לשיריון תאריך</h2>
+                    <p class="text-gray-600 text-sm md:text-base">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
                 </div>
                 
-                <form id="newBookingForm" class="grid md:grid-cols-2 gap-6" onsubmit="handleFormSubmit(event)">
+                <form id="newBookingForm" class="grid md:grid-cols-2 gap-4 md:gap-6" onsubmit="handleFormSubmit(event)">
                     <div class="col-span-2 md:col-span-1">
-                        <label class="block text-sm font-bold mb-2">שם מלא</label>
-                        <input type="text" id="fname" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <label class="block text-sm font-bold mb-1">שם מלא</label>
+                        <input type="text" id="fname" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <label class="block text-sm font-bold mb-2">טלפון</label>
-                        <input type="tel" id="fphone" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <label class="block text-sm font-bold mb-1">טלפון</label>
+                        <input type="tel" id="fphone" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <label class="block text-sm font-bold mb-2">אימייל</label>
-                        <input type="email" id="femail" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <label class="block text-sm font-bold mb-1">אימייל</label>
+                        <input type="email" id="femail" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
-                        <label class="block text-sm font-bold mb-2">תאריך מבוקש</label>
-                        <input type="date" id="fdate" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <label class="block text-sm font-bold mb-1">תאריך מבוקש</label>
+                        <input type="date" id="fdate" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
                     </div>
                     <div class="col-span-2">
-                        <label class="block text-sm font-bold mb-2">סוג האירוע</label>
-                        <input type="text" id="ftype" required placeholder="לדוגמה: ברית, שבת חתן, בר מצווה..." class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <label class="block text-sm font-bold mb-1">נא לציין סוג אירוע מספר מוזמנים ובקשות מיוחדות</label>
+                        <textarea id="fmsg" rows="3" placeholder="לדוגמה: ברית, שבת חתן... ועוד בקשות אם יש" class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20"></textarea>
                     </div>
-                    <div class="col-span-2">
-                        <label class="block text-sm font-bold mb-2">הודעה / בקשות מיוחדות</label>
-                        <textarea id="fmsg" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20"></textarea>
+                    <div class="col-span-2 text-center mt-2">
+                        <button type="submit" class="btn-gold w-full md:w-auto text-lg md:text-xl shadow-xl hover:shadow-2xl">שלח בקשה לשיריון</button>
                     </div>
-                    <div class="col-span-2 text-center mt-4">
-                        <button type="submit" class="btn-gold w-full md:w-auto text-xl shadow-xl hover:shadow-2xl">שלח בקשה לשיריון</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- === תצוגת ויצירת המלצות === -->
+        <section id="reviews" class="reveal mb-32 pt-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold serif mb-2">המלצות מלקוחות</h2>
+                <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
+                <p class="text-gray-500">מה מספרים אלו שכבר חגגו אצלנו</p>
+            </div>
+
+            <!-- אזור הצגת ההמלצות -->
+            <div id="reviews-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="col-span-full text-center text-gray-400 p-8">טוען המלצות...</div>
+            </div>
+
+            <!-- טופס הוספת המלצה (ללא שדה שם) -->
+            <div class="max-w-xl mx-auto bg-white p-6 md:p-8 rounded-[2rem] shadow-lg border border-gray-100 relative">
+                <div class="loader-overlay rounded-[2rem]" id="review-loader">
+                    <div class="text-center">
+                        <div class="spinner mx-auto mb-4"></div>
+                        <p class="font-bold text-slate-800">שולח המלצה...</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-bold serif mb-4 text-center">הייתם אצלנו? נשמח לשמוע!</h3>
+                <form id="newReviewForm" onsubmit="submitReview(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1 text-slate-700">ההמלצה שלכם</label>
+                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תפורסם בעילום שם." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
+                    </div>
+                    <div class="text-center pt-2">
+                        <button type="submit" class="bg-slate-800 text-white px-8 py-3 rounded-full font-bold hover:bg-gold transition shadow-lg w-full md:w-auto">שלח המלצה</button>
                     </div>
                 </form>
             </div>
         </section>
 
         <!-- Payment Info Section -->
-        <section class="reveal mb-32 max-w-2xl mx-auto">
+        <section id="payment" class="reveal mb-32 pt-8 max-w-2xl mx-auto">
             <div class="info-box bg-white flex flex-col justify-center text-center shadow-lg border-2 border-gold/20">
-                <h4 class="font-bold text-2xl mb-4 flex items-center justify-center gap-2 text-slate-800 italic underline">
-                    <i data-lucide="landmark" class="text-gold"></i> תשלום
+                <h4 class="font-bold text-2xl md:text-3xl mb-6 text-slate-800 italic underline">
+                    תשלום בהעברה בנקאית
                 </h4>
-                <p class="text-lg mb-4 leading-relaxed font-bold text-slate-800">תשלום לאחר קבלת אישור ממנהל האולם:</p>
-                <div class="bg-gray-50 p-6 rounded-xl text-base border-r-4 border-gold inline-block w-full">
-                    <p class="font-bold text-lg mb-1 text-slate-900">בנק המזרחי | סניף 481 | חשבון 134940</p>
-                    <p class="text-gray-600">ע"ש קהילת צעירי ישראל</p>
+                
+                <div class="space-y-4 text-lg md:text-xl text-slate-800 font-bold mb-8">
+                    <p>תשלום רק לאחר קבלת אישור ההזמנה ממנהל האולם</p>
+                    <p>50% מקדמה לשיריון האולם</p>
+                    <p>יתרת התשלום יומיים לפני האירוע</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 md:p-8 rounded-xl border-r-4 border-gold inline-block w-full text-center">
+                    <p class="font-bold text-gray-600 mb-2">פרטים להעברה:</p>
+                    <p class="font-extrabold text-xl md:text-2xl text-slate-900 mb-2">בנק המזרחי | סניף 481 | חשבון 134940</p>
+                    <p class="text-gray-800 text-lg mb-4">ע"ש קהילת צעירי ישראל</p>
+                    <p class="text-sm md:text-base font-bold text-gold-dark bg-gold/10 inline-block px-4 py-1.5 rounded-full">קבלה תישלח במייל</p>
                 </div>
             </div>
         </section>
 
         <!-- Contact & Map -->
-        <section class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-16 text-slate-800 reveal shadow-2xl relative z-10">
+        <section id="contact" class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-16 text-slate-800 reveal shadow-2xl relative z-10 pt-8 mt-10">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
                     <div>
@@ -515,20 +568,17 @@
     <!-- SCRIPT LOGIC -->
     <script>
         // *** כאן יש לשים את הקישור שקיבלת מהגוגל סקריפט אחרי שעשית Deploy ***
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylz7zZCLwuSTtO8b9iV_sN9vHC6laCRGvwXWUqUDErxomcKkGCGUJazDGCWdPuIfub4A/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygN4XZlobtvOAEAl5sslPAxVl3jJdRwpbbGL2fabIGQvz72HXG2vcXnbntCeQn7HVH_Q/exec';
         
         lucide.createIcons();
 
-        // גלריה ותמונות
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
 
-        // --- טעינה ישירה של קבצי JPG בלבד ---
         function autoLoadImages() {
-            const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.4))";
-            
+            const lightGradient = "linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05))";
             const imageMap = [
                 { id: 'hero-bg', file: '01.jpg', isBg: true },
                 { id: 'img-02-gallery', file: '02.jpg', isBg: false },
@@ -554,32 +604,22 @@
             });
         }
 
-        // --- Living Elements (Gold Dust) ---
         function createParticles() {
             const container = document.body;
             setInterval(() => {
                 const particle = document.createElement('div');
                 particle.classList.add('gold-particle');
-                
-                // Random position
-                const size = Math.random() * 8 + 2; // 2px to 10px
+                const size = Math.random() * 8 + 2; 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}vw`;
-                
-                // Random animation duration
                 particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                
                 container.appendChild(particle);
-
-                // Remove after animation
-                setTimeout(() => {
-                    particle.remove();
-                }, 10000);
-            }, 800); // New particle every 800ms
+                setTimeout(() => { particle.remove(); }, 10000);
+            }, 800); 
         }
 
-        // --- Form Submission Logic ---
+        // --- פונקציה לשליחת הזמנה ---
         function handleFormSubmit(e) {
             e.preventDefault();
             const loader = document.getElementById('form-loader');
@@ -591,7 +631,6 @@
             formData.append('phone', document.getElementById('fphone').value);
             formData.append('email', document.getElementById('femail').value); 
             formData.append('eventDate', document.getElementById('fdate').value);
-            formData.append('eventType', document.getElementById('ftype').value);
             formData.append('message', document.getElementById('fmsg').value);
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
@@ -609,6 +648,75 @@
                 loader.style.display = 'none';
                 alert('שגיאת תקשורת.');
                 console.error(error);
+            });
+        }
+
+        // --- משיכת המלצות לאתר ---
+        function loadReviews() {
+            fetch(`${SCRIPT_URL}?action=getReviews`)
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('reviews-container');
+                container.innerHTML = '';
+                
+                if(!data.data || data.data.length === 0) {
+                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות, תהיו הראשונים!</div>';
+                    return;
+                }
+
+                data.data.forEach(review => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between transition hover:-translate-y-1';
+                    div.innerHTML = `
+                        <div>
+                            <div class="flex text-gold mb-3">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"${review.text}"</p>
+                        </div>
+                        <div class="border-t pt-3 mt-2 flex justify-between items-center text-sm text-gray-500">
+                            <span class="font-bold text-slate-800">לקוח ממליץ</span>
+                            <span>${review.date}</span>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+                lucide.createIcons();
+            })
+            .catch(err => {
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-full text-center text-red-400">שגיאה בטעינת המלצות</div>';
+            });
+        }
+
+        // --- שליחת המלצה חדשה ---
+        function submitReview(e) {
+            e.preventDefault();
+            const loader = document.getElementById('review-loader');
+            loader.style.display = 'flex';
+
+            const formData = new FormData();
+            formData.append('action', 'submitReview');
+            formData.append('rText', document.getElementById('rText').value);
+
+            fetch(SCRIPT_URL, { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                loader.style.display = 'none';
+                if(data.result === 'success') {
+                    alert('תודה רבה על ההמלצה!');
+                    document.getElementById('newReviewForm').reset();
+                    loadReviews(); 
+                } else {
+                    alert('שגיאה בשליחה.');
+                }
+            })
+            .catch(error => {
+                loader.style.display = 'none';
+                alert('שגיאת תקשורת.');
             });
         }
 
@@ -651,7 +759,7 @@
             document.getElementById('loading-data').classList.add('hidden');
 
             if(!rows || rows.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center p-4">אין הזמנות כרגע</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center p-4">אין הזמנות כרגע</td></tr>';
                 return;
             }
 
@@ -666,7 +774,6 @@
                     <td class="p-3">${row.name}</td>
                     <td class="p-3"><a href="tel:${row.phone}" class="text-blue-500">${row.phone}</a></td>
                     <td class="p-3">${emailHtml}</td>
-                    <td class="p-3">${row.eventType}</td>
                     <td class="p-3 text-xs text-gray-500 max-w-[150px] truncate" title="${row.message}">${row.message}</td>
                     <td class="p-3">
                         <button onclick="deleteBooking(${index})" class="text-red-500 hover:bg-red-50 p-2 rounded-full transition" title="מחק">
@@ -699,7 +806,13 @@
             .catch(err => alert('שגיאת תקשורת במחיקה'));
         }
 
-        // Scroll Reveal
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -710,6 +823,7 @@
         window.onload = function() {
             autoLoadImages();
             createParticles();
+            loadReviews(); 
         };
     </script>
 </body>
