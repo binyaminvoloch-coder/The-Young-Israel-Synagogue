@@ -13,13 +13,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- === SEO & Meta Tags === -->
     <title>אולם אירועים ישראל הצעיר פתח תקווה | בריתות, שבת חתן ואירועים בכפר גנים</title>
-    
     <meta name="description" content="אולם אירועים ישראל הצעיר בכפר גנים פתח תקווה. המקום המושלם לברית, שבת חתן, בר מצווה, הרצאות, אזכרות, כנסים ואירועים משפחתיים עד 200 איש. אולם בוטיק נקי, מטופח, כשר ונגיש במחיר הוגן.">
-    
     <meta name="keywords" content="אולם אירועים בפתח תקווה, אולם לברית בפתח תקווה, אולם לשבת חתן פתח תקווה, אולם בכפר גנים, ישראל הצעיר פתח תקווה, אולם אירועים קטן במרכז, אולם לאירועים קטנים פתח תקווה, אולם עד 200 איש, אולם לבר מצווה פתח תקווה, אולם לבת מצווה, אולם לבריתה, אולם לזבד הבת, אולם לאירוסין, אולם לחינה בפתח תקווה, אולם להרצאות בפתח תקווה, השכרת אולם להרצאה, מקום לכנסים בפתח תקווה, השכרת אולם בבית כנסת, אולם לאזכרה פתח תקווה, סעודת מצווה, אולם כשר פתח תקווה, אולם זול בפתח תקווה, אולם במחיר שפוי, אולם אירועים במרכז, אולם לימי הולדת, מקום לאירוע קטן, אולם בית כנסת ישראל הצעיר, אולם ברחוב יוסף פלדמן, אולם נגיש לנכים, אולם עם חניה, אולם לשבע ברכות, קידוש בבית כנסת, אולם אירועים דתי, אולם לציבור הדתי פתח תקווה, בית כנסת ישראל הצעיר כפר גנים">
-    
     <meta name="author" content="ישראל הצעיר פתח תקווה">
     <meta name="robots" content="index, follow">
     
@@ -27,18 +23,7 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-
-    <!-- Open Graph / Facebook / Whatsapp -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="אולם ישראל הצעיר פתח תקווה">
-    <meta property="og:url" content="https://the-young-israel-synagogue.vercel.app/">
-    <meta property="og:title" content="אולם אירועים ישראל הצעיר פתח תקווה | בריתות ושבתות חתן">
-    <meta property="og:description" content="מחפשים אולם לברית, שבת חתן, הרצאה או אירוע משפחתי בפתח תקווה? אולם ישראל הצעיר מציע חלל מטופח, נקי ומאובזר בכפר גנים.">
-    <meta property="og:image" content="https://the-young-israel-synagogue.vercel.app/og-image.jpg">
-    <meta property="og:locale" content="he_IL">
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -83,10 +68,12 @@
             position: relative;
             overflow: hidden;
             margin-top: -60px; 
+            /* הפילטר הזה מוסיף מעט בהירות לתמונה */
+            filter: brightness(1.1); 
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
-        .text-glow-white { text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7); }
+        .text-glow-white { text-shadow: 0 1px 3px rgba(255,255,255,1), 0 0 25px rgba(255,255,255,0.9); }
         .text-drop-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -131,7 +118,10 @@
             display: none; justify-content: center; align-items: center; z-index: 10;
         }
 
-        /* --- Living Elements Animation --- */
+        .admin-tab { padding: 0.5rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; font-weight: bold; }
+        .admin-tab.active { border-bottom-color: var(--gold); color: var(--gold-dark); }
+
+        /* Animations */
         .gold-particle {
             position: fixed;
             background: radial-gradient(circle, rgba(212,175,55,0.8) 0%, rgba(255,255,255,0) 70%);
@@ -160,9 +150,8 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRV67LBD"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- === תפריט ניווט עליון === -->
+    <!-- Nav -->
     <nav class="fixed top-0 left-0 w-full z-[999] bg-black/70 backdrop-blur-md py-4 px-2 shadow-lg transition-all">
         <div class="max-w-7xl mx-auto">
             <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-white font-bold text-sm md:text-base serif">
@@ -182,33 +171,40 @@
         </div>
     </nav>
 
-    <!-- Lightbox -->
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="lightbox-img" src="" alt="תמונה מוגדלת">
     </div>
 
-    <!-- Whatsapp -->
     <a href="https://wa.me/972507341851" target="_blank" id="whatsapp-float">
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
     <!-- Admin Modal -->
     <div id="admin-modal">
-        <div class="bg-white p-8 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative mx-4">
+        <div class="bg-white p-8 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto relative mx-4">
             <button onclick="document.getElementById('admin-modal').style.display='none'" class="absolute top-4 left-4 text-gray-500 hover:text-red-500">
                 <i data-lucide="x"></i>
             </button>
             
             <div id="admin-login-view" class="text-center space-y-4">
                 <h3 class="text-2xl font-bold serif">כניסת מנהל</h3>
-                <input type="password" id="admin-pass" placeholder="474945" class="p-3 border rounded-lg w-full max-w-xs text-center mx-auto block">
+                <!-- הסיסמה הוסרה מה-Placeholder ! -->
+                <input type="password" id="admin-pass" placeholder="הכנס סיסמה" class="p-3 border rounded-lg w-full max-w-xs text-center mx-auto block">
                 <button onclick="loginAdmin()" class="btn-gold py-2 px-8">כנס</button>
-                <p id="login-error" class="text-red-500 text-sm hidden">סיסמה שגויה</p>
+                <p id="login-error" class="text-red-500 text-sm hidden">סיסמה שגויה או שגיאת התחברות</p>
             </div>
 
             <div id="admin-dashboard-view" class="hidden">
-                <h3 class="text-2xl font-bold serif mb-6 text-center border-b pb-4">ניהול הזמנות (ממוין לפי תאריך אירוע)</h3>
-                <div class="overflow-x-auto">
+                <h3 class="text-2xl font-bold serif mb-4 text-center">פאנל ניהול האולם</h3>
+                
+                <!-- Tabs -->
+                <div class="flex justify-center mb-6 border-b">
+                    <div class="admin-tab active" onclick="switchAdminTab('bookings')">הזמנות</div>
+                    <div class="admin-tab" onclick="switchAdminTab('reviews')">ניהול המלצות</div>
+                </div>
+
+                <!-- Bookings Tab -->
+                <div id="tab-bookings" class="overflow-x-auto">
                     <table class="w-full text-sm text-right">
                         <thead class="bg-slate-100 text-slate-700">
                             <tr>
@@ -220,10 +216,25 @@
                                 <th class="p-3 rounded-l-lg">פעולות</th>
                             </tr>
                         </thead>
-                        <tbody id="bookings-table-body" class="divide-y divide-gray-100">
-                        </tbody>
+                        <tbody id="bookings-table-body" class="divide-y divide-gray-100"></tbody>
                     </table>
                 </div>
+
+                <!-- Reviews Tab -->
+                <div id="tab-reviews" class="overflow-x-auto hidden">
+                    <table class="w-full text-sm text-right">
+                        <thead class="bg-slate-100 text-slate-700">
+                            <tr>
+                                <th class="p-3 rounded-r-lg">תאריך שליחה</th>
+                                <th class="p-3">תוכן ההמלצה</th>
+                                <th class="p-3">סטטוס</th>
+                                <th class="p-3 rounded-l-lg">פעולות</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviews-table-body" class="divide-y divide-gray-100"></tbody>
+                    </table>
+                </div>
+
                 <div id="loading-data" class="text-center py-10 hidden">
                     <div class="spinner mx-auto"></div>
                     <p class="mt-2 text-gray-500">טוען נתונים...</p>
@@ -248,13 +259,14 @@
     
     <main class="max-w-7xl mx-auto px-6 py-20 relative z-10">
         
-        <!-- Gallery Section -->
+        <!-- Gallery -->
         <section id="gallery" class="reveal mb-32 pt-8">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold serif">גלריית תמונות</h2>
                 <p class="text-gray-500">לחצו על תמונה להגדלה</p>
             </div>
             <div class="grid md:grid-cols-3 gap-6">
+                <!-- הכנס את התמונות כרגיל -->
                 <div class="rounded-2xl overflow-hidden shadow-lg aspect-video md:aspect-[4/3] cursor-pointer">
                     <img id="img-02-gallery" src="02.jpg" alt="אירוע באולם" class="w-full h-full object-cover transition hover:scale-110 duration-700" onclick="openLightbox(this.src)">
                 </div>
@@ -285,6 +297,7 @@
             </div>
         </section>
 
+        <!-- (שאר קטעי המידע, הנהלים והלוח נשארו בדיוק כמו שהם בקוד המקורי - אני מדלג כדי לחסוך מקום, יש להעתיק אותם מהקוד המקורי שלך) -->
         <!-- Booking Info & Pricing -->
         <section id="booking-info" class="reveal mb-12 pt-8">
             <div class="text-center mb-12">
@@ -399,7 +412,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Calendar Section -->
         <section id="calendar-section" class="reveal mb-32 pt-8 max-w-5xl mx-auto">
              <div class="text-center mb-10">
@@ -456,7 +469,7 @@
             </div>
         </section>
 
-        <!-- === תצוגת ויצירת המלצות === -->
+        <!-- Reviews -->
         <section id="reviews" class="reveal mb-32 pt-8">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold serif mb-2">המלצות מלקוחות</h2>
@@ -464,12 +477,10 @@
                 <p class="text-gray-500">מה מספרים אלו שכבר חגגו אצלנו</p>
             </div>
 
-            <!-- אזור הצגת ההמלצות -->
             <div id="reviews-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <div class="col-span-full text-center text-gray-400 p-8">טוען המלצות...</div>
             </div>
 
-            <!-- טופס הוספת המלצה (ללא שדה שם) -->
             <div class="max-w-xl mx-auto bg-white p-6 md:p-8 rounded-[2rem] shadow-lg border border-gray-100 relative">
                 <div class="loader-overlay rounded-[2rem]" id="review-loader">
                     <div class="text-center">
@@ -482,7 +493,7 @@
                 <form id="newReviewForm" onsubmit="submitReview(event)" class="space-y-4">
                     <div>
                         <label class="block text-sm font-bold mb-1 text-slate-700">ההמלצה שלכם</label>
-                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תפורסם בעילום שם." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
+                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תעלה לאתר לאחר אישור." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
                     </div>
                     <div class="text-center pt-2">
                         <button type="submit" class="bg-slate-800 text-white px-8 py-3 rounded-full font-bold hover:bg-gold transition shadow-lg w-full md:w-auto">שלח המלצה</button>
@@ -559,16 +570,14 @@
 
     <footer class="py-12 text-center text-white/50 text-sm bg-slate-950 relative z-10">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה </p>
-        <!-- Admin Trigger -->
         <button onclick="document.getElementById('admin-modal').style.display='flex'" class="absolute bottom-4 right-4 text-white/20 hover:text-white transition">
             <i data-lucide="lock" class="w-4 h-4"></i>
         </button>
     </footer>
 
-    <!-- SCRIPT LOGIC -->
     <script>
-        // *** כאן יש לשים את הקישור שקיבלת מהגוגל סקריפט אחרי שעשית Deploy ***
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygN4XZlobtvOAEAl5sslPAxVl3jJdRwpbbGL2fabIGQvz72HXG2vcXnbntCeQn7HVH_Q/exec';
+        // === שים פה את הקישור החדש שקיבלת לאחר הפריסה מחדש! ===
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylz7zZCLwuSTtO8b9iV_sN9vHC6laCRGvwXWUqUDErxomcKkGCGUJazDGCWdPuIfub4A/exec'; 
         
         lucide.createIcons();
 
@@ -578,7 +587,8 @@
         }
 
         function autoLoadImages() {
-            const lightGradient = "linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05))";
+            // שונתה האטימות וצבע הגרדיאנט לתת מראה מואר ובהיר יותר לתמונת הרקע
+            const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1))";
             const imageMap = [
                 { id: 'hero-bg', file: '01.jpg', isBg: true },
                 { id: 'img-02-gallery', file: '02.jpg', isBg: false },
@@ -619,7 +629,6 @@
             }, 800); 
         }
 
-        // --- פונקציה לשליחת הזמנה ---
         function handleFormSubmit(e) {
             e.preventDefault();
             const loader = document.getElementById('form-loader');
@@ -641,17 +650,15 @@
                     alert('הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם.');
                     document.getElementById('newBookingForm').reset();
                 } else {
-                    alert('שגיאה בשליחה: ' + (data.error || 'נסה שנית'));
+                    alert('שגיאה בשליחה.');
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 loader.style.display = 'none';
-                alert('שגיאת תקשורת.');
-                console.error(error);
+                alert('שגיאת תקשורת. ייתכן שגוגל חסמו את הגישה.');
             });
         }
 
-        // --- משיכת המלצות לאתר ---
         function loadReviews() {
             fetch(`${SCRIPT_URL}?action=getReviews`)
             .then(res => res.json())
@@ -660,7 +667,7 @@
                 container.innerHTML = '';
                 
                 if(!data.data || data.data.length === 0) {
-                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות, תהיו הראשונים!</div>';
+                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות פעילות, תהיו הראשונים!</div>';
                     return;
                 }
 
@@ -687,12 +694,11 @@
                 });
                 lucide.createIcons();
             })
-            .catch(err => {
+            .catch(() => {
                 document.getElementById('reviews-container').innerHTML = '<div class="col-span-full text-center text-red-400">שגיאה בטעינת המלצות</div>';
             });
         }
 
-        // --- שליחת המלצה חדשה ---
         function submitReview(e) {
             e.preventDefault();
             const loader = document.getElementById('review-loader');
@@ -703,18 +709,15 @@
             formData.append('rText', document.getElementById('rText').value);
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 loader.style.display = 'none';
                 if(data.result === 'success') {
-                    alert('תודה רבה על ההמלצה!');
+                    alert('תודה רבה על ההמלצה! היא נשלחה לאישור מנהל.');
                     document.getElementById('newReviewForm').reset();
-                    loadReviews(); 
-                } else {
-                    alert('שגיאה בשליחה.');
-                }
+                } else { alert('שגיאה בשליחה.'); }
             })
-            .catch(error => {
+            .catch(() => {
                 loader.style.display = 'none';
                 alert('שגיאת תקשורת.');
             });
@@ -722,6 +725,15 @@
 
         // --- Admin Logic ---
         let currentPassword = '';
+
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-bookings').classList.add('hidden');
+            document.getElementById('tab-reviews').classList.add('hidden');
+            
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.remove('hidden');
+        }
 
         function loginAdmin() {
             const pass = document.getElementById('admin-pass').value;
@@ -733,27 +745,27 @@
             errorMsg.classList.add('hidden');
             loading.classList.remove('hidden');
 
-            fetch(`${SCRIPT_URL}?password=${pass}`)
+            fetch(`${SCRIPT_URL}?action=adminLogin&password=${pass}`)
             .then(res => res.json())
             .then(data => {
                 if (data.result === 'success') {
                     currentPassword = pass;
                     loginView.classList.add('hidden');
                     dashboard.classList.remove('hidden');
-                    renderTable(data.data);
+                    renderBookingsTable(data.bookings);
+                    renderReviewsAdminTable(data.reviews);
                 } else {
                     errorMsg.classList.remove('hidden');
                     loading.classList.add('hidden');
                 }
             })
-            .catch(err => {
-                console.error(err);
+            .catch(() => {
                 loading.classList.add('hidden');
-                alert('שגיאה בהתחברות או בטעינת הנתונים');
+                errorMsg.classList.remove('hidden');
             });
         }
 
-        function renderTable(rows) {
+        function renderBookingsTable(rows) {
             const tbody = document.getElementById('bookings-table-body');
             tbody.innerHTML = '';
             document.getElementById('loading-data').classList.add('hidden');
@@ -763,10 +775,9 @@
                 return;
             }
 
-            rows.forEach((row, index) => {
+            rows.forEach((row) => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition";
-                
                 let emailHtml = row.email ? `<a href="mailto:${row.email}" class="text-blue-500">${row.email}</a>` : '-';
                 
                 tr.innerHTML = `
@@ -776,7 +787,7 @@
                     <td class="p-3">${emailHtml}</td>
                     <td class="p-3 text-xs text-gray-500 max-w-[150px] truncate" title="${row.message}">${row.message}</td>
                     <td class="p-3">
-                        <button onclick="deleteBooking(${index})" class="text-red-500 hover:bg-red-50 p-2 rounded-full transition" title="מחק">
+                        <button onclick="adminAction('delete', ${row.rowNumber})" class="text-red-500 hover:bg-red-50 p-2 rounded-full transition" title="מחק">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                         </button>
                     </td>
@@ -786,24 +797,72 @@
             lucide.createIcons();
         }
 
-        function deleteBooking(index) {
-            if(!confirm('האם אתה בטוח שברצונך למחוק הזמנה זו?')) return;
+        function renderReviewsAdminTable(rows) {
+            const tbody = document.getElementById('reviews-table-body');
+            tbody.innerHTML = '';
 
+            if(!rows || rows.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center p-4">אין המלצות עדיין</td></tr>';
+                return;
+            }
+
+            rows.forEach((row) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+                
+                const statusHtml = row.isApproved 
+                    ? '<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">מאושר (מוצג)</span>'
+                    : '<span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">ממתין / מוסתר</span>';
+
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-slate-700">${row.date}</td>
+                    <td class="p-3 text-sm max-w-xs truncate" title="${row.text}">${row.text}</td>
+                    <td class="p-3">${statusHtml}</td>
+                    <td class="p-3 flex gap-2 justify-end">
+                        <button onclick="adminAction('toggleReviewStatus', ${row.rowNumber})" class="text-blue-500 hover:bg-blue-50 p-2 rounded-full transition" title="שנה סטטוס תצוגה">
+                            <i data-lucide="${row.isApproved ? 'eye-off' : 'eye'}" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="editReviewText(${row.rowNumber}, '${row.text.replace(/'/g, "\\'")}')" class="text-emerald-500 hover:bg-emerald-50 p-2 rounded-full transition" title="ערוך טקסט">
+                            <i data-lucide="edit-3" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="adminAction('deleteReview', ${row.rowNumber})" class="text-red-500 hover:bg-red-50 p-2 rounded-full transition" title="מחק המלצה">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        function editReviewText(rowNumber, oldText) {
+            const newText = prompt("ערוך את טקסט ההמלצה:", oldText);
+            if (newText && newText !== oldText) {
+                adminAction('editReviewText', rowNumber, newText);
+            }
+        }
+
+        function adminAction(actionName, rowNumber, extraData = null) {
+            if(actionName.includes('delete') && !confirm('האם אתה בטוח שברצונך למחוק?')) return;
+
+            document.getElementById('loading-data').classList.remove('hidden');
             const formData = new FormData();
-            formData.append('action', 'delete');
+            formData.append('action', actionName);
             formData.append('password', currentPassword);
-            formData.append('rowIndex', index); 
+            formData.append('rowNumber', rowNumber); 
+            if(extraData) formData.append('newText', extraData);
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
             .then(res => res.json())
             .then(data => {
                 if(data.result === 'success') {
-                    loginAdmin(); 
+                    loginAdmin(); // רענון הנתונים
+                    if(actionName.includes('Review')) loadReviews(); // רענון המלצות באתר
                 } else {
-                    alert('שגיאה במחיקה: ' + (data.error || 'לא ידועה'));
+                    alert('שגיאה בפעולה');
                 }
             })
-            .catch(err => alert('שגיאת תקשורת במחיקה'));
+            .catch(() => alert('שגיאת תקשורת עם השרת'));
         }
 
         window.addEventListener('scroll', () => {
