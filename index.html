@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -68,12 +67,12 @@
             position: relative;
             overflow: hidden;
             margin-top: -60px; 
-            /* הפילטר הזה מוסיף מעט בהירות לתמונה */
             filter: brightness(1.1); 
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
-        .text-glow-white { text-shadow: 0 1px 3px rgba(255,255,255,1), 0 0 25px rgba(255,255,255,0.9); }
+        /* עודכן: הילה לבנה לטקסט שחור */
+        .text-glow-light { text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.7); }
         .text-drop-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -102,11 +101,6 @@
         }
         .info-box:hover { transform: translateY(-5px); }
 
-        /* Admin Styles */
-        #admin-modal {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            z-index: 10000; justify-content: center; align-items: center;
-        }
         .spinner {
             border: 4px solid #f3f3f3; border-top: 4px solid var(--gold);
             border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;
@@ -117,9 +111,6 @@
             position: absolute; inset: 0; background: rgba(255,255,255,0.7);
             display: none; justify-content: center; align-items: center; z-index: 10;
         }
-
-        .admin-tab { padding: 0.5rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; font-weight: bold; }
-        .admin-tab.active { border-bottom-color: var(--gold); color: var(--gold-dark); }
 
         /* Animations */
         .gold-particle {
@@ -179,80 +170,17 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <!-- Admin Modal -->
-    <div id="admin-modal">
-        <div class="bg-white p-8 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto relative mx-4">
-            <button onclick="document.getElementById('admin-modal').style.display='none'" class="absolute top-4 left-4 text-gray-500 hover:text-red-500">
-                <i data-lucide="x"></i>
-            </button>
-            
-            <div id="admin-login-view" class="text-center space-y-4">
-                <h3 class="text-2xl font-bold serif">כניסת מנהל</h3>
-                <!-- הסיסמה הוסרה מה-Placeholder ! -->
-                <input type="password" id="admin-pass" placeholder="הכנס סיסמה" class="p-3 border rounded-lg w-full max-w-xs text-center mx-auto block">
-                <button onclick="loginAdmin()" class="btn-gold py-2 px-8">כנס</button>
-                <p id="login-error" class="text-red-500 text-sm hidden">סיסמה שגויה או שגיאת התחברות</p>
-            </div>
-
-            <div id="admin-dashboard-view" class="hidden">
-                <h3 class="text-2xl font-bold serif mb-4 text-center">פאנל ניהול האולם</h3>
-                
-                <!-- Tabs -->
-                <div class="flex justify-center mb-6 border-b">
-                    <div class="admin-tab active" onclick="switchAdminTab('bookings')">הזמנות</div>
-                    <div class="admin-tab" onclick="switchAdminTab('reviews')">ניהול המלצות</div>
-                </div>
-
-                <!-- Bookings Tab -->
-                <div id="tab-bookings" class="overflow-x-auto">
-                    <table class="w-full text-sm text-right">
-                        <thead class="bg-slate-100 text-slate-700">
-                            <tr>
-                                <th class="p-3 rounded-r-lg">תאריך אירוע</th>
-                                <th class="p-3">שם</th>
-                                <th class="p-3">טלפון</th>
-                                <th class="p-3">אימייל</th>
-                                <th class="p-3">הערות</th>
-                                <th class="p-3 rounded-l-lg">פעולות</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookings-table-body" class="divide-y divide-gray-100"></tbody>
-                    </table>
-                </div>
-
-                <!-- Reviews Tab -->
-                <div id="tab-reviews" class="overflow-x-auto hidden">
-                    <table class="w-full text-sm text-right">
-                        <thead class="bg-slate-100 text-slate-700">
-                            <tr>
-                                <th class="p-3 rounded-r-lg">תאריך שליחה</th>
-                                <th class="p-3">תוכן ההמלצה</th>
-                                <th class="p-3">סטטוס</th>
-                                <th class="p-3 rounded-l-lg">פעולות</th>
-                            </tr>
-                        </thead>
-                        <tbody id="reviews-table-body" class="divide-y divide-gray-100"></tbody>
-                    </table>
-                </div>
-
-                <div id="loading-data" class="text-center py-10 hidden">
-                    <div class="spinner mx-auto"></div>
-                    <p class="mt-2 text-gray-500">טוען נתונים...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <header id="hero-bg" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center text-slate-900 px-4 pt-16">
-        <div class="max-w-5xl z-10 p-4 breathing mt-8">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-glow-white leading-tight" style="font-family: Arial, sans-serif;">
+    <header id="hero-bg" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 pt-16">
+        <div class="max-w-5xl z-10 p-4 breathing mt-8 bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20">
+            <!-- עודכן: טקסט שחור והילה -->
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-slate-900 text-glow-light leading-tight" style="font-family: Arial, sans-serif;">
                 אולם אירועים ביכ"ס ישראל הצעיר <br class="hidden md:block"> כפר גנים פ"ת
             </h1>
             
-            <p class="text-xl md:text-3xl text-white font-bold text-drop-shadow max-w-3xl mx-auto leading-relaxed mt-4">
+            <p class="text-xl md:text-3xl text-slate-900 font-bold text-glow-light max-w-3xl mx-auto leading-relaxed mt-4">
                 אירועים חברתיים באופי דתי בלבד.<br>
-                <span class="text-lg md:text-2xl font-normal mt-2 block">כגון, בר/בת מצוה, אירוסין, שבע ברכות, ברית מילה, הפרשת חלה, ערבי לימוד וכדומה.</span>
+                <span class="text-lg md:text-2xl font-bold mt-2 block">כגון, בר/בת מצוה, אירוסין, שבע ברכות, ברית מילה, הפרשת חלה, ערבי לימוד וכדומה.</span>
             </p>
         </div>
     </header>
@@ -297,7 +225,6 @@
             </div>
         </section>
 
-        <!-- (שאר קטעי המידע, הנהלים והלוח נשארו בדיוק כמו שהם בקוד המקורי - אני מדלג כדי לחסוך מקום, יש להעתיק אותם מהקוד המקורי שלך) -->
         <!-- Booking Info & Pricing -->
         <section id="booking-info" class="reveal mb-12 pt-8">
             <div class="text-center mb-12">
@@ -343,15 +270,23 @@
 
         <!-- Rules and Equipment Section -->
         <div id="rules-info" class="reveal mb-32 info-box text-right max-w-5xl mx-auto border-gray-100 shadow-md pt-8 mt-8">
-            <h4 class="font-bold text-2xl mb-8 flex items-center gap-2 text-slate-800 italic underline">
+            <h4 class="font-bold text-2xl mb-6 flex items-center gap-2 text-slate-800 italic underline">
                 <i data-lucide="file-text" class="text-gold w-6 h-6"></i> מידע, ציוד וכללי האולם
             </h4>
             
+            <!-- תוספת: מידע על תכולת האולם -->
+            <div class="bg-gold/10 p-4 rounded-xl mb-8 border border-gold/30 text-center">
+                <p class="text-xl md:text-2xl font-bold text-slate-900">
+                    האולם מתאים עד ל-150 סועדים או עד 200 להרצאות בלבד.
+                </p>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-10 text-gray-700">
                 <div class="space-y-6">
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">כשרות</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm">
+                        <!-- עודכן: הגדלת טקסט (text-base md:text-lg במקום text-sm) -->
+                        <ul class="list-disc list-inside space-y-2 text-base md:text-lg">
                             <li>הקייטרינג חייב להיות בעל תעודת כשרות.</li>
                             <li>אין להביא מזון ביתי שלא אושר על ידינו. ניתן להביא מזון קנוי שיש לו הכשר.</li>
                         </ul>
@@ -359,7 +294,7 @@
                     
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">חניה ונגישות</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm">
+                        <ul class="list-disc list-inside space-y-2 text-base md:text-lg">
                             <li>מגרש חניה חופשי ממול לבית הכנסת.</li>
                             <li>כניסה מונגשת לאולם כולל שירותים לנכים.</li>
                         </ul>
@@ -367,12 +302,12 @@
 
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">קבלת האולם</h5>
-                        <p class="text-sm">בשעה 8 בבוקר מלבד ימי ראשון ורביעי בשעה 12 בצהרים.</p>
+                        <p class="text-base md:text-lg">בשעה 8 בבוקר מלבד ימי ראשון ורביעי בשעה 12 בצהרים.</p>
                     </div>
 
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - אולם</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm">
+                        <ul class="list-disc list-inside space-y-2 text-base md:text-lg">
                             <li>10 שולחנות עגולים בקוטר 160 ס"מ (מתאים עד 10 סועדים).</li>
                             <li>19 שולחנות מלבניים בגודל 250X60 ס"מ.</li>
                             <li>220 כסאות פלסטיק לבנים משודרגים (לא של כתר).</li>
@@ -386,7 +321,7 @@
                 <div class="space-y-6">
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">ציוד קיים - מטבח</h5>
-                        <ul class="list-disc list-inside space-y-1 text-sm">
+                        <ul class="list-disc list-inside space-y-2 text-base md:text-lg">
                             <li>2 מקררים תעשיתים, 1 מקפיא.</li>
                             <li>1 ארון חימום.</li>
                             <li>7 פלטות לשבת, 2 מיחמים.</li>
@@ -397,7 +332,7 @@
 
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">הקפדה על כללים</h5>
-                        <ul class="list-disc list-inside space-y-2 text-sm">
+                        <ul class="list-disc list-inside space-y-3 text-base md:text-lg">
                             <li>הציוד במטבח משמש <b class="text-slate-900">רק לחימום ולא לבישול</b>.</li>
                             <li>אסור להביא ציוד חשמלי ללא תיאום.</li>
                             <li>אסור להשמיע מוזיקה לאחר שעה 23 בלילה.</li>
@@ -428,42 +363,39 @@
 
         <!-- Form Section -->
         <section id="booking-form" class="reveal mb-32 pt-8 bg-slate-100 p-6 md:p-10 rounded-[2.5rem] relative shadow-lg">
-            <div class="loader-overlay rounded-[2.5rem]" id="form-loader">
-                <div class="text-center">
-                    <div class="spinner mx-auto mb-4"></div>
-                    <p class="font-bold text-slate-800">שולח בקשה...</p>
-                </div>
-            </div>
-
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-8">
                     <h2 class="text-3xl font-bold serif mb-2">בקשה לשיריון תאריך</h2>
-                    <p class="text-gray-600 text-sm md:text-base">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
+                    <p class="text-gray-600 text-sm md:text-base">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם (השליחה תתבצע דרך וואטסאפ)</p>
                 </div>
                 
-                <form id="newBookingForm" class="grid md:grid-cols-2 gap-4 md:gap-6" onsubmit="handleFormSubmit(event)">
+                <!-- עודכן: שליחה לוואטסאפ במקום פונקציה רגילה -->
+                <form id="newBookingForm" class="grid md:grid-cols-2 gap-4 md:gap-6" onsubmit="handleBookingWhatsApp(event)">
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-1">שם מלא</label>
-                        <input type="text" id="fname" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <input type="text" id="fname" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-1">טלפון</label>
-                        <input type="tel" id="fphone" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <input type="tel" id="fphone" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-1">אימייל</label>
-                        <input type="email" id="femail" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <input type="email" id="femail" class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20">
                     </div>
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-1">תאריך מבוקש</label>
-                        <input type="date" id="fdate" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20">
+                        <input type="date" id="fdate" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20">
                     </div>
                     <div class="col-span-2">
                         <label class="block text-sm font-bold mb-1">נא לציין סוג אירוע מספר מוזמנים ובקשות מיוחדות</label>
-                        <textarea id="fmsg" rows="3" placeholder="לדוגמה: ברית, שבת חתן... ועוד בקשות אם יש" class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none shadow-sm transition-all focus:ring-2 focus:ring-gold/20"></textarea>
+                        <textarea id="fmsg" rows="3" placeholder="לדוגמה: ברית, שבת חתן... ועוד בקשות אם יש" class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20"></textarea>
                     </div>
                     <div class="col-span-2 text-center mt-2">
-                        <button type="submit" class="btn-gold w-full md:w-auto text-lg md:text-xl shadow-xl hover:shadow-2xl">שלח בקשה לשיריון</button>
+                        <!-- עודכן: כפתור וואטסאפ -->
+                        <button type="submit" class="bg-[#25D366] text-white px-8 py-3 rounded-full font-bold hover:brightness-110 transition shadow-lg w-full md:w-auto text-lg flex items-center justify-center gap-2 mx-auto">
+                            <i data-lucide="send"></i> שלח בקשה בוואטסאפ
+                        </button>
                     </div>
                 </form>
             </div>
@@ -491,9 +423,16 @@
                 
                 <h3 class="text-2xl font-bold serif mb-4 text-center">הייתם אצלנו? נשמח לשמוע!</h3>
                 <form id="newReviewForm" onsubmit="submitReview(event)" class="space-y-4">
+                    <!-- תוספת: דירוג כוכבים -->
+                    <div class="text-center mb-4">
+                        <label class="block text-sm font-bold mb-2 text-slate-700">דירוג האירוע</label>
+                        <div id="star-rating-form" class="flex gap-2 text-gray-300 justify-center" dir="ltr"></div>
+                    </div>
+
                     <div>
                         <label class="block text-sm font-bold mb-1 text-slate-700">ההמלצה שלכם</label>
-                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תעלה לאתר לאחר אישור." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
+                        <!-- עודכן: הוסר הטקסט "לאחר אישור" -->
+                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תעלה מיד לאתר." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
                     </div>
                     <div class="text-center pt-2">
                         <button type="submit" class="bg-slate-800 text-white px-8 py-3 rounded-full font-bold hover:bg-gold transition shadow-lg w-full md:w-auto">שלח המלצה</button>
@@ -570,16 +509,30 @@
 
     <footer class="py-12 text-center text-white/50 text-sm bg-slate-950 relative z-10">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה </p>
-        <button onclick="document.getElementById('admin-modal').style.display='flex'" class="absolute bottom-4 right-4 text-white/20 hover:text-white transition">
-            <i data-lucide="lock" class="w-4 h-4"></i>
-        </button>
+        <!-- כפתור הניהול הוסר -->
     </footer>
 
     <script>
-        // === שים פה את הקישור החדש שקיבלת לאחר הפריסה מחדש! ===
+        // === שים פה את הקישור החדש שקיבלת לאחר הפריסה מחדש בגוגל סקריפט! ===
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzzzzzzzzzzzzzzz/exec'; 
         
         lucide.createIcons();
+
+        // אתחול כוכבים להמלצה
+        let currentRating = 5; 
+        function initStarForm() {
+            const container = document.getElementById('star-rating-form');
+            if(!container) return;
+            container.innerHTML = '';
+            for(let i=1; i<=5; i++) {
+                const star = document.createElement('i');
+                star.setAttribute('data-lucide', 'star');
+                star.className = `w-8 h-8 md:w-10 md:h-10 transition-colors cursor-pointer ${i <= currentRating ? 'text-gold fill-current' : 'text-gray-300'}`;
+                star.onclick = () => { currentRating = i; initStarForm(); };
+                container.appendChild(star);
+            }
+            lucide.createIcons();
+        }
 
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
@@ -587,7 +540,6 @@
         }
 
         function autoLoadImages() {
-            // שונתה האטימות וצבע הגרדיאנט לתת מראה מואר ובהיר יותר לתמונת הרקע
             const lightGradient = "linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1))";
             const imageMap = [
                 { id: 'hero-bg', file: '01.jpg', isBg: true },
@@ -629,36 +581,41 @@
             }, 800); 
         }
 
-        function handleFormSubmit(e) {
+        // שליחת טופס לוואטסאפ (במקום הקוד הישן של handleFormSubmit)
+        function handleBookingWhatsApp(e) {
             e.preventDefault();
-            const loader = document.getElementById('form-loader');
-            loader.style.display = 'flex';
+            
+            const name = document.getElementById('fname').value;
+            const phone = document.getElementById('fphone').value;
+            const email = document.getElementById('femail').value;
+            const date = document.getElementById('fdate').value;
+            const msg = document.getElementById('fmsg').value;
 
+            // שמירת גיבוי לאקסל ברקע
             const formData = new FormData();
             formData.append('action', 'submit');
-            formData.append('name', document.getElementById('fname').value);
-            formData.append('phone', document.getElementById('fphone').value);
-            formData.append('email', document.getElementById('femail').value); 
-            formData.append('eventDate', document.getElementById('fdate').value);
-            formData.append('message', document.getElementById('fmsg').value);
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('eventDate', date);
+            formData.append('message', msg);
+            fetch(SCRIPT_URL, { method: 'POST', body: formData }).catch(err => console.log(err));
 
-            fetch(SCRIPT_URL, { method: 'POST', body: formData })
-            .then(response => response.json())
-            .then(data => {
-                loader.style.display = 'none';
-                if(data.result === 'success') {
-                    alert('הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם.');
-                    document.getElementById('newBookingForm').reset();
-                } else {
-                    alert('שגיאה בשליחה.');
-                }
-            })
-            .catch(() => {
-                loader.style.display = 'none';
-                alert('שגיאת תקשורת. ייתכן שגוגל חסמו את הגישה.');
-            });
+            // בניית הודעת וואטסאפ
+            let waText = `שלום, אשמח לברר לגבי שיריון אירוע באולם:\n`;
+            waText += `*שם:* ${name}\n`;
+            waText += `*טלפון:* ${phone}\n`;
+            if(email) waText += `*אימייל:* ${email}\n`;
+            waText += `*תאריך מבוקש:* ${date}\n`;
+            if(msg) waText += `*פרטים נוספים:* ${msg}`;
+
+            const waNumber = "972507341851"; 
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
+            
+            document.getElementById('newBookingForm').reset();
         }
 
+        // קריאת המלצות וציור כוכבים (ללא שם)
         function loadReviews() {
             fetch(`${SCRIPT_URL}?action=getReviews`)
             .then(res => res.json())
@@ -667,22 +624,22 @@
                 container.innerHTML = '';
                 
                 if(!data.data || data.data.length === 0) {
-                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות פעילות, תהיו הראשונים!</div>';
+                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות, תהיו הראשונים!</div>';
                     return;
                 }
 
                 data.data.forEach(review => {
+                    let starsHtml = '';
+                    let starsCount = parseInt(review.stars) || 5;
+                    for(let i=1; i<=5; i++) {
+                        starsHtml += `<i data-lucide="star" class="w-4 h-4 ${i <= starsCount ? 'text-gold fill-current' : 'text-gray-300'}"></i>`;
+                    }
+
                     const div = document.createElement('div');
                     div.className = 'bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between transition hover:-translate-y-1';
                     div.innerHTML = `
                         <div>
-                            <div class="flex text-gold mb-3">
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            </div>
+                            <div class="flex mb-3" dir="ltr">${starsHtml}</div>
                             <p class="text-gray-700 italic mb-4">"${review.text}"</p>
                         </div>
                         <div class="border-t pt-3 mt-2 flex justify-between items-center text-sm text-gray-500">
@@ -699,6 +656,7 @@
             });
         }
 
+        // שליחת המלצה עם כוכבים בלבד (ללא שם או אישור)
         function submitReview(e) {
             e.preventDefault();
             const loader = document.getElementById('review-loader');
@@ -707,162 +665,23 @@
             const formData = new FormData();
             formData.append('action', 'submitReview');
             formData.append('rText', document.getElementById('rText').value);
+            formData.append('rStars', currentRating);
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
             .then(res => res.json())
             .then(data => {
                 loader.style.display = 'none';
                 if(data.result === 'success') {
-                    alert('תודה רבה על ההמלצה! היא נשלחה לאישור מנהל.');
+                    alert('תודה רבה על ההמלצה! היא עלתה לאתר.');
                     document.getElementById('newReviewForm').reset();
+                    currentRating = 5; initStarForm();
+                    loadReviews(); // מרענן את ההמלצות מיד
                 } else { alert('שגיאה בשליחה.'); }
             })
             .catch(() => {
                 loader.style.display = 'none';
                 alert('שגיאת תקשורת.');
             });
-        }
-
-        // --- Admin Logic ---
-        let currentPassword = '';
-
-        function switchAdminTab(tab) {
-            document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-bookings').classList.add('hidden');
-            document.getElementById('tab-reviews').classList.add('hidden');
-            
-            event.target.classList.add('active');
-            document.getElementById(`tab-${tab}`).classList.remove('hidden');
-        }
-
-        function loginAdmin() {
-            const pass = document.getElementById('admin-pass').value;
-            const errorMsg = document.getElementById('login-error');
-            const dashboard = document.getElementById('admin-dashboard-view');
-            const loginView = document.getElementById('admin-login-view');
-            const loading = document.getElementById('loading-data');
-            
-            errorMsg.classList.add('hidden');
-            loading.classList.remove('hidden');
-
-            fetch(`${SCRIPT_URL}?action=adminLogin&password=${pass}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.result === 'success') {
-                    currentPassword = pass;
-                    loginView.classList.add('hidden');
-                    dashboard.classList.remove('hidden');
-                    renderBookingsTable(data.bookings);
-                    renderReviewsAdminTable(data.reviews);
-                } else {
-                    errorMsg.classList.remove('hidden');
-                    loading.classList.add('hidden');
-                }
-            })
-            .catch(() => {
-                loading.classList.add('hidden');
-                errorMsg.classList.remove('hidden');
-            });
-        }
-
-        function renderBookingsTable(rows) {
-            const tbody = document.getElementById('bookings-table-body');
-            tbody.innerHTML = '';
-            document.getElementById('loading-data').classList.add('hidden');
-
-            if(!rows || rows.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" class="text-center p-4">אין הזמנות כרגע</td></tr>';
-                return;
-            }
-
-            rows.forEach((row) => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 transition";
-                let emailHtml = row.email ? `<a href="mailto:${row.email}" class="text-blue-500">${row.email}</a>` : '-';
-                
-                tr.innerHTML = `
-                    <td class="p-3 font-bold text-slate-700">${row.eventDate}</td>
-                    <td class="p-3">${row.name}</td>
-                    <td class="p-3"><a href="tel:${row.phone}" class="text-blue-500">${row.phone}</a></td>
-                    <td class="p-3">${emailHtml}</td>
-                    <td class="p-3 text-xs text-gray-500 max-w-[150px] truncate" title="${row.message}">${row.message}</td>
-                    <td class="p-3">
-                        <button onclick="adminAction('delete', ${row.rowNumber})" class="text-red-500 hover:bg-red-50 p-2 rounded-full transition" title="מחק">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-            lucide.createIcons();
-        }
-
-        function renderReviewsAdminTable(rows) {
-            const tbody = document.getElementById('reviews-table-body');
-            tbody.innerHTML = '';
-
-            if(!rows || rows.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" class="text-center p-4">אין המלצות עדיין</td></tr>';
-                return;
-            }
-
-            rows.forEach((row) => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 transition";
-                
-                const statusHtml = row.isApproved 
-                    ? '<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">מאושר (מוצג)</span>'
-                    : '<span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">ממתין / מוסתר</span>';
-
-                tr.innerHTML = `
-                    <td class="p-3 font-bold text-slate-700">${row.date}</td>
-                    <td class="p-3 text-sm max-w-xs truncate" title="${row.text}">${row.text}</td>
-                    <td class="p-3">${statusHtml}</td>
-                    <td class="p-3 flex gap-2 justify-end">
-                        <button onclick="adminAction('toggleReviewStatus', ${row.rowNumber})" class="text-blue-500 hover:bg-blue-50 p-2 rounded-full transition" title="שנה סטטוס תצוגה">
-                            <i data-lucide="${row.isApproved ? 'eye-off' : 'eye'}" class="w-4 h-4"></i>
-                        </button>
-                        <button onclick="editReviewText(${row.rowNumber}, '${row.text.replace(/'/g, "\\'")}')" class="text-emerald-500 hover:bg-emerald-50 p-2 rounded-full transition" title="ערוך טקסט">
-                            <i data-lucide="edit-3" class="w-4 h-4"></i>
-                        </button>
-                        <button onclick="adminAction('deleteReview', ${row.rowNumber})" class="text-red-500 hover:bg-red-50 p-2 rounded-full transition" title="מחק המלצה">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-            lucide.createIcons();
-        }
-
-        function editReviewText(rowNumber, oldText) {
-            const newText = prompt("ערוך את טקסט ההמלצה:", oldText);
-            if (newText && newText !== oldText) {
-                adminAction('editReviewText', rowNumber, newText);
-            }
-        }
-
-        function adminAction(actionName, rowNumber, extraData = null) {
-            if(actionName.includes('delete') && !confirm('האם אתה בטוח שברצונך למחוק?')) return;
-
-            document.getElementById('loading-data').classList.remove('hidden');
-            const formData = new FormData();
-            formData.append('action', actionName);
-            formData.append('password', currentPassword);
-            formData.append('rowNumber', rowNumber); 
-            if(extraData) formData.append('newText', extraData);
-
-            fetch(SCRIPT_URL, { method: 'POST', body: formData })
-            .then(res => res.json())
-            .then(data => {
-                if(data.result === 'success') {
-                    loginAdmin(); // רענון הנתונים
-                    if(actionName.includes('Review')) loadReviews(); // רענון המלצות באתר
-                } else {
-                    alert('שגיאה בפעולה');
-                }
-            })
-            .catch(() => alert('שגיאת תקשורת עם השרת'));
         }
 
         window.addEventListener('scroll', () => {
@@ -882,6 +701,7 @@
         window.onload = function() {
             autoLoadImages();
             createParticles();
+            initStarForm();
             loadReviews(); 
         };
     </script>
