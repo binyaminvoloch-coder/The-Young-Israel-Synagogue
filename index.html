@@ -71,9 +71,8 @@
         }
         @media (min-width: 768px) { #hero-bg { background-attachment: fixed; } }
 
-        /* עודכן: הילה לבנה לטקסט שחור */
+        /* הילה לטקסט שחור */
         .text-glow-light { text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.7); }
-        .text-drop-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -172,8 +171,7 @@
 
     <!-- Hero Section -->
     <header id="hero-bg" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 pt-16">
-        <div class="max-w-5xl z-10 p-4 breathing mt-8 bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20">
-            <!-- עודכן: טקסט שחור והילה -->
+        <div class="max-w-5xl z-10 p-4 breathing mt-8 bg-white/30 backdrop-blur-sm rounded-3xl border border-white/40">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-slate-900 text-glow-light leading-tight" style="font-family: Arial, sans-serif;">
                 אולם אירועים ביכ"ס ישראל הצעיר <br class="hidden md:block"> כפר גנים פ"ת
             </h1>
@@ -274,7 +272,6 @@
                 <i data-lucide="file-text" class="text-gold w-6 h-6"></i> מידע, ציוד וכללי האולם
             </h4>
             
-            <!-- תוספת: מידע על תכולת האולם -->
             <div class="bg-gold/10 p-4 rounded-xl mb-8 border border-gold/30 text-center">
                 <p class="text-xl md:text-2xl font-bold text-slate-900">
                     האולם מתאים עד ל-150 סועדים או עד 200 להרצאות בלבד.
@@ -285,7 +282,6 @@
                 <div class="space-y-6">
                     <div>
                         <h5 class="font-bold text-lg text-slate-900 mb-2 border-b-2 border-gold/30 inline-block">כשרות</h5>
-                        <!-- עודכן: הגדלת טקסט (text-base md:text-lg במקום text-sm) -->
                         <ul class="list-disc list-inside space-y-2 text-base md:text-lg">
                             <li>הקייטרינג חייב להיות בעל תעודת כשרות.</li>
                             <li>אין להביא מזון ביתי שלא אושר על ידינו. ניתן להביא מזון קנוי שיש לו הכשר.</li>
@@ -363,13 +359,19 @@
 
         <!-- Form Section -->
         <section id="booking-form" class="reveal mb-32 pt-8 bg-slate-100 p-6 md:p-10 rounded-[2.5rem] relative shadow-lg">
+            <div class="loader-overlay rounded-[2.5rem]" id="form-loader">
+                <div class="text-center">
+                    <div class="spinner mx-auto mb-4"></div>
+                    <p class="font-bold text-slate-800">מעביר לוואטסאפ...</p>
+                </div>
+            </div>
+
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-8">
                     <h2 class="text-3xl font-bold serif mb-2">בקשה לשיריון תאריך</h2>
-                    <p class="text-gray-600 text-sm md:text-base">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם (השליחה תתבצע דרך וואטסאפ)</p>
+                    <p class="text-gray-600 text-sm md:text-base">בחרו תאריך ומלאו פרטים לשליחת בקשה למנהל האולם</p>
                 </div>
                 
-                <!-- עודכן: שליחה לוואטסאפ במקום פונקציה רגילה -->
                 <form id="newBookingForm" class="grid md:grid-cols-2 gap-4 md:gap-6" onsubmit="handleBookingWhatsApp(event)">
                     <div class="col-span-2 md:col-span-1">
                         <label class="block text-sm font-bold mb-1">שם מלא</label>
@@ -392,7 +394,6 @@
                         <textarea id="fmsg" rows="3" placeholder="לדוגמה: ברית, שבת חתן... ועוד בקשות אם יש" class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20"></textarea>
                     </div>
                     <div class="col-span-2 text-center mt-2">
-                        <!-- עודכן: כפתור וואטסאפ -->
                         <button type="submit" class="bg-[#25D366] text-white px-8 py-3 rounded-full font-bold hover:brightness-110 transition shadow-lg w-full md:w-auto text-lg flex items-center justify-center gap-2 mx-auto">
                             <i data-lucide="send"></i> שלח בקשה בוואטסאפ
                         </button>
@@ -423,16 +424,13 @@
                 
                 <h3 class="text-2xl font-bold serif mb-4 text-center">הייתם אצלנו? נשמח לשמוע!</h3>
                 <form id="newReviewForm" onsubmit="submitReview(event)" class="space-y-4">
-                    <!-- תוספת: דירוג כוכבים -->
                     <div class="text-center mb-4">
                         <label class="block text-sm font-bold mb-2 text-slate-700">דירוג האירוע</label>
                         <div id="star-rating-form" class="flex gap-2 text-gray-300 justify-center" dir="ltr"></div>
                     </div>
-
                     <div>
                         <label class="block text-sm font-bold mb-1 text-slate-700">ההמלצה שלכם</label>
-                        <!-- עודכן: הוסר הטקסט "לאחר אישור" -->
-                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תעלה מיד לאתר." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
+                        <textarea id="rText" required rows="3" placeholder="ספרו לנו איך היה... ההמלצה תעלה לאתר." class="w-full p-3 rounded-xl border border-gray-200 focus:border-gold outline-none transition-all focus:ring-2 focus:ring-gold/20"></textarea>
                     </div>
                     <div class="text-center pt-2">
                         <button type="submit" class="bg-slate-800 text-white px-8 py-3 rounded-full font-bold hover:bg-gold transition shadow-lg w-full md:w-auto">שלח המלצה</button>
@@ -509,16 +507,14 @@
 
     <footer class="py-12 text-center text-white/50 text-sm bg-slate-950 relative z-10">
         <p>© כל הזכויות שמורות - אולם ישראל הצעיר פתח תקווה </p>
-        <!-- כפתור הניהול הוסר -->
     </footer>
 
     <script>
-        // === שים פה את הקישור החדש שקיבלת לאחר הפריסה מחדש בגוגל סקריפט! ===
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylz7zZCLwuSTtO8b9iV_sN9vHC6laCRGvwXWUqUDErxomcKkGCGUJazDGCWdPuIfub4A/exec'; 
+        // === שים פה את הקישור החדש שקיבלת לאחר הפריסה מחדש! ===
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzzzzzzzzzzzzzzz/exec'; 
         
         lucide.createIcons();
 
-        // אתחול כוכבים להמלצה
         let currentRating = 5; 
         function initStarForm() {
             const container = document.getElementById('star-rating-form');
@@ -581,7 +577,6 @@
             }, 800); 
         }
 
-        // שליחת טופס לוואטסאפ (במקום הקוד הישן של handleFormSubmit)
         function handleBookingWhatsApp(e) {
             e.preventDefault();
             
@@ -591,7 +586,6 @@
             const date = document.getElementById('fdate').value;
             const msg = document.getElementById('fmsg').value;
 
-            // שמירת גיבוי לאקסל ברקע
             const formData = new FormData();
             formData.append('action', 'submit');
             formData.append('name', name);
@@ -601,7 +595,6 @@
             formData.append('message', msg);
             fetch(SCRIPT_URL, { method: 'POST', body: formData }).catch(err => console.log(err));
 
-            // בניית הודעת וואטסאפ
             let waText = `שלום, אשמח לברר לגבי שיריון אירוע באולם:\n`;
             waText += `*שם:* ${name}\n`;
             waText += `*טלפון:* ${phone}\n`;
@@ -615,7 +608,6 @@
             document.getElementById('newBookingForm').reset();
         }
 
-        // קריאת המלצות וציור כוכבים (ללא שם)
         function loadReviews() {
             fetch(`${SCRIPT_URL}?action=getReviews`)
             .then(res => res.json())
@@ -624,7 +616,7 @@
                 container.innerHTML = '';
                 
                 if(!data.data || data.data.length === 0) {
-                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות, תהיו הראשונים!</div>';
+                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">עדיין אין המלצות פעילות, תהיו הראשונים!</div>';
                     return;
                 }
 
@@ -656,7 +648,6 @@
             });
         }
 
-        // שליחת המלצה עם כוכבים בלבד (ללא שם או אישור)
         function submitReview(e) {
             e.preventDefault();
             const loader = document.getElementById('review-loader');
@@ -675,7 +666,7 @@
                     alert('תודה רבה על ההמלצה! היא עלתה לאתר.');
                     document.getElementById('newReviewForm').reset();
                     currentRating = 5; initStarForm();
-                    loadReviews(); // מרענן את ההמלצות מיד
+                    loadReviews();
                 } else { alert('שגיאה בשליחה.'); }
             })
             .catch(() => {
