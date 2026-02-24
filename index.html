@@ -13,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>אולם אירועים ישראל הצעיר פתח תקווה | בריתות, שבת חתן ואירועים בכפר גנים</title>
-    <meta name="description" content="אולם אירועים ישראל הצעיר בכפר גנים פתח תקווה. המקום המושלם לברית, שבת חתן, בר מצווה, הרצאות, אזכרות, כנסים ואירועים משפחתיים עד 200 איש. אולם בוטיק נקי, מטופח, כשר ונגיש במחיר הוגן.">
+    <meta name="description" content="אולם בוטיק נקי, מטופח, כשר ונגיש במחיר הוגן. המקום המושלם לאירועים משפחתיים עד 200 איש.">
     <meta name="keywords" content="אולם אירועים בפתח תקווה, אולם לברית בפתח תקווה, אולם לשבת חתן פתח תקווה, אולם בכפר גנים, ישראל הצעיר פתח תקווה, אולם אירועים קטן במרכז, אולם לאירועים קטנים פתח תקווה, אולם עד 200 איש, אולם לבר מצווה פתח תקווה, אולם לבת מצווה, אולם לבריתה, אולם לזבד הבת, אולם לאירוסין, אולם לחינה בפתח תקווה, אולם להרצאות בפתח תקווה, השכרת אולם להרצאה, מקום לכנסים בפתח תקווה, השכרת אולם בבית כנסת, אולם לאזכרה פתח תקווה, סעודת מצווה, אולם כשר פתח תקווה, אולם זול בפתח תקווה, אולם במחיר שפוי, אולם אירועים במרכז, אולם לימי הולדת, מקום לאירוע קטן, אולם בית כנסת ישראל הצעיר, אולם ברחוב יוסף פלדמן, אולם נגיש לנכים, אולם עם חניה, אולם לשבע ברכות, קידוש בבית כנסת, אולם אירועים דתי, אולם לציבור הדתי פתח תקווה, בית כנסת ישראל הצעיר כפר גנים">
     <meta name="author" content="ישראל הצעיר פתח תקווה">
     <meta name="robots" content="index, follow">
     
-    <!-- תגיות לשליטה בתצוגה בוואטסאפ ורשתות חברתיות (כאן עורכים את הטקסט והתמונה לווצאפ) -->
-    <meta property="og:title" content="אולם אירועים ישראל הצעיר פתח תקווה">
-    <meta property="og:description" content="">
+    <!-- תגיות לשליטה בתצוגה בוואטסאפ ורשתות חברתיות -->
+    <meta property="og:title" content="אולם אירועים ישראל הצעיר פתח תקווה | בריתות, שבת חתן ואירועים">
+    <meta property="og:description" content="אולם בוטיק נקי, מטופח, כשר ונגיש במחיר הוגן. המקום המושלם לאירועים משפחתיים עד 200 איש.">
     <meta property="og:image" content="https://the-young-israel-synagogue.vercel.app/01.jpg">
     <meta property="og:url" content="https://the-young-israel-synagogue.vercel.app/">
     <meta property="og:type" content="website">
@@ -442,7 +442,7 @@
                 <form id="newReviewForm" onsubmit="submitReview(event)" class="space-y-4">
                     <div class="text-center mb-4">
                         <label class="block text-sm font-bold mb-2 text-slate-700">דירוג האירוע</label>
-                        <div id="star-rating-form" class="flex gap-2 text-gray-300 justify-center" dir="ltr"></div>
+                        <div id="star-rating-form" class="flex gap-2 justify-center" dir="ltr"></div>
                     </div>
                     <div>
                         <label class="block text-sm font-bold mb-1 text-slate-700">ההמלצה שלכם</label>
@@ -537,11 +537,20 @@
             if(!container) return;
             container.innerHTML = '';
             for(let i=1; i<=5; i++) {
+                const wrapper = document.createElement('span');
+                wrapper.className = 'cursor-pointer inline-block transition-transform hover:scale-110';
+                wrapper.onclick = () => { currentRating = i; initStarForm(); };
+                
                 const star = document.createElement('i');
                 star.setAttribute('data-lucide', 'star');
-                star.className = `w-8 h-8 md:w-10 md:h-10 transition-colors cursor-pointer ${i <= currentRating ? 'text-gold fill-current' : 'text-gray-300'}`;
-                star.onclick = () => { currentRating = i; initStarForm(); };
-                container.appendChild(star);
+                if (i <= currentRating) {
+                    star.className = 'w-8 h-8 md:w-10 md:h-10 text-[#D4AF37] fill-[#D4AF37] transition-colors';
+                } else {
+                    star.className = 'w-8 h-8 md:w-10 md:h-10 text-gray-300 fill-transparent transition-colors';
+                }
+                
+                wrapper.appendChild(star);
+                container.appendChild(wrapper);
             }
             lucide.createIcons();
         }
@@ -640,7 +649,7 @@
                     let starsHtml = '';
                     let starsCount = parseInt(review.stars) || 5;
                     for(let i=1; i<=5; i++) {
-                        starsHtml += `<i data-lucide="star" class="w-4 h-4 ${i <= starsCount ? 'text-gold fill-current' : 'text-gray-300'}"></i>`;
+                        starsHtml += `<i data-lucide="star" class="w-4 h-4 ${i <= starsCount ? 'text-[#D4AF37] fill-[#D4AF37]' : 'text-gray-300 fill-transparent'}"></i>`;
                     }
 
                     const div = document.createElement('div');
