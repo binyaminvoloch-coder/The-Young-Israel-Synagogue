@@ -19,8 +19,8 @@
     <meta name="robots" content="index, follow">
     
     <!-- תגיות לשליטה בתצוגה בוואטסאפ ורשתות חברתיות -->
-    <meta property="og:title" content="אולם אירועים ישראל הצעיר פתח תקווה | בריתות, שבת חתן ואירועים">
-    <meta property="og:description" content="אולם בוטיק נקי, מטופח, כשר ונגיש במחיר הוגן. המקום המושלם לאירועים משפחתיים עד 200 איש.">
+    <meta property="og:title" content="אולם ישראל הצעיר">
+    <meta property="og:description" content="">
     <meta property="og:image" content="https://the-young-israel-synagogue.vercel.app/01.jpg">
     <meta property="og:url" content="https://the-young-israel-synagogue.vercel.app/">
     <meta property="og:type" content="website">
@@ -405,9 +405,13 @@
                         <label class="block text-sm font-bold mb-1">תאריך מבוקש</label>
                         <input type="date" id="fdate" required class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20">
                     </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-bold mb-1">סוג אירוע</label>
+                        <input type="text" id="fevent" required placeholder="לדוגמה: ברית, שבת חתן, בר מצווה" class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20">
+                    </div>
                     <div class="col-span-2">
-                        <label class="block text-sm font-bold mb-1">נא לציין סוג אירוע מספר מוזמנים ובקשות מיוחדות</label>
-                        <textarea id="fmsg" rows="3" placeholder="לדוגמה: ברית, שבת חתן... ועוד בקשות אם יש" class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20"></textarea>
+                        <label class="block text-sm font-bold mb-1">מספר מוזמנים ובקשות מיוחדות (אופציונלי)</label>
+                        <textarea id="fmsg" rows="3" placeholder="כמה מוזמנים? בקשות מיוחדות?" class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#25D366] outline-none shadow-sm transition-all focus:ring-2 focus:ring-[#25D366]/20"></textarea>
                     </div>
                     <div class="col-span-2 text-center mt-2">
                         <button type="submit" class="bg-[#25D366] text-white px-8 py-3 rounded-full font-bold hover:brightness-110 transition shadow-lg w-full md:w-auto text-lg flex items-center justify-center gap-2 mx-auto">
@@ -609,6 +613,7 @@
             const phone = document.getElementById('fphone').value;
             const email = document.getElementById('femail').value;
             const date = document.getElementById('fdate').value;
+            const eventType = document.getElementById('fevent').value;
             const msg = document.getElementById('fmsg').value;
 
             const formData = new FormData();
@@ -617,13 +622,19 @@
             formData.append('phone', phone);
             formData.append('email', email);
             formData.append('eventDate', date);
-            formData.append('message', msg);
+            
+            // שילוב סוג האירוע וההודעה כדי לא לשבור את הגוגל שיטס הקיים
+            let combinedMsg = `סוג אירוע: ${eventType}`;
+            if(msg) combinedMsg += ` | פרטים נוספים: ${msg}`;
+            formData.append('message', combinedMsg);
+            
             fetch(SCRIPT_URL, { method: 'POST', body: formData }).catch(err => console.log(err));
 
             let waText = `שלום, אשמח לברר לגבי שיריון אירוע באולם:\n`;
             waText += `*שם:* ${name}\n`;
             waText += `*טלפון:* ${phone}\n`;
             if(email) waText += `*אימייל:* ${email}\n`;
+            waText += `*סוג אירוע:* ${eventType}\n`;
             waText += `*תאריך מבוקש:* ${date}\n`;
             if(msg) waText += `*פרטים נוספים:* ${msg}`;
 
